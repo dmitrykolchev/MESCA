@@ -16,7 +16,7 @@ public class MediatorService(IServiceProvider serviceProvider, IMediatorProvider
         where TEvent : IEvent
     {
         ArgumentNullException.ThrowIfNull(notification);
-        IEnumerable<IEventHandler<TEvent>> listeners = _mediatorProvider.GetNotificationListeners<TEvent>(_serviceProvider);
+        IEnumerable<IEventHandler<TEvent>> listeners = _mediatorProvider.GetEventHandlers<TEvent>(_serviceProvider);
         foreach (IEventHandler<TEvent> listener in listeners)
         {
             await listener.HandleAsync(notification, cancellationToken).ConfigureAwait(false);
@@ -88,7 +88,7 @@ public class MediatorService(IServiceProvider serviceProvider, IMediatorProvider
     async Task IMediatorServiceBase.RaiseAsync(IEvent notification, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(notification);
-        IEnumerable<IEventHandler> listeners = _mediatorProvider.GetNotificationListeners(_serviceProvider, notification.GetType());
+        IEnumerable<IEventHandler> listeners = _mediatorProvider.GetEventHandlers(_serviceProvider, notification.GetType());
         foreach (IEventHandler listener in listeners)
         {
             await listener.HandleAsync(notification, cancellationToken).ConfigureAwait(false);

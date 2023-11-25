@@ -15,10 +15,10 @@ public interface IMediatorProvider
 
     public IRequestHandler GetRequestHandler(IServiceProvider serviceProvider, Type requestType);
 
-    public IEnumerable<IEventHandler<TNotification>> GetNotificationListeners<TNotification>(IServiceProvider serviceProvider)
+    public IEnumerable<IEventHandler<TNotification>> GetEventHandlers<TNotification>(IServiceProvider serviceProvider)
         where TNotification : IEvent;
 
-    public IEnumerable<IEventHandler> GetNotificationListeners(IServiceProvider serviceProvider, Type notificationType);
+    public IEnumerable<IEventHandler> GetEventHandlers(IServiceProvider serviceProvider, Type notificationType);
 
     public IEnumerable<IValidator<TRequest>> GetValidators<TRequest>(IServiceProvider serviceProvider)
         where TRequest : IRequest;

@@ -12,7 +12,7 @@ internal class MediatorProvider : IMediatorProvider
 {
     private readonly ConcurrentDictionary<Type, HandlerDesriptor> _requestHandlers = new();
     private readonly ConcurrentDictionary<Type, List<HandlerDesriptor>> _validators = new();
-    private readonly ConcurrentDictionary<Type, List<HandlerDesriptor>> _notificationListeners = new();
+    private readonly ConcurrentDictionary<Type, List<HandlerDesriptor>> _eventHandlers = new();
 
     public MediatorProvider()
     {
@@ -29,11 +29,9 @@ internal class MediatorProvider : IMediatorProvider
             }
             else if(typeof(IValidator).IsAssignableFrom(desriptor.HandlerType))
             {
-                if (!_validators.TryGetValue(desriptor.ContractType, out List<HandlerDesriptor>? validators))
-                {
-                    validators = new();
-                    _validators.TryAdd(desriptor.ContractType, validators);
-                }
+                List<HandlerDesriptor> validators = _validators.GetOrAdd(
+                    desriptor.ContractType,
+                    _ => new List<HandlerDesriptor>());
                 validators.Add(desriptor);
             }
             else
@@ -45,11 +43,9 @@ internal class MediatorProvider : IMediatorProvider
         {
             if(typeof(IEventHandler).IsAssignableFrom(desriptor.HandlerType))
             {
-                if(!_notificationListeners.TryGetValue(desriptor.ContractType, out List<HandlerDesriptor>? listeners))
-                {
-                    listeners = new();
-                    _notificationListeners.TryAdd(desriptor.ContractType, listeners);
-                }
+                List<HandlerDesriptor> listeners = _eventHandlers.GetOrAdd(
+                    desriptor.ContractType, 
+                    _ => new List<HandlerDesriptor>());
                 listeners.Add(desriptor);
             }
             else
@@ -63,25 +59,25 @@ internal class MediatorProvider : IMediatorProvider
         }
     }
 
-    public IEnumerable<IEventHandler<TNotification>> GetNotificationListeners<TNotification>(IServiceProvider serviceProvider) 
-        where TNotification : IEvent
+    public IEnumerable<IEventHandler<TEvent>> GetEventHandlers<TEvent>(IServiceProvider serviceProvider) 
+        where TEvent : IEvent
     {
-        return GetNotificationListeners(serviceProvider, typeof(TNotification)).Cast<IEventHandler<TNotification>>();
+        return GetEventHandlers(serviceProvider, typeof(TEvent)).Cast<IEventHandler<TEvent>>();
     }
 
-    public IEnumerable<IEventHandler> GetNotificationListeners(IServiceProvider serviceProvider, Type notificationType)
+    public IEnumerable<IEventHandler> GetEventHandlers(IServiceProvider serviceProvider, Type notificationType)
     {
         ArgumentNullException.ThrowIfNull(notificationType);
         Type? temp = notificationType;
         while (temp != null && typeof(IEvent).IsAssignableFrom(temp))
         {
-            if (_notificationListeners.TryGetValue(notificationType, out List<HandlerDesriptor>? descriptors))
+            if (_eventHandlers.TryGetValue(notificationType, out List<HandlerDesriptor>? descriptors))
             {
                 IEventHandler[] handlers = new IEventHandler[descriptors.Count];
                 for (int index = 0; index < handlers.Length; ++index)
                 {
                     HandlerDesriptor descriptor = descriptors[index];
-                    handlers[index] = GetOrCreateNotificationListener(serviceProvider, descriptor);
+                    handlers[index] = GetOrCreateEventHandler(serviceProvider, descriptor);
                 }
                 return handlers;
             }
@@ -135,7 +131,7 @@ internal class MediatorProvider : IMediatorProvider
                 for(int index = 0; index < handlers.Length; ++index)
                 {
                     HandlerDesriptor descriptor = descriptors[index];
-                    handlers[index] = GetOrCreateValidateHandler(serviceProvider, descriptor);
+                    handlers[index] = GetOrCreateValidator(serviceProvider, descriptor);
                 }
                 return handlers;
             }
@@ -144,48 +140,37 @@ internal class MediatorProvider : IMediatorProvider
         return Enumerable.Empty<IValidator>();
     }
 
-    private IValidator GetOrCreateValidateHandler(IServiceProvider serviceProvider, HandlerDesriptor descriptor)
+    private IValidator GetOrCreateValidator(IServiceProvider serviceProvider, HandlerDesriptor descriptor)
     {
-        if (descriptor.ServiceLifetime == ServiceLifetime.Singleton)
-        {
-            throw new NotImplementedException();
-        }
-        
-        if(descriptor.ServiceLifetime == ServiceLifetime.Scoped)
-        {
-            throw new NotImplementedException();
-        }
-        
-        return (IValidator)ActivatorUtilities.CreateInstance(serviceProvider, descriptor.HandlerType!);
+        return GetOrCreateHandler<IValidator>(serviceProvider, descriptor);
     }
-    
-    private IEventHandler GetOrCreateNotificationListener(IServiceProvider serviceProvider, HandlerDesriptor descriptor)
+
+    private IEventHandler GetOrCreateEventHandler(IServiceProvider serviceProvider, HandlerDesriptor descriptor)
     {
-        if (descriptor.ServiceLifetime == ServiceLifetime.Singleton)
-        {
-            throw new NotImplementedException();
-        }
-        
-        if (descriptor.ServiceLifetime == ServiceLifetime.Scoped)
-        {
-            throw new NotImplementedException();
-        }
-        
-        return (IEventHandler)ActivatorUtilities.CreateInstance(serviceProvider, descriptor.HandlerType!);
+        return GetOrCreateHandler<IEventHandler>(serviceProvider, descriptor);
     }
 
     private IRequestHandler GetOrCreateRequestHandler(IServiceProvider serviceProvider, HandlerDesriptor descriptor)
     {
+        return GetOrCreateHandler<IRequestHandler>(serviceProvider, descriptor);
+    }
+
+    private THandler GetOrCreateHandler<THandler>(IServiceProvider serviceProvider, HandlerDesriptor descriptor)
+    {
         if (descriptor.ServiceLifetime == ServiceLifetime.Singleton)
         {
-            throw new NotImplementedException();
+            MediatorSingletonLifetimeManager ltm = serviceProvider.GetRequiredService<MediatorSingletonLifetimeManager>();
+            return (THandler)ltm.GetOrCreate(descriptor.HandlerType!);
         }
 
         if (descriptor.ServiceLifetime == ServiceLifetime.Scoped)
         {
-            throw new NotImplementedException();
+            MediatorScopedLifetimeManager ltm = serviceProvider.GetRequiredService<MediatorScopedLifetimeManager>();
+            return (THandler)ltm.GetOrCreate(descriptor.HandlerType!);
         }
 
-        return (IRequestHandler)ActivatorUtilities.CreateInstance(serviceProvider, descriptor.HandlerType!);
+        return (THandler)ActivatorUtilities.CreateInstance(serviceProvider, descriptor.HandlerType!);
     }
+
+
 }

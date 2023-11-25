@@ -74,7 +74,7 @@ public static class MediatorProviderExtensions
                     {
                         ContractType = arguments[0],
                         HandlerType = type,
-                        ServiceLifetime = ServiceLifetime.Transient
+                        ServiceLifetime = GetHandlerLifetime(type)
                     };
                     provider.Add(handlerDesriptor);
                 }
@@ -96,7 +96,7 @@ public static class MediatorProviderExtensions
                         {
                             ContractType = argument,
                             HandlerType = type,
-                            ServiceLifetime = ServiceLifetime.Transient
+                            ServiceLifetime = GetHandlerLifetime(type)
                         };
                         provider.Add(handlerDesriptor);
                     }
@@ -123,7 +123,7 @@ public static class MediatorProviderExtensions
                         {
                             ContractType = argument,
                             HandlerType = type,
-                            ServiceLifetime = ServiceLifetime.Transient
+                            ServiceLifetime = GetHandlerLifetime(type)
                         };
                         provider.Add(handlerDesriptor);
                     }
@@ -140,5 +140,10 @@ public static class MediatorProviderExtensions
         }
 
         return provider;
+    }
+
+    private static ServiceLifetime GetHandlerLifetime(Type type)
+    {
+        return type.GetCustomAttribute<MediatorLifetimeAttribute>()?.Lifetime ?? ServiceLifetime.Transient;
     }
 }

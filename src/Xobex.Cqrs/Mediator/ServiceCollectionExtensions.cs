@@ -18,6 +18,8 @@ public static class ServiceCollectionExtensions
             action?.Invoke(mediatorProvider);
             return mediatorProvider;
         });
+        services.AddSingleton<MediatorSingletonLifetimeManager>();
+        services.AddScoped<MediatorScopedLifetimeManager>();
         return services.AddScoped<IMediatorService, MediatorService>();
     }
 }

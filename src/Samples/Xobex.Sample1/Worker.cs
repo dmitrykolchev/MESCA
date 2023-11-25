@@ -31,7 +31,7 @@ public class Worker : IHostedService
         IMediatorService mediatorService = scope.ServiceProvider.GetRequiredService<IMediatorService>();
         IMesDbContext context = scope.ServiceProvider.GetRequiredService<IMesDbContext>();
         await mediatorService.SendAsync(new InitializeDataTypeCommand(), CancellationToken.None);
-
+        await mediatorService.SendAsync(new InitializeDataTypeCommand(), CancellationToken.None);
         await TestMediatorAsync(scope.ServiceProvider, cancellationToken);
     }
 

@@ -4,11 +4,14 @@
 // </copyright>
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Xobex.Mediator;
 using Xobex.Mes.Entities.Core;
 
 namespace Xobex.Mes.Application.Core.DataType;
+
+[MediatorLifetime(ServiceLifetime.Scoped)]
 public class InitializeDataTypeCommandHandler : RequestHandler<InitializeDataTypeCommand>
 {
     public InitializeDataTypeCommandHandler(
