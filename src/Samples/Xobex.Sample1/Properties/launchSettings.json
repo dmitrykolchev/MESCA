@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Xobex.Sample1": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "development"
+      }
+    }
+  }
+}
