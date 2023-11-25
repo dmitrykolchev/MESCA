@@ -10,8 +10,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common Items", "Common Items", "{E8EE19AA-8A69-457E-95FE-D2E147F14C3C}"
 	ProjectSection(SolutionItems) = preProject
 		src\.editorconfig = src\.editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
 		src\Directory.Build.props = src\Directory.Build.props
 		src\global.json = src\global.json
+		LICENSE.txt = LICENSE.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MES", "MES", "{854964E3-9C9F-4545-A045-3327CAB03F01}"
