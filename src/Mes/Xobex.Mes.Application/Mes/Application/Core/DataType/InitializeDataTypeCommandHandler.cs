@@ -3,7 +3,6 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Xobex.Mediator;
@@ -12,29 +11,16 @@ using Xobex.Mes.Entities.Core;
 namespace Xobex.Mes.Application.Core.DataType;
 
 [MediatorLifetime(ServiceLifetime.Scoped)]
-public class InitializeDataTypeCommandHandler : RequestHandler<InitializeDataTypeCommand>
+public class InitializeDataTypeCommandHandler : TransactedRequestHandler<InitializeDataTypeCommand, Empty>
 {
     public InitializeDataTypeCommandHandler(
         IMesDbContext db,
-        ILogger<InitializeDataTypeCommandHandler> logger)
+        ILogger<InitializeDataTypeCommandHandler> logger) : base(db, logger)
     {
-        Db = db ?? throw new ArgumentNullException(nameof(db));
-        Logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
-    private IMesDbContext Db { get; }
-
-    private ILogger Logger { get; }
-
-    public override async Task ProcessAsync(InitializeDataTypeCommand request, CancellationToken cancellation)
+    protected override async Task<Empty> ProcessOverrideAsync(InitializeDataTypeCommand request, CancellationToken cancellation)
     {
-        if (await Db.DataType.AnyAsync(cancellation))
-        {
-            return;
-        }
-
-        using var transaction = ((DbContext)Db).Database.BeginTransaction();
-
         Db.DataType.AddRange(
             [
                 new()
@@ -112,8 +98,8 @@ public class InitializeDataTypeCommandHandler : RequestHandler<InitializeDataTyp
             ]);
 
         await Db.SaveChangesAsync(cancellation);
-        await transaction.CommitAsync(cancellation);
 
         Logger.LogInformation("{Command} executed successfully", nameof(InitializeDataTypeCommand));
+        return Empty.Instance;
     }
 }

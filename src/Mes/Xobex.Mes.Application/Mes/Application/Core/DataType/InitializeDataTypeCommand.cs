@@ -6,6 +6,8 @@
 using Xobex.Mediator;
 
 namespace Xobex.Mes.Application.Core.DataType;
-public class InitializeDataTypeCommand : IRequest
+
+public record InitializeDataTypeCommand : IRequest<Empty>
 {
+    public static readonly InitializeDataTypeCommand Instance = new ();
 }

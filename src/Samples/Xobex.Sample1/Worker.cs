@@ -3,9 +3,9 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
-using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Xobex.Mediator;
 using Xobex.Mes.Application;
 using Xobex.Mes.Application.Core.DataType;
@@ -13,16 +13,33 @@ using Xobex.Mes.Infrastucture.Database;
 using Xobex.Sample1.Person;
 
 namespace Xobex.Sample1;
-public class Worker : IHostedService
+
+public class Worker : BackgroundService
 {
-    public Worker(IServiceScopeFactory serviceScopeFactory)
+    private readonly ILogger<Worker> _logger;
+
+    public Worker(IServiceScopeFactory serviceScopeFactory, IHostApplicationLifetime hostLifetime,
+        ILogger<Worker> logger)
     {
         ServiceScopeFactory = serviceScopeFactory ?? throw new ArgumentNullException(nameof(serviceScopeFactory));
+        HostLifetime = hostLifetime;
+        _logger = logger;
     }
 
     private IServiceScopeFactory ServiceScopeFactory { get; }
+    private IHostApplicationLifetime HostLifetime { get; }
 
-    public async Task StartAsync(CancellationToken cancellationToken)
+    public override Task StartAsync(CancellationToken cancellationToken)
+    {
+        return base.StartAsync(cancellationToken);
+    }
+
+    public override Task StopAsync(CancellationToken cancellationToken)
+    {
+        return base.StopAsync(cancellationToken);
+    }
+
+    protected override async Task ExecuteAsync(CancellationToken cancellationToken)
     {
         using IServiceScope scope = ServiceScopeFactory.CreateScope();
         MesSqlServerDbContext db = scope.ServiceProvider.GetRequiredService<MesSqlServerDbContext>();
@@ -30,9 +47,17 @@ public class Worker : IHostedService
 
         IMediatorService mediatorService = scope.ServiceProvider.GetRequiredService<IMediatorService>();
         IMesDbContext context = scope.ServiceProvider.GetRequiredService<IMesDbContext>();
-        await mediatorService.SendAsync(new InitializeDataTypeCommand(), CancellationToken.None);
-        await mediatorService.SendAsync(new InitializeDataTypeCommand(), CancellationToken.None);
+        try
+        {
+            await mediatorService.SendAsync(InitializeDataTypeCommand.Instance, CancellationToken.None);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ex.Message);
+        }
         await TestMediatorAsync(scope.ServiceProvider, cancellationToken);
+
+        HostLifetime.StopApplication();
     }
 
     private async Task TestMediatorAsync(IServiceProvider serviceProvider, CancellationToken cancellationToken)
@@ -77,11 +102,6 @@ public class Worker : IHostedService
         {
             Console.WriteLine($"{item.Id}: {item.LastName}, {item.FirstName}");
         }
-    }
-
-    public Task StopAsync(CancellationToken cancellationToken)
-    {
-        return Task.CompletedTask;
     }
 
 }

@@ -64,9 +64,7 @@ public static class MediatorProviderExtensions
             if (typeof(IRequestHandler).IsAssignableFrom(type))
             {
                 Type[]? arguments = type.GetInterfaces()
-                    .Single(t => t.IsGenericType &&
-                        (t.GetGenericTypeDefinition() == typeof(IRequestHandler<,>) ||
-                         t.GetGenericTypeDefinition() == typeof(IRequestHandler<>)))
+                    .Single(t => t.IsGenericType && t.GetGenericTypeDefinition() == typeof(IRequestHandler<,>))
                     .GetGenericArguments();
                 if (typeof(IRequest).IsAssignableFrom(arguments[0]))
                 {

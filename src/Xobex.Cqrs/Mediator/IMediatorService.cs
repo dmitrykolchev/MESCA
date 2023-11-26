@@ -24,7 +24,7 @@ public interface IMediatorService : IMediatorServiceBase
     /// <param name="request">Request</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>Query result</returns>
-    public Task<TResponse> QueryAsync<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken);
+    Task<TResponse> QueryAsync<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken);
 
     /// <summary>
     /// Raises event
@@ -33,6 +33,6 @@ public interface IMediatorService : IMediatorServiceBase
     /// <param name="data">Event data</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>None</returns>
-    public Task RaiseAsync<TEvent>(TEvent data, CancellationToken cancellationToken)
+    Task RaiseAsync<TEvent>(TEvent data, CancellationToken cancellationToken)
         where TEvent : IEvent;
 }

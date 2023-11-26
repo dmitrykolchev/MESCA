@@ -16,7 +16,7 @@ public class CreatePersonHandler : RequestHandler<CreatePersonCommand, int>
         _mediator = mediator;
     }
 
-    public override async Task<int> ProcessAsync(CreatePersonCommand request, CancellationToken cancellationToken)
+    protected override async Task<int> ProcessOverrideAsync(CreatePersonCommand request, CancellationToken cancellationToken)
     {
         PersonModel model = new()
         {

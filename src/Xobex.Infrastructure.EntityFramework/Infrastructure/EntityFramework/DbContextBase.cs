@@ -27,13 +27,13 @@ public abstract class DbContextBase : DbContext
             .Where(t => t.PropertyType.IsGenericType
                      && t.PropertyType.GetGenericTypeDefinition() == typeof(DbSet<>)
                      && t.GetCustomAttribute<EntityConfigurationAttribute>() != null)
-            .Select(t => new 
+            .Select(t => new
             {
                 EntityType = t.PropertyType.GetGenericArguments()[0],
                 Attribute = t.GetCustomAttribute<EntityConfigurationAttribute>()
             })
             .OrderBy(t => t.EntityType.Namespace).ThenBy(t => t.EntityType.Name);
-        foreach(var item in entityWithAttributes)
+        foreach (var item in entityWithAttributes)
         {
             IModelConfiguration configuration = (IModelConfiguration)Activator.CreateInstance(item.Attribute!.EntityConfigurationType)!;
             configuration.Configure(modelBuilder, this);

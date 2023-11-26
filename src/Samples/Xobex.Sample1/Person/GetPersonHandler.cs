@@ -9,7 +9,7 @@ namespace Xobex.Sample1.Person;
 
 public class GetPersonHandler : RequestHandler<GetPersonCommand, PersonModel>
 {
-    public override Task<PersonModel> ProcessAsync(GetPersonCommand request, CancellationToken cancellation)
+    protected override Task<PersonModel> ProcessOverrideAsync(GetPersonCommand request, CancellationToken cancellation)
     {
         return Task.FromResult(PersonRepository.Get(request.PersonId));
     }

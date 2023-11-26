@@ -8,22 +8,20 @@ namespace Xobex.Mediator;
 public abstract class RequestHandler<TRequest, TResponse> : IRequestHandler<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
-    public abstract Task<TResponse> ProcessAsync(TRequest request, CancellationToken cancellationToken);
-
-    async Task<object?> IRequestHandler.ProcessAsync(IRequest request, CancellationToken cancellationToken)
+    protected RequestHandler()
     {
-        return await ProcessAsync((TRequest)request, cancellationToken).ConfigureAwait(false);
+    }
+
+    public virtual Task<TResponse> ProcessAsync(TRequest request, CancellationToken cancellationToken)
+    {
+        return ProcessOverrideAsync(request, cancellationToken);
+    }
+
+    protected abstract Task<TResponse> ProcessOverrideAsync(TRequest request, CancellationToken cancellationToken);
+
+    async Task<object> IRequestHandler.ProcessAsync(IRequest request, CancellationToken cancellationToken)
+    {
+        return (await ProcessAsync((TRequest)request, cancellationToken).ConfigureAwait(false))!;
     }
 }
 
-public abstract class RequestHandler<TRequest> : IRequestHandler<TRequest>
-    where TRequest : IRequest
-{
-    public abstract Task ProcessAsync(TRequest request, CancellationToken cancellationToken);
-
-    async Task<object?> IRequestHandler.ProcessAsync(IRequest request, CancellationToken cancellationToken)
-    {
-        await ProcessAsync((TRequest)request, cancellationToken).ConfigureAwait(false);
-        return null;
-    }
-}
