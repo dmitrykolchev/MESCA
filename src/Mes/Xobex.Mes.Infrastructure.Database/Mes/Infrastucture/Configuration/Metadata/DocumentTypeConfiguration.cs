@@ -32,5 +32,6 @@ public class DocumentTypeConfiguration : EntityConfiguration<DocumentType>
         entity.Property(e => e.ImageName).HasMaxLength(1024).IsUnicode(false);
         entity.Property(e => e.Description).IsUnicode(true);
         entity.HasAuditProperties();
+        entity.HasAlternateKey(e => e.Code).HasName($"ak_{TableName}_code");
     }
 }

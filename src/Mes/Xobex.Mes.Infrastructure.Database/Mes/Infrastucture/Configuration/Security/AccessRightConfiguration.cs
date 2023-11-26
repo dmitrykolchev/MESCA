@@ -24,6 +24,6 @@ public class AccessRightConfiguration : EntityConfiguration<AccessRight>
         entity.Property(e => e.Category).HasMaxLength(1024).IsUnicode(true);
         entity.Property(e => e.Comments).IsUnicode(true);
         entity.HasAuditProperties();
-        entity.HasAlternateKey(e => e.Code).HasName("ak_access_right_code");
+        entity.HasAlternateKey(e => e.Code).HasName($"ak_{TableName}_code");
     }
 }

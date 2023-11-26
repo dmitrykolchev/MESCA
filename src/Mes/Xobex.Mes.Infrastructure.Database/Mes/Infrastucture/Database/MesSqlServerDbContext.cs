@@ -16,6 +16,10 @@ using Xobex.Mes.Infrastucture.Configuration.Resources;
 using Xobex.Mes.Entities.Security;
 using Xobex.Mes.Entities.DocumentManagement;
 using Xobex.Mes.Infrastucture.Configuration.DocumentManagement;
+using Xobex.Mes.Entities.Accounting;
+using Xobex.Mes.Infrastucture.Configuration.Accounting;
+using Xobex.Mes.Infrastucture.Configuration.Dictionaries;
+using Xobex.Mes.Entities.Dictionaries;
 
 namespace Xobex.Mes.Infrastucture.Database;
 
@@ -45,6 +49,8 @@ public class MesSqlServerDbContext : DbContextBase, IMesDbContext, ISqlServer
     public DbSet<DataType> DataType { get; set; }
     [EntityConfiguration(typeof(DocumentConfiguration))]
     public DbSet<Document> Document { get; set; }
+    [EntityConfiguration(typeof(DocumentTransitionConfiguration))]
+    public DbSet<Document> DocumentTransition { get; set; }
     [EntityConfiguration(typeof(DocumentNoteConfiguration))]
     public DbSet<DocumentNote> DocumentNote { get; set; }
     [EntityConfiguration(typeof(DocumentNoteUserStateConfiguration))]
@@ -57,6 +63,24 @@ public class MesSqlServerDbContext : DbContextBase, IMesDbContext, ISqlServer
     public DbSet<PropertyMapping> PropertyMapping { get; set; }
     [EntityConfiguration(typeof(PropertyValueConfiguration))]
     public DbSet<PropertyValue> PropertyValue { get; set; }
+    //
+    // Accounting
+    //
+    [EntityConfiguration(typeof(AccountConfiguration))]
+    public DbSet<Account> Account { get; set; }
+    [EntityConfiguration(typeof(SubcontoConfiguration))]
+    public DbSet<Subconto> Subconto { get; set; }
+    [EntityConfiguration(typeof(OperationConfiguration))]
+    public DbSet<Operation> Operation { get; set; }
+    [EntityConfiguration(typeof(OperationPartConfiguration))]
+    public DbSet<OperationPart> OperationPart { get; set; }
+    //
+    // Справочники
+    //
+    [EntityConfiguration(typeof(CurrencyConfiguration))]
+    public DbSet<Currency> Currency { get; set; }
+    [EntityConfiguration(typeof(CountryConfiguration))]
+    public DbSet<Country> Country { get; set; }
     // 
     // Document Management
     //

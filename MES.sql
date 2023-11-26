@@ -2,6 +2,14 @@
 GO
 
 
+IF SCHEMA_ID(N'acc') IS NULL EXEC(N'CREATE SCHEMA [acc];');
+GO
+
+
+IF SCHEMA_ID(N'dic') IS NULL EXEC(N'CREATE SCHEMA [dic];');
+GO
+
+
 IF SCHEMA_ID(N'core') IS NULL EXEC(N'CREATE SCHEMA [core];');
 GO
 
@@ -22,6 +30,18 @@ CREATE SEQUENCE [sec].[access_right_seq] START WITH 1 INCREMENT BY 1 NO MINVALUE
 GO
 
 
+CREATE SEQUENCE [acc].[account_seq] START WITH 1 INCREMENT BY 1 NO MINVALUE NO MAXVALUE NO CYCLE;
+GO
+
+
+CREATE SEQUENCE [dic].[country_seq] START WITH 1 INCREMENT BY 1 NO MINVALUE NO MAXVALUE NO CYCLE;
+GO
+
+
+CREATE SEQUENCE [dic].[currency_seq] START WITH 1 INCREMENT BY 1 NO MINVALUE NO MAXVALUE NO CYCLE;
+GO
+
+
 CREATE SEQUENCE [doc].[document_attachment_seq] START WITH 1 INCREMENT BY 1 NO MINVALUE NO MAXVALUE NO CYCLE;
 GO
 
@@ -31,6 +51,10 @@ GO
 
 
 CREATE SEQUENCE [meta].[document_state_seq] START WITH 1 INCREMENT BY 1 NO MINVALUE NO MAXVALUE NO CYCLE;
+GO
+
+
+CREATE SEQUENCE [core].[document_transition_seq] START WITH 1 INCREMENT BY 1 NO MINVALUE NO MAXVALUE NO CYCLE;
 GO
 
 
@@ -51,6 +75,10 @@ GO
 
 
 CREATE SEQUENCE [mes].[hierarchy_scope_seq] START WITH 1 INCREMENT BY 1 NO MINVALUE NO MAXVALUE NO CYCLE;
+GO
+
+
+CREATE SEQUENCE [acc].[operation_seq] START WITH 1 INCREMENT BY 1 NO MINVALUE NO MAXVALUE NO CYCLE;
 GO
 
 
@@ -78,6 +106,10 @@ CREATE SEQUENCE [core].[simple_document_seq] START WITH 1 INCREMENT BY 1 NO MINV
 GO
 
 
+CREATE SEQUENCE [acc].[subconto_seq] START WITH 1 INCREMENT BY 1 NO MINVALUE NO MAXVALUE NO CYCLE;
+GO
+
+
 CREATE SEQUENCE [meta].[transition_template_seq] START WITH 1 INCREMENT BY 1 NO MINVALUE NO MAXVALUE NO CYCLE;
 GO
 
@@ -96,6 +128,61 @@ CREATE TABLE [sec].[access_right] (
     [modified_by] int NOT NULL,
     CONSTRAINT [pk_access_right] PRIMARY KEY ([id]),
     CONSTRAINT [ak_access_right_code] UNIQUE ([code])
+);
+GO
+
+
+CREATE TABLE [acc].[account] (
+    [id] int NOT NULL DEFAULT (next value for [acc].[account_seq]),
+    [state] smallint NOT NULL,
+    [revision] int NOT NULL,
+    [parent_id] int NULL,
+    [code] varchar(128) NOT NULL,
+    [name] nvarchar(1024) NULL,
+    [flags] int NOT NULL,
+    [comments] nvarchar(max) NULL,
+    [created_on] datetimeoffset NOT NULL,
+    [created_by] int NOT NULL,
+    [modified_on] datetimeoffset NOT NULL,
+    [modified_by] int NOT NULL,
+    CONSTRAINT [pk_account] PRIMARY KEY ([id]),
+    CONSTRAINT [ak_account_code] UNIQUE ([code])
+);
+GO
+
+
+CREATE TABLE [dic].[country] (
+    [id] int NOT NULL DEFAULT (next value for [dic].[country_seq]),
+    [state] smallint NOT NULL,
+    [revision] int NOT NULL,
+    [parent_id] int NULL,
+    [code] varchar(128) NOT NULL,
+    [name] nvarchar(1024) NULL,
+    [comments] nvarchar(max) NULL,
+    [created_on] datetimeoffset NOT NULL,
+    [created_by] int NOT NULL,
+    [modified_on] datetimeoffset NOT NULL,
+    [modified_by] int NOT NULL,
+    CONSTRAINT [pk_country] PRIMARY KEY ([id]),
+    CONSTRAINT [ak_country_code] UNIQUE ([code])
+);
+GO
+
+
+CREATE TABLE [dic].[currency] (
+    [id] int NOT NULL DEFAULT (next value for [dic].[currency_seq]),
+    [state] smallint NOT NULL,
+    [revision] int NOT NULL,
+    [parent_id] int NULL,
+    [code] varchar(128) NOT NULL,
+    [name] nvarchar(1024) NULL,
+    [comments] nvarchar(max) NULL,
+    [created_on] datetimeoffset NOT NULL,
+    [created_by] int NOT NULL,
+    [modified_on] datetimeoffset NOT NULL,
+    [modified_by] int NOT NULL,
+    CONSTRAINT [pk_currency] PRIMARY KEY ([id]),
+    CONSTRAINT [ak_currency_code] UNIQUE ([code])
 );
 GO
 
@@ -130,7 +217,8 @@ CREATE TABLE [meta].[document_type] (
     [created_by] int NOT NULL,
     [modified_on] datetimeoffset NOT NULL,
     [modified_by] int NOT NULL,
-    CONSTRAINT [pk_document_type] PRIMARY KEY ([id])
+    CONSTRAINT [pk_document_type] PRIMARY KEY ([id]),
+    CONSTRAINT [ak_document_type_code] UNIQUE ([code])
 );
 GO
 
@@ -182,6 +270,27 @@ CREATE TABLE [core].[document_note] (
     [modified_by] int NOT NULL,
     CONSTRAINT [pk_document_note] PRIMARY KEY ([id]),
     CONSTRAINT [fk_document_note__document] FOREIGN KEY ([document_type_id], [document_id]) REFERENCES [core].[document] ([document_type_id], [document_id]) ON DELETE CASCADE
+);
+GO
+
+
+CREATE TABLE [acc].[operation] (
+    [id] bigint NOT NULL DEFAULT (next value for [acc].[operation_seq]),
+    [state] smallint NOT NULL,
+    [revision] int NOT NULL,
+    [parent_id] int NULL,
+    [code] varchar(128) NULL,
+    [name] nvarchar(1024) NULL,
+    [document_type_id] int NULL,
+    [document_id] int NULL,
+    [operation_date] date NOT NULL,
+    [comments] nvarchar(max) NULL,
+    [created_on] datetimeoffset NOT NULL,
+    [created_by] int NOT NULL,
+    [modified_on] datetimeoffset NOT NULL,
+    [modified_by] int NOT NULL,
+    CONSTRAINT [pk_operation] PRIMARY KEY ([id]),
+    CONSTRAINT [fk_operation__document] FOREIGN KEY ([document_type_id], [document_id]) REFERENCES [core].[document] ([document_type_id], [document_id])
 );
 GO
 
@@ -284,6 +393,30 @@ CREATE TABLE [core].[simple_document] (
 GO
 
 
+CREATE TABLE [acc].[subconto] (
+    [id] int NOT NULL DEFAULT (next value for [acc].[subconto_seq]),
+    [state] smallint NOT NULL,
+    [revision] int NOT NULL,
+    [parent_id] int NULL,
+    [code] varchar(128) NOT NULL,
+    [name] nvarchar(1024) NULL,
+    [flags] int NOT NULL,
+    [account_id] int NOT NULL,
+    [document_type_id] int NULL,
+    [ordinal] int NOT NULL,
+    [comments] nvarchar(max) NULL,
+    [created_on] datetimeoffset NOT NULL,
+    [created_by] int NOT NULL,
+    [modified_on] datetimeoffset NOT NULL,
+    [modified_by] int NOT NULL,
+    CONSTRAINT [pk_subconto] PRIMARY KEY ([id]),
+    CONSTRAINT [ak_subconto_code] UNIQUE ([code]),
+    CONSTRAINT [fk_subconto__account] FOREIGN KEY ([account_id]) REFERENCES [acc].[account] ([id]) ON DELETE CASCADE,
+    CONSTRAINT [fk_subconto__document_type] FOREIGN KEY ([document_type_id]) REFERENCES [meta].[document_type] ([id]) ON DELETE CASCADE
+);
+GO
+
+
 CREATE TABLE [doc].[document_attachment] (
     [id] int NOT NULL DEFAULT (next value for [doc].[document_attachment_seq]),
     [document_type_id] int NOT NULL,
@@ -334,12 +467,51 @@ CREATE TABLE [core].[document_note_user_state] (
 GO
 
 
+CREATE TABLE [acc].[operation_part] (
+    [operation_id] bigint NOT NULL,
+    [side] smallint NOT NULL,
+    [account_id] int NOT NULL,
+    [amount] decimal(38,12) NOT NULL,
+    [value] decimal(38,12) NOT NULL,
+    [currency_id] int NOT NULL,
+    [subconto00] int NULL,
+    [subconto01] int NULL,
+    [subconto02] int NULL,
+    [subconto03] int NULL,
+    [subconto04] int NULL,
+    [subconto05] int NULL,
+    [subconto06] int NULL,
+    [subconto07] int NULL,
+    [subconto08] int NULL,
+    [subconto09] int NULL,
+    [subconto10] int NULL,
+    [subconto11] int NULL,
+    [subconto12] int NULL,
+    [subconto13] int NULL,
+    [subconto14] int NULL,
+    [subconto15] int NULL,
+    [subconto16] int NULL,
+    [subconto17] int NULL,
+    [subconto18] int NULL,
+    [subconto19] int NULL,
+    [tag00] nvarchar(32) NULL,
+    [tag01] nvarchar(32) NULL,
+    [tag02] nvarchar(32) NULL,
+    [tag03] nvarchar(32) NULL,
+    CONSTRAINT [pk_operation_part] PRIMARY KEY ([operation_id], [side]),
+    CONSTRAINT [fk_operation_part__account] FOREIGN KEY ([account_id]) REFERENCES [acc].[account] ([id]),
+    CONSTRAINT [fk_operation_part__currency] FOREIGN KEY ([currency_id]) REFERENCES [dic].[currency] ([id]),
+    CONSTRAINT [fk_operation_part__operation] FOREIGN KEY ([operation_id]) REFERENCES [acc].[operation] ([id]) ON DELETE CASCADE
+);
+GO
+
+
 CREATE TABLE [core].[property] (
     [id] int NOT NULL DEFAULT (next value for [core].[property_seq]),
     [state] smallint NOT NULL,
     [revision] int NOT NULL,
     [parent_id] int NULL,
-    [code] varchar(128) NULL,
+    [code] varchar(128) NOT NULL,
     [name] nvarchar(1024) NULL,
     [flags] int NOT NULL,
     [kind] smallint NOT NULL,
@@ -350,8 +522,26 @@ CREATE TABLE [core].[property] (
     [modified_on] datetimeoffset NOT NULL,
     [modified_by] int NOT NULL,
     CONSTRAINT [pk_property] PRIMARY KEY ([id]),
+    CONSTRAINT [ak_property_code] UNIQUE ([code]),
     CONSTRAINT [fk_property_data_type_data_type_id] FOREIGN KEY ([data_type_id]) REFERENCES [core].[data_type] ([id]) ON DELETE CASCADE,
     CONSTRAINT [fk_property_property_parent_id] FOREIGN KEY ([parent_id]) REFERENCES [core].[property] ([id])
+);
+GO
+
+
+CREATE TABLE [core].[document_transition] (
+    [id] bigint NOT NULL DEFAULT (next value for [core].[document_transition_seq]),
+    [document_type_id] int NOT NULL,
+    [document_id] int NOT NULL,
+    [from_state_value] smallint NOT NULL,
+    [to_state_value] smallint NOT NULL,
+    [comments] nvarchar(max) NULL,
+    [modified_on] datetimeoffset NOT NULL,
+    [modified_by] int NOT NULL,
+    CONSTRAINT [pk_document_transition] PRIMARY KEY ([id]),
+    CONSTRAINT [fk_document_transition__document] FOREIGN KEY ([document_type_id], [document_id]) REFERENCES [core].[document] ([document_type_id], [document_id]) ON DELETE CASCADE,
+    CONSTRAINT [fk_document_transition__from_state] FOREIGN KEY ([document_type_id], [from_state_value]) REFERENCES [meta].[document_state] ([document_type_id], [value]),
+    CONSTRAINT [fk_document_transition__to_state] FOREIGN KEY ([document_type_id], [to_state_value]) REFERENCES [meta].[document_state] ([document_type_id], [value])
 );
 GO
 

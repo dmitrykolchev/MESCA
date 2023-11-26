@@ -24,7 +24,7 @@ public abstract class EntityConfiguration<TEntity> : IModelConfiguration
 {
     private static readonly SnakeCaseNameRewriter s_snakeCaseRewriter = new(CultureInfo.InvariantCulture);
 
-    protected EntityConfiguration(bool hasSerialId = true)
+    protected EntityConfiguration(bool hasIdentity = true)
     {
         TableName = s_snakeCaseRewriter.RewriteName(typeof(TEntity).Name);
         string ns = typeof(TEntity).Namespace!.Split('.')[^1];
@@ -33,14 +33,14 @@ public abstract class EntityConfiguration<TEntity> : IModelConfiguration
             .Where(t => t.Namespace == ns)
             .Select(t => t.SchemaName)
             .FirstOrDefault(ns));
-        HasSerialId = hasSerialId;
+        HasIdentity = hasIdentity;
     }
 
     protected string TableName { get; }
 
     protected string SchemaName { get; }
 
-    protected bool HasSerialId { get; }
+    protected bool HasIdentity { get; }
 
     public void Configure(ModelBuilder modelBuilder, DbContext context)
     {
@@ -55,7 +55,11 @@ public abstract class EntityConfiguration<TEntity> : IModelConfiguration
     }
 
     protected DatabaseType DatabaseType { get; private set; }
-
+    /// <summary>
+    /// Returns default value expression for identity column
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="InvalidOperationException"></exception>
     protected string GetDefaultSequenceValue()
     {
         return DatabaseType switch
@@ -65,10 +69,13 @@ public abstract class EntityConfiguration<TEntity> : IModelConfiguration
             _ => throw new InvalidOperationException($"unsupported database type: {DatabaseType}")
         };
     }
-
+    /// <summary>
+    /// Configures model for the entity. Default implementation adds sequence for identity columns
+    /// </summary>
+    /// <param name="modelBuilder"></param>
     protected virtual void OnConfigureModel(ModelBuilder modelBuilder)
     {
-        if (HasSerialId)
+        if (HasIdentity)
         {
             modelBuilder.HasSequence<long>(TableName + "_seq", SchemaName);
         }
@@ -88,7 +95,7 @@ public abstract class EntityConfiguration<TEntity> : IModelConfiguration
         Expression<Func<TEntity, object?>> keyExpression)
     {
         entity.ToTable(TableName, SchemaName);
-        if (HasSerialId)
+        if (HasIdentity)
         {
             entity.Property(idExpression).HasDefaultValueSql(GetDefaultSequenceValue());
         }

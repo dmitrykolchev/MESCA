@@ -20,3 +20,5 @@ using System.Runtime.InteropServices;
 [assembly: Xobex.Infrastructure.EntityFramework.NamespaceMapping("Security", "sec")]
 [assembly: Xobex.Infrastructure.EntityFramework.NamespaceMapping("Resources", "mes")]
 [assembly: Xobex.Infrastructure.EntityFramework.NamespaceMapping("Metadata", "meta")]
+[assembly: Xobex.Infrastructure.EntityFramework.NamespaceMapping("Accounting", "acc")]
+[assembly: Xobex.Infrastructure.EntityFramework.NamespaceMapping("Dictionaries", "dic")]

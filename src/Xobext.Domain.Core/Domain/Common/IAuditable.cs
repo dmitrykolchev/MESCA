@@ -2,18 +2,18 @@
 
 public interface IAuditable
 {
-    public DateTimeOffset CreatedOn { get; set; }
+    DateTimeOffset CreatedOn { get; set; }
 
-    public int CreatedBy { get; set; }
+    int CreatedBy { get; set; }
 
-    public DateTimeOffset ModifiedOn { get; set; }
+    DateTimeOffset ModifiedOn { get; set; }
 
-    public int ModifiedBy { get; set; }
+    int ModifiedBy { get; set; }
 }
 
 public interface ISimpleAuditable
 {
-    public DateTimeOffset ModifiedOn { get; set; }
+    DateTimeOffset ModifiedOn { get; set; }
 
-    public int ModifiedBy { get; set; }
+    int ModifiedBy { get; set; }
 }
