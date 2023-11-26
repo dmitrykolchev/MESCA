@@ -3,8 +3,10 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
+using System.Globalization;
 using System.Linq.Expressions;
 using System.Reflection;
+using EFCore.NamingConventions.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -20,23 +22,18 @@ public enum DatabaseType
 public abstract class EntityConfiguration<TEntity> : IModelConfiguration
     where TEntity : class
 {
+    private static readonly SnakeCaseNameRewriter s_snakeCaseRewriter = new(CultureInfo.InvariantCulture);
+
     protected EntityConfiguration(bool hasSerialId = true)
     {
-        TableName = typeof(TEntity).Name.ToSnakeCase();
+        TableName = s_snakeCaseRewriter.RewriteName(typeof(TEntity).Name);
         string ns = typeof(TEntity).Namespace!.Split('.')[^1];
-        SchemaName = GetType().Assembly
+        SchemaName = s_snakeCaseRewriter.RewriteName(GetType().Assembly
             .GetCustomAttributes<NamespaceMappingAttribute>()
             .Where(t => t.Namespace == ns)
             .Select(t => t.SchemaName)
-            .FirstOrDefault(ns)
-            .ToSnakeCase();
+            .FirstOrDefault(ns));
         HasSerialId = hasSerialId;
-    }
-
-    private EntityConfiguration(string tableName, string schemaName)
-    {
-        TableName = tableName ?? throw new ArgumentNullException(nameof(tableName));
-        SchemaName = schemaName ?? throw new ArgumentNullException(nameof(schemaName));
     }
 
     protected string TableName { get; }
@@ -79,12 +76,12 @@ public abstract class EntityConfiguration<TEntity> : IModelConfiguration
 
     protected abstract void OnConfigureEntity(EntityTypeBuilder<TEntity> entity);
     /// <summary>
-    /// 
+    /// Configures the table with or without identity and with primary key
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
-    /// <param name="entity"></param>
-    /// <param name="idExpression"></param>
-    /// <param name="keyExpression"></param>
+    /// <param name="entity">Entity builder instance</param>
+    /// <param name="idExpression">identity field expression</param>
+    /// <param name="keyExpression">primary key expression</param>
     protected void ToTableWithKey<TKey>(
         EntityTypeBuilder<TEntity> entity,
         Expression<Func<TEntity, TKey>> idExpression,
