@@ -5,6 +5,6 @@
 
 namespace Xobex.Mediator;
 
-public interface IEvent: IContract
+public interface IEvent
 {
 }

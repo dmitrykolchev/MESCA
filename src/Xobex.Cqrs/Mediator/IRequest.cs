@@ -5,6 +5,6 @@
 
 namespace Xobex.Mediator;
 
-public interface IRequest: IContract
+public interface IRequest
 {
 }
