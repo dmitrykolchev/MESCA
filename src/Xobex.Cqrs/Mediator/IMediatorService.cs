@@ -7,6 +7,7 @@ namespace Xobex.Mediator;
 
 public interface IMediatorService : IMediatorServiceBase
 {
+    PipelineBuilder<TResult> CreatePipelineBuilder<TResult>();
     /// <summary>
     /// Sends command to the back end
     /// </summary>

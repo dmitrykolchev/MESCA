@@ -8,8 +8,12 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Xobex.Mes.Application;
 
+public interface ITransactionProvider
+{
+    ITransactionWrapper BeginTransaction();
+}
 
-internal class TransactionProvider
+internal class TransactionProvider: ITransactionProvider
 {
     private readonly DbContext _context;
 

@@ -3,32 +3,42 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Xobex.Mediator;
 
 namespace Xobex.Mes.Application;
 
-public class TransactedBehavior<TRequest, TResult> : IBehavior<TRequest, TResult>
-    where TRequest : IRequest<TResult>
+public class TransactedBehavior<TResult> : Behavior<TResult>
 {
-    public async Task<TResult?> ProcessAsync(IRequest<TResult> request, Func<Task<TResult>>? next, CancellationToken cancellationToken)
+    private readonly ITransactionProvider _transactionProvider;
+    private readonly ILogger _logger;
+
+    public TransactedBehavior(IMesDbContext context, ILogger<TransactedBehavior<TResult>> logger)
     {
-        if (next != null)
-        {
-            return await next();
-        }
-        return default;
+        _transactionProvider = new TransactionProvider((DbContext)context);
+        _logger = logger;
     }
 
-    async Task<object?> IBehavior.ProcessAsync(IRequest request, Func<Task<object>>? next, CancellationToken cancellationToken)
+    public override async Task<TResult?> ProcessAsync(IRequest<TResult> request, Func<Task<TResult>>? next, CancellationToken cancellationToken)
     {
-        if (next != null)
+        ArgumentNullException.ThrowIfNull(next);
+
+        using ITransactionWrapper transaction = _transactionProvider.BeginTransaction();
+        _logger.LogInformation("Begin transaction");
+        try
         {
-            Func<Task<TResult>> func = async () =>
-            {
-                return (TResult)(await next())!;
-            };
-            return await ProcessAsync((IRequest<TResult>)request, func, cancellationToken);
+            TResult? result = (await next());
+            await transaction.CommitAsync(cancellationToken);
+            _logger.LogInformation("Commit transaction");
+            return result;
         }
-        return await ProcessAsync((IRequest<TResult>)request, null, cancellationToken);
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ex.Message);
+            await transaction.RollbackAsync(cancellationToken);
+            _logger.LogInformation("Rollback transaction");
+        }
+        return default;
     }
 }

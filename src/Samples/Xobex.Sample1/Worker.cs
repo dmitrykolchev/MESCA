@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Xobex.Mediator;
 using Xobex.Mes.Application;
 using Xobex.Mes.Application.Core.DataType;
+using Xobex.Mes.Entities.Core;
 using Xobex.Mes.Infrastucture.Database;
 using Xobex.Sample1.Person;
 
@@ -49,13 +50,14 @@ public class Worker : BackgroundService
         IMesDbContext context = scope.ServiceProvider.GetRequiredService<IMesDbContext>();
         try
         {
-            PipelineBuilder<InitializeDataTypeCommand, Empty> pipelineBuilder = new(mediatorService);
-            Pipeline<InitializeDataTypeCommand, Empty> pipeline = pipelineBuilder
-                .Use(new TransactedBehavior<InitializeDataTypeCommand, Empty>())
+            PipelineBuilder<Empty> pipelineBuilder = mediatorService.CreatePipelineBuilder<Empty>();
+            Pipeline<Empty> pipeline = pipelineBuilder
+                .Use<VerifyInitializedBehavior<DataType, Empty>>()
+                .Use<TransactedBehavior<Empty>>()
                 .Build();
             await pipeline.RunAsync(InitializeDataTypeCommand.Instance, CancellationToken.None);
 
-            await mediatorService.SendAsync(InitializeDataTypeCommand.Instance, CancellationToken.None);
+            //await mediatorService.SendAsync(InitializeDataTypeCommand.Instance, CancellationToken.None);
         }
         catch (Exception ex)
         {

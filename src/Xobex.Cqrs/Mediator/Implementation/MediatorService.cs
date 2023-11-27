@@ -3,6 +3,8 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
+using Microsoft.Extensions.DependencyInjection;
+
 namespace Xobex.Mediator.Implementation;
 
 public class MediatorService(IServiceProvider serviceProvider, IMediatorProvider mediatorProvider) : IMediatorService
@@ -11,6 +13,11 @@ public class MediatorService(IServiceProvider serviceProvider, IMediatorProvider
         ?? throw new ArgumentNullException(nameof(serviceProvider));
     private readonly IMediatorProvider _mediatorProvider = mediatorProvider 
         ?? throw new ArgumentNullException(nameof(mediatorProvider));
+
+    public PipelineBuilder<TResult> CreatePipelineBuilder<TResult>()
+    {
+        return ActivatorUtilities.CreateInstance<PipelineBuilder<TResult>>(_serviceProvider);
+    }
 
     public async Task RaiseAsync<TEvent>(TEvent notification, CancellationToken cancellationToken)
         where TEvent : IEvent

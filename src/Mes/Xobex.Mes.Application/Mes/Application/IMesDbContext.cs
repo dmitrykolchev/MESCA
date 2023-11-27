@@ -31,5 +31,6 @@ public interface IMesDbContext
     DbSet<PhysicalAsset> PhysicalAsset { get; set; }
     DbSet<MaterialDefinition> MaterialDefinition { get; set; }
 
+    DbSet<TEntity> Set<TEntity>() where TEntity: class;
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

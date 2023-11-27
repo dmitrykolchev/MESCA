@@ -5,49 +5,56 @@
 
 namespace Xobex.Mediator;
 
-public class Pipeline<TRequest, TResult>
-    where TRequest : IRequest<TResult>
+public class Pipeline<TResult>
 {
-    private readonly PipelineEntry _root;
-    
-    internal Pipeline(PipelineEntry pipelineEntry)
+    private PipelineEntry? _root;
+    private IRequest<TResult>? _request;
+    private CancellationToken? _token;
+
+    internal Pipeline()
     {
-        _root = pipelineEntry;
+    }
+
+    internal PipelineEntry? Root
+    {
+        get => _root;
+        set => _root = value;
     }
 
     public Task<TResult> RunAsync(IRequest<TResult> request, CancellationToken cancellationToken)
     {
-        PipelineEntry? temp = _root;
-        while(temp != null)
-        {
-            temp.Request = request;
-            temp.Token = cancellationToken;
-            temp = temp.Next;
-        }
-        return _root.Step();
+        _request = request;
+        _token = cancellationToken;
+        return _root!.Step();
     }
-    
+
     internal class PipelineEntry
     {
-        public PipelineEntry(Func<IRequest<TResult>, CancellationToken, Task<TResult>> func)
+        private readonly Pipeline<TResult> _parent;
+        private readonly IBehavior<TResult>? _behavior;
+
+        public PipelineEntry(Pipeline<TResult> parent, Func<IRequest<TResult>, CancellationToken, Task<TResult>> func)
         {
+            _parent = parent;
             Step = () =>
             {
                 return func(Request!, (CancellationToken)Token!);
             };
         }
 
-        public PipelineEntry(Func<IRequest<TResult>, Func<Task<TResult>>?, CancellationToken, Task<TResult?>> func)
+        public PipelineEntry(Pipeline<TResult> parent, IBehavior<TResult> behavior)
         {
+            _parent = parent;
+            _behavior = behavior;
             Step = () =>
             {
-                return func(Request!, Next?.Step, (CancellationToken)Token!)!;
+                return _behavior.ProcessAsync(Request!, Next?.Step, (CancellationToken)Token!)!;
             };
         }
 
-        public IRequest<TResult>? Request { get; set; }
-        public CancellationToken? Token { get; set; }
-        public PipelineEntry? Next { get; set; }
+        public IRequest<TResult>? Request => _parent._request;
+        public CancellationToken? Token => _parent._token;
         public Func<Task<TResult>> Step { get; }
+        public PipelineEntry? Next { get; set; }
     }
 }

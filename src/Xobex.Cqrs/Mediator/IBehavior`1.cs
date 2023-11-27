@@ -5,8 +5,7 @@
 
 namespace Xobex.Mediator;
 
-public interface IBehavior<TRequest, TResult> : IBehavior
-    where TRequest : IRequest<TResult>
+public interface IBehavior<TResult> : IBehavior
 {
     Task<TResult?> ProcessAsync(IRequest<TResult> request, Func<Task<TResult>>? next, CancellationToken cancellationToken);
 }
