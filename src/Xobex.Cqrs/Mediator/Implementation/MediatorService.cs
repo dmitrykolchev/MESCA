@@ -14,9 +14,9 @@ public class MediatorService(IServiceProvider serviceProvider, IMediatorProvider
     private readonly IMediatorProvider _mediatorProvider = mediatorProvider 
         ?? throw new ArgumentNullException(nameof(mediatorProvider));
 
-    public PipelineBuilder<TResult> CreatePipelineBuilder<TResult>()
+    public PipelineBuilder CreatePipelineBuilder()
     {
-        return new PipelineBuilder<TResult>(this, _serviceProvider);
+        return new PipelineBuilder(this, _serviceProvider);
     }
 
     public async Task RaiseAsync<TEvent>(TEvent notification, CancellationToken cancellationToken)

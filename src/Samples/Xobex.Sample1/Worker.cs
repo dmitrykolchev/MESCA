@@ -50,12 +50,12 @@ public class Worker : BackgroundService
         IMesDbContext context = scope.ServiceProvider.GetRequiredService<IMesDbContext>();
         try
         {
-            PipelineBuilder<Empty> pipelineBuilder = mediatorService.CreatePipelineBuilder<Empty>();
-            Pipeline<Empty> pipeline = pipelineBuilder
+            PipelineBuilder pipelineBuilder = mediatorService.CreatePipelineBuilder();
+            Pipeline pipeline = pipelineBuilder
                 .Use<VerifyInitializedBehavior<DataType>>()
                 .Use<TransactedBehavior>()
                 .Build();
-            await pipeline.RunAsync(InitializeDataTypeCommand.Instance, CancellationToken.None);
+            Empty? result = await pipeline.RunAsync(InitializeDataTypeCommand.Instance, CancellationToken.None);
 
             //await mediatorService.SendAsync(InitializeDataTypeCommand.Instance, CancellationToken.None);
         }

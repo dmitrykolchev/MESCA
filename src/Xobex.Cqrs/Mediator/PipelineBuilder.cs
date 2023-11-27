@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Xobex.Mediator;
 
-public class PipelineBuilder<TResult>
+public class PipelineBuilder
 {
     private readonly Stack<IBehavior> _behaviors = new();
 
@@ -17,15 +17,15 @@ public class PipelineBuilder<TResult>
         ServiceProvider = serviceProvider;
     }
 
-    public IMediatorService MediatorService { get; }
-    public IServiceProvider ServiceProvider { get; }
+    private IMediatorService MediatorService { get; }
+    private IServiceProvider ServiceProvider { get; }
 
     /// <summary>
     /// Creates instance of TBehavior and adds to the pipeline
     /// </summary>
     /// <typeparam name="TBehavior"></typeparam>
     /// <returns></returns>
-    public PipelineBuilder<TResult> Use<TBehavior>()
+    public PipelineBuilder Use<TBehavior>()
         where TBehavior : IBehavior
     {
         return Use(ActivatorUtilities.CreateInstance<TBehavior>(ServiceProvider));
@@ -35,7 +35,7 @@ public class PipelineBuilder<TResult>
     /// </summary>
     /// <param name="behavior"></param>
     /// <returns></returns>
-    public PipelineBuilder<TResult> Use(IBehavior behavior)
+    public PipelineBuilder Use(IBehavior behavior)
     {
         ArgumentNullException.ThrowIfNull(behavior);
         _behaviors.Push(behavior);
@@ -45,14 +45,14 @@ public class PipelineBuilder<TResult>
     /// Builds pipeline
     /// </summary>
     /// <returns></returns>
-    public Pipeline<TResult> Build()
+    public Pipeline Build()
     {
-        Pipeline<TResult> pipeline = new();
+        Pipeline pipeline = new();
         pipeline.Root = new(pipeline, MediatorService.QueryAsync);
         while (_behaviors.Count > 0)
         {
             IBehavior behavior = _behaviors.Pop();
-            Pipeline<TResult>.PipelineEntry temp = new(pipeline, behavior)
+            Pipeline.PipelineEntry temp = new(pipeline, behavior)
             {
                 Next = pipeline.Root
             };
