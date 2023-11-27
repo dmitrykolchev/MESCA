@@ -21,6 +21,11 @@ public class Pipeline
         set => _root = value;
     }
 
+    public Task<TResult?> RunAsync<TResult>(IRequest<TResult> request)
+    {
+        return RunAsync(request, CancellationToken.None);
+    }
+
     public async Task<TResult?> RunAsync<TResult>(IRequest<TResult> request, CancellationToken cancellationToken)
     {
         _request = request;

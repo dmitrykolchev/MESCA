@@ -8,24 +8,18 @@ using Microsoft.Extensions.Logging;
 using Xobex.Mediator;
 using Xobex.Mes.Entities.Core;
 
-namespace Xobex.Mes.Application.Core.DataType;
+namespace Xobex.Mes.Application.Core.DataTypes;
 
 [MediatorLifetime(ServiceLifetime.Scoped)]
-public class InitializeDataTypeCommandHandler : RequestHandler<InitializeDataTypeCommand, Empty>
+public class InitializeDataTypesCommandHandler : DatabaseRequestHandler<InitializeDataTypesCommand, Empty>
 {
-    public InitializeDataTypeCommandHandler(
+    public InitializeDataTypesCommandHandler(
         IMesDbContext db,
-        ILogger<InitializeDataTypeCommandHandler> logger)
+        ILogger<InitializeDataTypesCommandHandler> logger): base(db, logger)
     {
-        Db = db;
-        Logger = logger;
     }
 
-    public IMesDbContext Db { get; }
-    
-    public ILogger Logger { get; }
-
-    protected override async Task<Empty> ProcessOverrideAsync(InitializeDataTypeCommand request, CancellationToken cancellation)
+    protected override async Task<Empty> ProcessOverrideAsync(InitializeDataTypesCommand request, CancellationToken cancellation)
     {
         Db.DataType.AddRange(
             [
@@ -105,7 +99,7 @@ public class InitializeDataTypeCommandHandler : RequestHandler<InitializeDataTyp
 
         await Db.SaveChangesAsync(cancellation);
 
-        Logger.LogInformation("{Command} executed successfully", nameof(InitializeDataTypeCommand));
+        Logger.LogInformation("{Command} executed successfully", nameof(InitializeDataTypesCommand));
         return Empty.Instance;
     }
 }

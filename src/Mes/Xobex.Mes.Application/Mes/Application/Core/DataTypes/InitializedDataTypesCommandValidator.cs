@@ -7,19 +7,19 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Xobex.Mediator;
 
-namespace Xobex.Mes.Application.Core.DataType;
+namespace Xobex.Mes.Application.Core.DataTypes;
 
 [MediatorLifetime(ServiceLifetime.Scoped)]
-public class InitializedDataTypeCommandValidator : Validator<InitializeDataTypeCommand>
+public class InitializedDataTypesCommandValidator : Validator<InitializeDataTypesCommand>
 {
-    public InitializedDataTypeCommandValidator(IMesDbContext db)
+    public InitializedDataTypesCommandValidator(IMesDbContext db)
     {
         Db = db ?? throw new ArgumentNullException(nameof(db));
     }
 
     public IMesDbContext Db { get; }
 
-    public async override Task ValidateAsync(InitializeDataTypeCommand request, CancellationToken cancellationToken)
+    public async override Task ValidateAsync(InitializeDataTypesCommand request, CancellationToken cancellationToken)
     {
         if (await Db.DataType.AnyAsync(cancellationToken))
         {

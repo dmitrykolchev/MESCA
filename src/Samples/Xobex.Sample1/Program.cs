@@ -15,7 +15,7 @@ using Serilog;
 using Xobex.Domain.Common;
 using Xobex.Mediator;
 using Xobex.Mediator.Implementation;
-using Xobex.Mes.Application.Core.DataType;
+using Xobex.Mes.Application.Core.DataTypes;
 using Xobex.Mes.Infrastucture.Database;
 
 namespace Xobex.Sample1;
@@ -29,6 +29,7 @@ internal class Program
         try
         {
             //AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+            IHostBuilder b = Host.CreateDefaultBuilder(args);
             Console.OutputEncoding = Encoding.UTF8;
             IHostBuilder builder = CreateHostBuilder(args);
             builder.UseSerilog();
@@ -65,7 +66,7 @@ internal class Program
         {
             provider
                 .AddAssembly(typeof(Program).Assembly)
-                .AddAssembly(typeof(InitializeDataTypeCommandHandler).Assembly);
+                .AddAssembly(typeof(InitializeDataTypesCommandHandler).Assembly);
         });
 
         services.AddSingleton<IUser>(serviceProvider =>

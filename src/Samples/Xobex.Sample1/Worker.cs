@@ -8,8 +8,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Xobex.Mediator;
 using Xobex.Mes.Application;
-using Xobex.Mes.Application.Core.DataType;
+using Xobex.Mes.Application.Core.DataTypes;
+using Xobex.Mes.Application.Metadata.DocumentTypes;
 using Xobex.Mes.Entities.Core;
+using Xobex.Mes.Entities.Metadata;
 using Xobex.Mes.Infrastucture.Database;
 using Xobex.Sample1.Person;
 
@@ -52,30 +54,17 @@ public class Worker : BackgroundService
         {
             PipelineBuilder pipelineBuilder = mediatorService.CreatePipelineBuilder();
             Pipeline pipeline = pipelineBuilder
-                .Use(async (request, next, cancellation) =>
-                {
-                    ArgumentNullException.ThrowIfNull(next);
-                    try
-                    {
-                        _logger.LogInformation("Starting pipeline execution");
-                        return await next();
-                    }
-                    catch(Exception ex)
-                    {
-                        _logger.LogError(ex, ex.Message);
-                    }
-                    finally
-                    {
-                        _logger.LogInformation("Pipeline execution completed");
-                    }
-                    return default;
-                })
                 .Use<VerifyInitializedBehavior<DataType>>()
                 .Use<TransactedBehavior>()
                 .Build();
-            Empty? result = await pipeline.RunAsync(InitializeDataTypeCommand.Instance, CancellationToken.None);
+            _ = await pipeline.RunAsync(InitializeDataTypesCommand.Instance, CancellationToken.None);
 
-            //await mediatorService.SendAsync(InitializeDataTypeCommand.Instance, CancellationToken.None);
+            pipelineBuilder = mediatorService.CreatePipelineBuilder();
+            pipeline = pipelineBuilder
+                .Use<VerifyInitializedBehavior<DocumentType>>()
+                .Use<TransactedBehavior>()
+                .Build();
+            _ = await pipeline.RunAsync(InitializeDocumentTypesCommand.Instance, CancellationToken.None);
         }
         catch (Exception ex)
         {
