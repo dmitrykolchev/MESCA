@@ -16,7 +16,7 @@ public class MediatorService(IServiceProvider serviceProvider, IMediatorProvider
 
     public PipelineBuilder<TResult> CreatePipelineBuilder<TResult>()
     {
-        return ActivatorUtilities.CreateInstance<PipelineBuilder<TResult>>(_serviceProvider);
+        return new PipelineBuilder<TResult>(this, _serviceProvider);
     }
 
     public async Task RaiseAsync<TEvent>(TEvent notification, CancellationToken cancellationToken)

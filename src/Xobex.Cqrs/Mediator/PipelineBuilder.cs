@@ -11,7 +11,7 @@ public class PipelineBuilder<TResult>
 {
     private readonly Stack<IBehavior<TResult>> _behaviors = new();
 
-    public PipelineBuilder(IMediatorService mediatorService, IServiceProvider serviceProvider)
+    internal PipelineBuilder(IMediatorService mediatorService, IServiceProvider serviceProvider)
     {
         MediatorService = mediatorService ?? throw new ArgumentNullException(nameof(mediatorService));
         ServiceProvider = serviceProvider;
@@ -20,19 +20,31 @@ public class PipelineBuilder<TResult>
     public IMediatorService MediatorService { get; }
     public IServiceProvider ServiceProvider { get; }
 
+    /// <summary>
+    /// Creates instance of TBehavior and adds to the pipeline
+    /// </summary>
+    /// <typeparam name="TBehavior"></typeparam>
+    /// <returns></returns>
     public PipelineBuilder<TResult> Use<TBehavior>()
         where TBehavior : IBehavior<TResult>
     {
         return Use(ActivatorUtilities.CreateInstance<TBehavior>(ServiceProvider));
     }
-
+    /// <summary>
+    /// Adds behavior instance to the pipeline
+    /// </summary>
+    /// <param name="behavior"></param>
+    /// <returns></returns>
     public PipelineBuilder<TResult> Use(IBehavior<TResult> behavior)
     {
         ArgumentNullException.ThrowIfNull(behavior);
         _behaviors.Push(behavior);
         return this;
     }
-
+    /// <summary>
+    /// Builds pipeline
+    /// </summary>
+    /// <returns></returns>
     public Pipeline<TResult> Build()
     {
         Pipeline<TResult> pipeline = new();
@@ -40,8 +52,10 @@ public class PipelineBuilder<TResult>
         while (_behaviors.Count > 0)
         {
             IBehavior<TResult> behavior = _behaviors.Pop();
-            Pipeline<TResult>.PipelineEntry temp = new(pipeline, behavior);
-            temp.Next = pipeline.Root;
+            Pipeline<TResult>.PipelineEntry temp = new(pipeline, behavior)
+            {
+                Next = pipeline.Root
+            };
             pipeline.Root = temp;
         }
         return pipeline;
