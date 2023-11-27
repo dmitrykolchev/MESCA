@@ -5,13 +5,13 @@
 
 namespace Xobex.Mediator;
 
-public interface IBehavior<TRequest, TResponse> : IBehavior
-    where TRequest : IRequest<TResponse>
+public interface IBehavior<TRequest, TResult> : IBehavior
+    where TRequest : IRequest<TResult>
 {
-    Task<TResponse> ProcessAsync(TRequest request, Func<Task<TRequest>> callback, CancellationToken cancellation);
+    Task<TResult?> ProcessAsync(IRequest<TResult> request, Func<Task<TResult>>? next, CancellationToken cancellationToken);
 }
 
 public interface IBehavior
 {
-    Task<object> ProcessAsync(IRequest request, Func<Task<object>> callback, CancellationToken cancellation);
+    Task<object?> ProcessAsync(IRequest request, Func<Task<object>>? next, CancellationToken cancellationToken);
 }

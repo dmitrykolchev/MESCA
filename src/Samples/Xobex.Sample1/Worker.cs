@@ -49,6 +49,12 @@ public class Worker : BackgroundService
         IMesDbContext context = scope.ServiceProvider.GetRequiredService<IMesDbContext>();
         try
         {
+            PipelineBuilder<InitializeDataTypeCommand, Empty> pipelineBuilder = new(mediatorService);
+            Pipeline<InitializeDataTypeCommand, Empty> pipeline = pipelineBuilder
+                .Use(new TransactedBehavior<InitializeDataTypeCommand, Empty>())
+                .Build();
+            await pipeline.RunAsync(InitializeDataTypeCommand.Instance, CancellationToken.None);
+
             await mediatorService.SendAsync(InitializeDataTypeCommand.Instance, CancellationToken.None);
         }
         catch (Exception ex)

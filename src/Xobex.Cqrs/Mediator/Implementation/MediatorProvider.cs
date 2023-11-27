@@ -86,10 +86,10 @@ internal class MediatorProvider : IMediatorProvider
         return Enumerable.Empty<IEventHandler>();
     }
 
-    public IRequestHandler<TRequest, TResponse> GetRequestHandler<TRequest, TResponse>(IServiceProvider serviceProvider) 
-        where TRequest : IRequest<TResponse>
+    public IRequestHandler<TRequest, TResult> GetRequestHandler<TRequest, TResult>(IServiceProvider serviceProvider) 
+        where TRequest : IRequest<TResult>
     {
-        return (IRequestHandler<TRequest, TResponse>)GetRequestHandler(serviceProvider, typeof(TRequest));
+        return (IRequestHandler<TRequest, TResult>)GetRequestHandler(serviceProvider, typeof(TRequest));
     }
 
     public IRequestHandler GetRequestHandler(IServiceProvider serviceProvider, Type requestType)

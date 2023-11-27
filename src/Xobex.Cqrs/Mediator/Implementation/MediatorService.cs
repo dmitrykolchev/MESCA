@@ -34,14 +34,14 @@ public class MediatorService(IServiceProvider serviceProvider, IMediatorProvider
         await requestHandler.ProcessAsync(request, cancellationToken).ConfigureAwait(false);
     }
 
-    public async Task<TResponse> QueryAsync<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken)
+    public async Task<TResult> QueryAsync<TResult>(IRequest<TResult> request, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(request);
 
         await ValidateAsync(request, cancellationToken);
 
         IRequestHandler requestHandler = _mediatorProvider.GetRequestHandler(_serviceProvider, request.GetType());
-        return (TResponse)(await requestHandler.ProcessAsync(request, cancellationToken).ConfigureAwait(false))!;
+        return (TResult)(await requestHandler.ProcessAsync(request, cancellationToken).ConfigureAwait(false))!;
     }
 
     private async Task ValidateAsync(IRequest request, CancellationToken cancellationToken)

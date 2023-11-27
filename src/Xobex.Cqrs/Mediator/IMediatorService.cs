@@ -20,11 +20,11 @@ public interface IMediatorService : IMediatorServiceBase
     /// <summary>
     /// Executes query
     /// </summary>
-    /// <typeparam name="TResponse">The query response type</typeparam>
+    /// <typeparam name="TResult">The query response type</typeparam>
     /// <param name="request">Request</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>Query result</returns>
-    Task<TResponse> QueryAsync<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken);
+    Task<TResult> QueryAsync<TResult>(IRequest<TResult> request, CancellationToken cancellationToken);
 
     /// <summary>
     /// Raises event

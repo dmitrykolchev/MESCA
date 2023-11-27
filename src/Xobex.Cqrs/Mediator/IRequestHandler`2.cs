@@ -5,10 +5,10 @@
 
 namespace Xobex.Mediator;
 
-public interface IRequestHandler<in TRequest, TResponse>: IRequestHandler
-    where TRequest : IRequest<TResponse>
+public interface IRequestHandler<in TRequest, TResult>: IRequestHandler
+    where TRequest : IRequest<TResult>
 {
-    Task<TResponse> ProcessAsync(TRequest request, CancellationToken cancellation);
+    Task<TResult> ProcessAsync(TRequest request, CancellationToken cancellation);
 }
 
 

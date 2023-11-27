@@ -7,8 +7,8 @@ namespace Xobex.Mediator;
 
 public interface IMediatorProvider 
 {
-    public IRequestHandler<TRequest, TResponse> GetRequestHandler<TRequest, TResponse>(IServiceProvider serviceProvider)
-        where TRequest: IRequest<TResponse>;
+    public IRequestHandler<TRequest, TResult> GetRequestHandler<TRequest, TResult>(IServiceProvider serviceProvider)
+        where TRequest: IRequest<TResult>;
 
     public IRequestHandler GetRequestHandler(IServiceProvider serviceProvider, Type requestType);
 

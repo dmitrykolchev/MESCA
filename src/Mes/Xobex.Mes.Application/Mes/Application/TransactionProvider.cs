@@ -1,48 +1,13 @@
-﻿// <copyright file="TransactedRequestHandler.cs" company="DykBits">
+﻿// <copyright file="TransactionProvider.cs" company="DykBits">
 // (c) 2022-23 Dmitry Kolchev. All rights reserved.
 // See LICENSE in the project root for license information
 // </copyright>
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.Logging;
-using Xobex.Mediator;
 
 namespace Xobex.Mes.Application;
 
-public abstract class TransactedRequestHandler<TRequest, TResponse> : RequestHandler<TRequest, TResponse>
-    where TRequest : IRequest<TResponse>
-{
-    private readonly TransactionProvider _transactionProvider;
-
-    protected TransactedRequestHandler(IMesDbContext db, ILogger logger)
-    {
-        _transactionProvider = new((DbContext)db);
-        Db = db ?? throw new ArgumentNullException(nameof(db));
-        Logger = logger ?? throw new ArgumentNullException(nameof(logger));
-    }
-
-    protected IMesDbContext Db { get; }
-
-    protected ILogger Logger { get; }
-
-    public sealed override async Task<TResponse> ProcessAsync(TRequest request, CancellationToken cancellationToken)
-    {
-        using var transaction = _transactionProvider.BeginTransaction();
-        try
-        {
-            TResponse result = await ProcessOverrideAsync(request, cancellationToken).ConfigureAwait(false);
-            await transaction.CommitAsync(cancellationToken).ConfigureAwait(false);
-            return result;
-        }
-        catch (Exception ex)
-        {
-            Logger.LogError(ex, ex.Message);
-            await transaction.RollbackAsync(cancellationToken).ConfigureAwait(false);
-            throw;
-        }
-    }
-}
 
 internal class TransactionProvider
 {

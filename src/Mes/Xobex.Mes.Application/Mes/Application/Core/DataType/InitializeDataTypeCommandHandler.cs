@@ -11,13 +11,19 @@ using Xobex.Mes.Entities.Core;
 namespace Xobex.Mes.Application.Core.DataType;
 
 [MediatorLifetime(ServiceLifetime.Scoped)]
-public class InitializeDataTypeCommandHandler : TransactedRequestHandler<InitializeDataTypeCommand, Empty>
+public class InitializeDataTypeCommandHandler : RequestHandler<InitializeDataTypeCommand, Empty>
 {
     public InitializeDataTypeCommandHandler(
         IMesDbContext db,
-        ILogger<InitializeDataTypeCommandHandler> logger) : base(db, logger)
+        ILogger<InitializeDataTypeCommandHandler> logger)
     {
+        Db = db;
+        Logger = logger;
     }
+
+    public IMesDbContext Db { get; }
+    
+    public ILogger Logger { get; }
 
     protected override async Task<Empty> ProcessOverrideAsync(InitializeDataTypeCommand request, CancellationToken cancellation)
     {
