@@ -26,7 +26,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Mes\Xobex.Mes.Infrastructure.Database\Xobex.Mes.Infrastructure.Database.csproj" />
-    <ProjectReference Include="..\..\Xobex.Cqrs\Xobex.Mediator.csproj" />
   </ItemGroup>
 
   <ItemGroup>

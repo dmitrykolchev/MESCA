@@ -21,8 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MES", "MES", "{854964E3-9C9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mes.Application", "src\Mes\Xobex.Mes.Application\Xobex.Mes.Application.csproj", "{68680F9A-606A-4AC7-A59A-C6B16B595D6B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mediator", "src\Xobex.Cqrs\Xobex.Mediator.csproj", "{809A40BD-8797-498B-83D3-91C22EC099C0}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Core", "src\Xobex.Core\Xobex.Core.csproj", "{50EAC11F-313F-4F4B-BAF5-F634E04ECFB2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{AB4D51C0-BA12-487C-AD8A-C3D614F08A36}"
@@ -34,6 +32,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mes.Domain", "src\Mes\Xobex.Mes.Domain\Xobex.Mes.Domain.csproj", "{CD6E4104-2E4D-4E00-9DFB-DA42EB46FFF0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore.NamingConventions", "src\EFCore.NamingConventions\EFCore.NamingConventions.csproj", "{7369F595-09FA-4AB5-A101-402AA40E7482}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mediator", "src\Xobex.Mediator\Xobex.Mediator.csproj", "{4A3CD4E9-0AF4-4782-AB79-B8C5132B851E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,6 @@ Global
 		{68680F9A-606A-4AC7-A59A-C6B16B595D6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68680F9A-606A-4AC7-A59A-C6B16B595D6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68680F9A-606A-4AC7-A59A-C6B16B595D6B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{809A40BD-8797-498B-83D3-91C22EC099C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{809A40BD-8797-498B-83D3-91C22EC099C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{809A40BD-8797-498B-83D3-91C22EC099C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{809A40BD-8797-498B-83D3-91C22EC099C0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{50EAC11F-313F-4F4B-BAF5-F634E04ECFB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{50EAC11F-313F-4F4B-BAF5-F634E04ECFB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50EAC11F-313F-4F4B-BAF5-F634E04ECFB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -77,6 +73,10 @@ Global
 		{7369F595-09FA-4AB5-A101-402AA40E7482}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7369F595-09FA-4AB5-A101-402AA40E7482}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7369F595-09FA-4AB5-A101-402AA40E7482}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A3CD4E9-0AF4-4782-AB79-B8C5132B851E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A3CD4E9-0AF4-4782-AB79-B8C5132B851E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A3CD4E9-0AF4-4782-AB79-B8C5132B851E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A3CD4E9-0AF4-4782-AB79-B8C5132B851E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
