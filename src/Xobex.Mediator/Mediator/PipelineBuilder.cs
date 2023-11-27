@@ -41,6 +41,14 @@ public class PipelineBuilder
         _behaviors.Push(behavior);
         return this;
     }
+
+    public PipelineBuilder Use(Func<IRequest, Func<Task<object>>?, CancellationToken, Task<object?>> func)
+    {
+        ArgumentNullException.ThrowIfNull(func);
+
+        _behaviors.Push(new InternalBehavior(func));
+        return this;
+    }
     /// <summary>
     /// Builds pipeline
     /// </summary>
@@ -59,5 +67,18 @@ public class PipelineBuilder
             pipeline.Root = temp;
         }
         return pipeline;
+    }
+
+    private class InternalBehavior : IBehavior
+    {
+        private readonly Func<IRequest, Func<Task<object>>?, CancellationToken, Task<object?>> _func;
+        public InternalBehavior(Func<IRequest, Func<Task<object>>?, CancellationToken, Task<object?>> func)
+        {
+            _func = func;
+        }
+        public Task<object?> ProcessAsync(IRequest request, Func<Task<object>>? next, CancellationToken cancellationToken)
+        {
+            return _func(request, next, cancellationToken);
+        }
     }
 }

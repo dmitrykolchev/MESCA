@@ -52,6 +52,24 @@ public class Worker : BackgroundService
         {
             PipelineBuilder pipelineBuilder = mediatorService.CreatePipelineBuilder();
             Pipeline pipeline = pipelineBuilder
+                .Use(async (request, next, cancellation) =>
+                {
+                    ArgumentNullException.ThrowIfNull(next);
+                    try
+                    {
+                        _logger.LogInformation("Starting pipeline execution");
+                        return await next();
+                    }
+                    catch(Exception ex)
+                    {
+                        _logger.LogError(ex, ex.Message);
+                    }
+                    finally
+                    {
+                        _logger.LogInformation("Pipeline execution completed");
+                    }
+                    return default;
+                })
                 .Use<VerifyInitializedBehavior<DataType>>()
                 .Use<TransactedBehavior>()
                 .Build();
