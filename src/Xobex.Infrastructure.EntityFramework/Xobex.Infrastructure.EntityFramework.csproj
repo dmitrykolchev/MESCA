@@ -15,7 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EFCore.NamingConventions\EFCore.NamingConventions.csproj" />
     <ProjectReference Include="..\Xobex.Core\Xobex.Core.csproj" />
-    <ProjectReference Include="..\Xobext.Domain.Core\Xobext.Domain.Core.csproj" />
+    <ProjectReference Include="..\Xobext.Domain.Core\Xobex.Domain.Core.csproj" />
   </ItemGroup>
 
 </Project>

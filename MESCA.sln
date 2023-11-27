@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34310.174
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobext.Domain.Core", "src\Xobext.Domain.Core\Xobext.Domain.Core.csproj", "{2AC98A1B-9A43-40C4-B49B-D1D87358B689}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Domain.Core", "src\Xobext.Domain.Core\Xobex.Domain.Core.csproj", "{2AC98A1B-9A43-40C4-B49B-D1D87358B689}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Infrastructure.EntityFramework", "src\Xobex.Infrastructure.EntityFramework\Xobex.Infrastructure.EntityFramework.csproj", "{61F16639-DC26-4AC3-8D3A-4C1DBA356310}"
 EndProject
