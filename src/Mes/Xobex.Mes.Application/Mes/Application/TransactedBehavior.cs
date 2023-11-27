@@ -9,18 +9,18 @@ using Xobex.Mediator;
 
 namespace Xobex.Mes.Application;
 
-public class TransactedBehavior<TResult> : Behavior<TResult>
+public class TransactedBehavior : Behavior
 {
     private readonly ITransactionProvider _transactionProvider;
     private readonly ILogger _logger;
 
-    public TransactedBehavior(IMesDbContext context, ILogger<TransactedBehavior<TResult>> logger)
+    public TransactedBehavior(IMesDbContext context, ILogger<TransactedBehavior> logger)
     {
         _transactionProvider = new TransactionProvider((DbContext)context);
         _logger = logger;
     }
 
-    public override async Task<TResult?> ProcessAsync(IRequest<TResult> request, Func<Task<TResult>>? next, CancellationToken cancellationToken)
+    public override async Task<object?> ProcessAsync(IRequest request, Func<Task<object>>? next, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(next);
 
@@ -28,7 +28,7 @@ public class TransactedBehavior<TResult> : Behavior<TResult>
         _logger.LogInformation("Begin transaction");
         try
         {
-            TResult? result = (await next());
+            object? result = (await next());
             await transaction.CommitAsync(cancellationToken);
             _logger.LogInformation("Commit transaction");
             return result;

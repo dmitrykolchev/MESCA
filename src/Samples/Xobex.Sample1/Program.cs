@@ -64,11 +64,6 @@ internal class Program
         services.AddMediator(provider =>
         {
             provider
-                //.AddRequest<CreatePersonCommand, CreatePersonHandler>()
-                //.AddValidator<CreatePersonCommand, CreatePersonValidator>()
-                //.AddRequest<GetPersonCommand, GetPersonHandler>()
-                //.AddRequest<GetPeopleCommand, GetPeopleHandler>()
-                //.AddEvent<PersonCreatedEvent, PersonCreatedEventHandler>()
                 .AddAssembly(typeof(Program).Assembly)
                 .AddAssembly(typeof(InitializeDataTypeCommandHandler).Assembly);
         });

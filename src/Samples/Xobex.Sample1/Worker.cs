@@ -52,8 +52,8 @@ public class Worker : BackgroundService
         {
             PipelineBuilder<Empty> pipelineBuilder = mediatorService.CreatePipelineBuilder<Empty>();
             Pipeline<Empty> pipeline = pipelineBuilder
-                .Use<VerifyInitializedBehavior<DataType, Empty>>()
-                .Use<TransactedBehavior<Empty>>()
+                .Use<VerifyInitializedBehavior<DataType>>()
+                .Use<TransactedBehavior>()
                 .Build();
             await pipeline.RunAsync(InitializeDataTypeCommand.Instance, CancellationToken.None);
 

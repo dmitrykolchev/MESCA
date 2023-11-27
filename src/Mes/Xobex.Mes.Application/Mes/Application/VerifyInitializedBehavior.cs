@@ -9,19 +9,19 @@ using Xobex.Mediator;
 
 namespace Xobex.Mes.Application;
 
-public class VerifyInitializedBehavior<TEntity, TResult> : Behavior<TResult>
+public class VerifyInitializedBehavior<TEntity> : Behavior
     where TEntity : class
 {
     private readonly IMesDbContext _context;
     private readonly ILogger _logger;
 
-    public VerifyInitializedBehavior(IMesDbContext context, ILogger<VerifyInitializedBehavior<TEntity, TResult>> logger)
+    public VerifyInitializedBehavior(IMesDbContext context, ILogger<VerifyInitializedBehavior<TEntity>> logger)
     {
         _context = context;
         _logger = logger;
     }
 
-    public override async Task<TResult?> ProcessAsync(IRequest<TResult> request, Func<Task<TResult>>? next, CancellationToken cancellationToken)
+    public override async Task<object?> ProcessAsync(IRequest request, Func<Task<object>>? next, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(next);
         _logger.LogInformation($"Verify {typeof(TEntity)} is empty");

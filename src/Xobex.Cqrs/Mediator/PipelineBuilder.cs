@@ -9,7 +9,7 @@ namespace Xobex.Mediator;
 
 public class PipelineBuilder<TResult>
 {
-    private readonly Stack<IBehavior<TResult>> _behaviors = new();
+    private readonly Stack<IBehavior> _behaviors = new();
 
     internal PipelineBuilder(IMediatorService mediatorService, IServiceProvider serviceProvider)
     {
@@ -26,7 +26,7 @@ public class PipelineBuilder<TResult>
     /// <typeparam name="TBehavior"></typeparam>
     /// <returns></returns>
     public PipelineBuilder<TResult> Use<TBehavior>()
-        where TBehavior : IBehavior<TResult>
+        where TBehavior : IBehavior
     {
         return Use(ActivatorUtilities.CreateInstance<TBehavior>(ServiceProvider));
     }
@@ -35,7 +35,7 @@ public class PipelineBuilder<TResult>
     /// </summary>
     /// <param name="behavior"></param>
     /// <returns></returns>
-    public PipelineBuilder<TResult> Use(IBehavior<TResult> behavior)
+    public PipelineBuilder<TResult> Use(IBehavior behavior)
     {
         ArgumentNullException.ThrowIfNull(behavior);
         _behaviors.Push(behavior);
@@ -51,7 +51,7 @@ public class PipelineBuilder<TResult>
         pipeline.Root = new(pipeline, MediatorService.QueryAsync);
         while (_behaviors.Count > 0)
         {
-            IBehavior<TResult> behavior = _behaviors.Pop();
+            IBehavior behavior = _behaviors.Pop();
             Pipeline<TResult>.PipelineEntry temp = new(pipeline, behavior)
             {
                 Next = pipeline.Root

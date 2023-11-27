@@ -21,28 +21,28 @@ public class Pipeline<TResult>
         set => _root = value;
     }
 
-    public Task<TResult> RunAsync(IRequest<TResult> request, CancellationToken cancellationToken)
+    public async Task<TResult?> RunAsync(IRequest<TResult> request, CancellationToken cancellationToken)
     {
         _request = request;
         _token = cancellationToken;
-        return _root!.Step();
+        return (TResult?)await _root!.Step();
     }
 
     internal class PipelineEntry
     {
         private readonly Pipeline<TResult> _parent;
-        private readonly IBehavior<TResult>? _behavior;
+        private readonly IBehavior? _behavior;
 
         public PipelineEntry(Pipeline<TResult> parent, Func<IRequest<TResult>, CancellationToken, Task<TResult>> func)
         {
             _parent = parent;
-            Step = () =>
+            Step = async () =>
             {
-                return func(Request!, (CancellationToken)Token!);
+                return (object)(await func(Request!, (CancellationToken)Token!))!;
             };
         }
 
-        public PipelineEntry(Pipeline<TResult> parent, IBehavior<TResult> behavior)
+        public PipelineEntry(Pipeline<TResult> parent, IBehavior behavior)
         {
             _parent = parent;
             _behavior = behavior;
@@ -54,7 +54,7 @@ public class Pipeline<TResult>
 
         public IRequest<TResult>? Request => _parent._request;
         public CancellationToken? Token => _parent._token;
-        public Func<Task<TResult>> Step { get; }
+        public Func<Task<object>> Step { get; }
         public PipelineEntry? Next { get; set; }
     }
 }

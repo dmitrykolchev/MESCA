@@ -5,29 +5,9 @@
 
 namespace Xobex.Mediator;
 
-public abstract class Behavior<TResult> : IBehavior<TResult>
+public abstract class Behavior : IBehavior
 {
     protected Behavior() { }
 
-    public virtual async Task<TResult?> ProcessAsync(IRequest<TResult> request, Func<Task<TResult>>? next, CancellationToken cancellationToken)
-    {
-        if (next != null)
-        {
-            return await next();
-        }
-        return default;
-    }
-
-    async Task<object?> IBehavior.ProcessAsync(IRequest request, Func<Task<object>>? next, CancellationToken cancellationToken)
-    {
-        if (next != null)
-        {
-            Func<Task<TResult>> func = async () =>
-            {
-                return (TResult)(await next())!;
-            };
-            return await ProcessAsync((IRequest<TResult>)request, func, cancellationToken);
-        }
-        return await ProcessAsync((IRequest<TResult>)request, null, cancellationToken);
-    }
+    public abstract Task<object?> ProcessAsync(IRequest request, Func<Task<object>>? next, CancellationToken cancellationToken);
 }
