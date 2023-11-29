@@ -11,5 +11,5 @@ public interface IMediatorServiceBase
 
     public Task<object> QueryAsync(IRequest request, CancellationToken cancellationToken);
 
-    public Task RaiseAsync(IEvent data, CancellationToken cancellationToken);
+    public Task RaiseEventAsync(IEvent data, CancellationToken cancellationToken);
 }
