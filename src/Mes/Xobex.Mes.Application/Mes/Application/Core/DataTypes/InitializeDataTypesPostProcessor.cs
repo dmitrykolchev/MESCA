@@ -3,11 +3,13 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Xobex.Mediator;
 
 namespace Xobex.Mes.Application.Core.DataTypes;
 
+[MediatorLifetime(ServiceLifetime.Scoped)]
 public class InitializeDataTypesPostProcessor : RequestPostProcessor<InitializeDataTypesCommand, Empty>
 {
     public InitializeDataTypesPostProcessor(ILogger<InitializeDataTypesPostProcessor> logger)
