@@ -6,17 +6,17 @@
 using Xobex.Mediator;
 
 namespace Xobex.Sample1.Person;
-public class CreatePersonHandler : RequestHandler<CreatePersonCommand, int>
+public class AddPersonHandler : RequestHandler<AddPersonCommand, int>
 {
     private readonly IMediatorService _mediator;
     private static int _id;
 
-    public CreatePersonHandler(IMediatorService mediator)
+    public AddPersonHandler(IMediatorService mediator)
     {
         _mediator = mediator;
     }
 
-    protected override async Task<int> ProcessOverrideAsync(CreatePersonCommand request, CancellationToken cancellationToken)
+    protected override async Task<int> ProcessOverrideAsync(AddPersonCommand request, CancellationToken cancellationToken)
     {
         PersonModel model = new()
         {

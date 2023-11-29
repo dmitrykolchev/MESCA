@@ -7,10 +7,11 @@ using Xobex.Mediator;
 
 namespace Xobex.Sample1.Person;
 
-public class CreatePersonCommand : IRequest<int>
+public class AddPersonCommand : Request<int>
 {
-    public string FirstName { get; set; } = null!;
+    public override RequestVerbs Verb => RequestVerbs.Add;
 
-    public string LastName { get; set; } = null!;
+    public required string FirstName { get; set; }
+    public required string LastName { get; set; }
 }
 

@@ -25,8 +25,8 @@ public class Worker : BackgroundService
         ILogger<Worker> logger)
     {
         ServiceScopeFactory = serviceScopeFactory ?? throw new ArgumentNullException(nameof(serviceScopeFactory));
-        HostLifetime = hostLifetime;
-        _logger = logger;
+        HostLifetime = hostLifetime ?? throw new ArgumentNullException(nameof(hostLifetime));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
     private IServiceScopeFactory ServiceScopeFactory { get; }
@@ -65,6 +65,7 @@ public class Worker : BackgroundService
                 .Use<TransactedBehavior>()
                 .Build();
             _ = await pipeline.RunAsync(InitializeDocumentTypesCommand.Instance, CancellationToken.None);
+
         }
         catch (Exception ex)
         {
@@ -79,14 +80,14 @@ public class Worker : BackgroundService
     {
         IMediatorService mediatorService = serviceProvider.GetRequiredService<IMediatorService>();
 
-        CreatePersonCommand personCommand = new()
+        AddPersonCommand personCommand = new()
         {
             FirstName = "Dmitry",
             LastName = "Kolchev"
         };
 
         int result = await mediatorService.QueryAsync(personCommand, cancellationToken);
-        personCommand = new CreatePersonCommand
+        personCommand = new AddPersonCommand
         {
             FirstName = "Ivan",
             LastName = "Pupkin"
@@ -95,9 +96,10 @@ public class Worker : BackgroundService
 
         try
         {
-            personCommand = new CreatePersonCommand
+            personCommand = new AddPersonCommand
             {
-                LastName = "Petrov"
+                LastName = "Petrov",
+                FirstName = null!
             };
             result = await mediatorService.QueryAsync(personCommand, cancellationToken);
         }

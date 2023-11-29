@@ -7,10 +7,11 @@ using Xobex.Mediator;
 
 namespace Xobex.Mes.Application.Metadata.DocumentTypes;
 
-public class InitializeDocumentTypesCommand : IRequest<Empty>
+public class InitializeDocumentTypesCommand : Request<Empty>
 {
-    public static readonly InitializeDocumentTypesCommand Instance = new ();
-    private InitializeDocumentTypesCommand()
-    {
-    }
+    public static readonly InitializeDocumentTypesCommand Instance = new();
+
+    private InitializeDocumentTypesCommand() { }
+
+    public override RequestVerbs Verb => RequestVerbs.Process;
 }

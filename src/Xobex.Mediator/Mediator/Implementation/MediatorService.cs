@@ -34,8 +34,7 @@ public class MediatorService(IServiceProvider serviceProvider, IMediatorProvider
     public async Task<TResult> QueryAsync<TResult>(IRequest<TResult> request, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(request);
-
-        return (TResult) await QueryInternalAsync(request, cancellationToken).ConfigureAwait(false);
+        return (TResult)await QueryInternalAsync(request, cancellationToken).ConfigureAwait(false);
     }
 
     Task<object> IMediatorServiceBase.QueryAsync(IRequest request, CancellationToken cancellationToken)
@@ -81,5 +80,4 @@ public class MediatorService(IServiceProvider serviceProvider, IMediatorProvider
             await listeners[i].HandleAsync(notification, cancellationToken).ConfigureAwait(false);
         }
     }
-
 }

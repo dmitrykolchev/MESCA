@@ -7,7 +7,11 @@ using Xobex.Mediator;
 
 namespace Xobex.Mes.Application.Core.DataTypes;
 
-public record InitializeDataTypesCommand : IRequest<Empty>
+public class InitializeDataTypesCommand : Request<Empty>
 {
     public static readonly InitializeDataTypesCommand Instance = new ();
+
+    private InitializeDataTypesCommand() { }
+
+    public override RequestVerbs Verb => RequestVerbs.Process;
 }

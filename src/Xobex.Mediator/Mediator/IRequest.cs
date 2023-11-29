@@ -7,4 +7,5 @@ namespace Xobex.Mediator;
 
 public interface IRequest
 {
+    RequestVerbs Verb { get; }
 }

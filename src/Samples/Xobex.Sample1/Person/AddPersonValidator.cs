@@ -6,9 +6,9 @@
 using Xobex.Mediator;
 
 namespace Xobex.Sample1.Person;
-public class CreatePersonValidator : Validator<CreatePersonCommand>
+public class AddPersonValidator : Validator<AddPersonCommand>
 {
-    public override Task ValidateAsync(CreatePersonCommand request, CancellationToken cancellationToken)
+    public override Task ValidateAsync(AddPersonCommand request, CancellationToken cancellationToken)
     {
         return string.IsNullOrEmpty(request.FirstName) || string.IsNullOrEmpty(request.LastName)
             ? throw new ArgumentException("FirstName and LastName must be set")

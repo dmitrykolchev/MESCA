@@ -7,7 +7,14 @@ using Xobex.Mediator;
 
 namespace Xobex.Sample1.Person;
 
-public class GetPeopleCommand : IRequest<IEnumerable<PersonModel>>
+public class GetPeopleCommand : Request<IEnumerable<PersonModel>>
 {
     public static readonly GetPeopleCommand Instance = new();
+
+    public GetPeopleCommand()
+    {
+    }
+
+    public override RequestVerbs Verb => RequestVerbs.Get;
+    public int Id { get; set; }
 }
