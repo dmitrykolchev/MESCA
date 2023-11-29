@@ -7,6 +7,7 @@ namespace Xobex.Mediator;
 
 public interface IRequestHandler<in TRequest, TResult>: IRequestHandler
     where TRequest : IRequest<TResult>
+    where TResult: notnull
 {
     Task<TResult> ProcessAsync(TRequest request, CancellationToken cancellation);
 }

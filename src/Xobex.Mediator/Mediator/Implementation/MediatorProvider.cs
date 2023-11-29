@@ -4,6 +4,7 @@
 // </copyright>
 
 using System.Collections.Concurrent;
+using System.Collections.Immutable;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Xobex.Mediator.Implementation;
@@ -12,6 +13,7 @@ internal class MediatorProvider : IMediatorProvider
 {
     private readonly ConcurrentDictionary<Type, HandlerDesriptor> _requestHandlers = new();
     private readonly ConcurrentDictionary<Type, List<HandlerDesriptor>> _validators = new();
+    private readonly ConcurrentDictionary<Type, List<HandlerDesriptor>> _postProcessors = new();
     private readonly ConcurrentDictionary<Type, List<HandlerDesriptor>> _eventHandlers = new();
 
     public MediatorProvider()
@@ -21,30 +23,37 @@ internal class MediatorProvider : IMediatorProvider
     public void Add(HandlerDesriptor desriptor)
     {
         ArgumentNullException.ThrowIfNull(desriptor);
-        if(typeof(IRequest).IsAssignableFrom(desriptor.ContractType))
+        if (typeof(IRequest).IsAssignableFrom(desriptor.ContractType))
         {
             if (typeof(IRequestHandler).IsAssignableFrom(desriptor.HandlerType))
             {
                 _requestHandlers.TryAdd(desriptor.ContractType, desriptor);
             }
-            else if(typeof(IValidator).IsAssignableFrom(desriptor.HandlerType))
+            else if (typeof(IValidator).IsAssignableFrom(desriptor.HandlerType))
             {
                 List<HandlerDesriptor> validators = _validators.GetOrAdd(
                     desriptor.ContractType,
                     _ => new List<HandlerDesriptor>());
                 validators.Add(desriptor);
             }
+            else if (typeof(IRequestPostProcesor).IsAssignableFrom(desriptor.HandlerType))
+            {
+                List<HandlerDesriptor> postProcessors = _postProcessors.GetOrAdd(
+                    desriptor.ContractType,
+                    _ => new List<HandlerDesriptor>());
+                postProcessors.Add(desriptor);
+            }
             else
             {
                 throw new InvalidOperationException($"unsupported handler type {desriptor.HandlerType}");
             }
         }
-        else if(typeof(IEvent).IsAssignableFrom(desriptor.ContractType))
+        else if (typeof(IEvent).IsAssignableFrom(desriptor.ContractType))
         {
-            if(typeof(IEventHandler).IsAssignableFrom(desriptor.HandlerType))
+            if (typeof(IEventHandler).IsAssignableFrom(desriptor.HandlerType))
             {
                 List<HandlerDesriptor> listeners = _eventHandlers.GetOrAdd(
-                    desriptor.ContractType, 
+                    desriptor.ContractType,
                     _ => new List<HandlerDesriptor>());
                 listeners.Add(desriptor);
             }
@@ -59,35 +68,21 @@ internal class MediatorProvider : IMediatorProvider
         }
     }
 
-    public IEnumerable<IEventHandler<TEvent>> GetEventHandlers<TEvent>(IServiceProvider serviceProvider) 
+    public IReadOnlyList<IEventHandler<TEvent>> GetEventHandlers<TEvent>(IServiceProvider serviceProvider)
         where TEvent : IEvent
     {
-        return GetEventHandlers(serviceProvider, typeof(TEvent)).Cast<IEventHandler<TEvent>>();
+        return GetEventHandlers<IEventHandler<TEvent>>(serviceProvider, typeof(TEvent));
     }
 
-    public IEnumerable<IEventHandler> GetEventHandlers(IServiceProvider serviceProvider, Type notificationType)
+    public IReadOnlyList<IEventHandler> GetEventHandlers(IServiceProvider serviceProvider, Type eventType)
     {
-        ArgumentNullException.ThrowIfNull(notificationType);
-        Type? temp = notificationType;
-        while (temp != null && typeof(IEvent).IsAssignableFrom(temp))
-        {
-            if (_eventHandlers.TryGetValue(notificationType, out List<HandlerDesriptor>? descriptors))
-            {
-                IEventHandler[] handlers = new IEventHandler[descriptors.Count];
-                for (int index = 0; index < handlers.Length; ++index)
-                {
-                    HandlerDesriptor descriptor = descriptors[index];
-                    handlers[index] = GetOrCreateEventHandler(serviceProvider, descriptor);
-                }
-                return handlers;
-            }
-            temp = temp.BaseType!;
-        }
-        return Enumerable.Empty<IEventHandler>();
+        ArgumentNullException.ThrowIfNull(eventType);
+        return GetEventHandlers<IEventHandler>(serviceProvider, eventType);
     }
 
-    public IRequestHandler<TRequest, TResult> GetRequestHandler<TRequest, TResult>(IServiceProvider serviceProvider) 
+    public IRequestHandler<TRequest, TResult> GetRequestHandler<TRequest, TResult>(IServiceProvider serviceProvider)
         where TRequest : IRequest<TResult>
+        where TResult : notnull
     {
         return (IRequestHandler<TRequest, TResult>)GetRequestHandler(serviceProvider, typeof(TRequest));
     }
@@ -98,58 +93,106 @@ internal class MediatorProvider : IMediatorProvider
         Type? temp = requestType;
         while (temp != null && typeof(IRequest).IsAssignableFrom(temp))
         {
-            if (_requestHandlers.TryGetValue(requestType, out HandlerDesriptor? descriptor))
+            if (_requestHandlers.TryGetValue(temp, out HandlerDesriptor? descriptor))
             {
-                return GetOrCreateRequestHandler(serviceProvider, descriptor);
+                return GetOrCreate<IRequestHandler>(serviceProvider, descriptor);
             }
             temp = temp.BaseType!;
         }
         throw new InvalidOperationException();
     }
 
-    public IEnumerable<IValidator<TRequest>> GetValidators<TRequest>(IServiceProvider serviceProvider) 
+    public IReadOnlyList<IValidator<TRequest>> GetValidators<TRequest>(IServiceProvider serviceProvider)
         where TRequest : IRequest
     {
-        return GetValidators(serviceProvider, typeof(TRequest)).Cast<IValidator<TRequest>>();
+        return GetValidators<IValidator<TRequest>>(serviceProvider, typeof(TRequest));
     }
 
-    public IEnumerable<IValidator> GetValidators(IServiceProvider serviceProvider, Type requestType)
+    public IReadOnlyList<IRequestPostProcessor<TRequest, TResult>> GetRequestPostProcessors<TRequest, TResult>(IServiceProvider serviceProvider)
+        where TRequest : IRequest<TResult>
+        where TResult : notnull
+    {
+        ArgumentNullException.ThrowIfNull(serviceProvider);
+        return GetRequestPostProcessors<IRequestPostProcessor<TRequest, TResult>>(serviceProvider, typeof(TRequest));
+    }
+
+    public IReadOnlyList<IRequestPostProcesor> GetRequestPostProcessors(IServiceProvider serviceProvider, Type requestType)
+    {
+        ArgumentNullException.ThrowIfNull(serviceProvider);
+        ArgumentNullException.ThrowIfNull(requestType);
+        return GetRequestPostProcessors<IRequestPostProcesor>(serviceProvider, requestType);
+    }
+
+    public IReadOnlyList<IValidator> GetValidators(IServiceProvider serviceProvider, Type requestType)
     {
         ArgumentNullException.ThrowIfNull(requestType);
-        Type? temp = requestType;
-        while(temp != null && typeof(IRequest).IsAssignableFrom(temp))
+        return GetValidators<IValidator>(serviceProvider, requestType);
+    }
+
+    private IReadOnlyList<TEventHandler> GetEventHandlers<TEventHandler>(IServiceProvider serviceProvider, Type eventType)
+        where TEventHandler : IEventHandler
+    {
+        Type? temp = eventType;
+        while (temp != null && typeof(IEvent).IsAssignableFrom(temp))
         {
-            if (_validators.TryGetValue(requestType, out List<HandlerDesriptor>? descriptors))
+            if (_eventHandlers.TryGetValue(temp, out List<HandlerDesriptor>? descriptors))
             {
-                IValidator[] handlers = new IValidator[descriptors.Count];
-                for(int index = 0; index < handlers.Length; ++index)
+                TEventHandler[] handlers = new TEventHandler[descriptors.Count];
+                for (int index = 0; index < handlers.Length; ++index)
                 {
                     HandlerDesriptor descriptor = descriptors[index];
-                    handlers[index] = GetOrCreateValidator(serviceProvider, descriptor);
+                    handlers[index] = GetOrCreate<TEventHandler>(serviceProvider, descriptor);
                 }
-                return handlers;
+                return ImmutableArray.Create(handlers);
             }
             temp = temp.BaseType!;
         }
-        return Enumerable.Empty<IValidator>();
+        return Array.Empty<TEventHandler>();
     }
 
-    private IValidator GetOrCreateValidator(IServiceProvider serviceProvider, HandlerDesriptor descriptor)
+    private IReadOnlyList<TValidator> GetValidators<TValidator>(IServiceProvider serviceProvider, Type requestType)
+        where TValidator : IValidator
     {
-        return GetOrCreateHandler<IValidator>(serviceProvider, descriptor);
+        Type? temp = requestType;
+        while (temp != null && typeof(IRequest).IsAssignableFrom(temp))
+        {
+            if (_validators.TryGetValue(temp, out List<HandlerDesriptor>? descriptors))
+            {
+                TValidator[] handlers = new TValidator[descriptors.Count];
+                for (int index = 0; index < handlers.Length; ++index)
+                {
+                    HandlerDesriptor descriptor = descriptors[index];
+                    handlers[index] = GetOrCreate<TValidator>(serviceProvider, descriptor);
+                }
+                return ImmutableArray.Create(handlers);
+            }
+            temp = temp.BaseType!;
+        }
+        return Array.Empty<TValidator>();
     }
 
-    private IEventHandler GetOrCreateEventHandler(IServiceProvider serviceProvider, HandlerDesriptor descriptor)
+    private IReadOnlyList<TPostProcessor> GetRequestPostProcessors<TPostProcessor>(IServiceProvider serviceProvider, Type requestType)
+        where TPostProcessor : IRequestPostProcesor
     {
-        return GetOrCreateHandler<IEventHandler>(serviceProvider, descriptor);
+        Type? temp = requestType;
+        while (temp != null && typeof(IRequest).IsAssignableFrom(temp))
+        {
+            if (_postProcessors.TryGetValue(temp, out List<HandlerDesriptor>? descriptors))
+            {
+                TPostProcessor[] handlers = new TPostProcessor[descriptors.Count];
+                for (int index = 0; index < handlers.Length; ++index)
+                {
+                    HandlerDesriptor descriptor = descriptors[index];
+                    handlers[index] = GetOrCreate<TPostProcessor>(serviceProvider, descriptor);
+                }
+                return ImmutableArray.Create(handlers);
+            }
+            temp = temp.BaseType!;
+        }
+        return Array.Empty<TPostProcessor>();
     }
 
-    private IRequestHandler GetOrCreateRequestHandler(IServiceProvider serviceProvider, HandlerDesriptor descriptor)
-    {
-        return GetOrCreateHandler<IRequestHandler>(serviceProvider, descriptor);
-    }
-
-    private THandler GetOrCreateHandler<THandler>(IServiceProvider serviceProvider, HandlerDesriptor descriptor)
+    private THandler GetOrCreate<THandler>(IServiceProvider serviceProvider, HandlerDesriptor descriptor)
     {
         if (descriptor.ServiceLifetime == ServiceLifetime.Singleton)
         {
@@ -165,6 +208,5 @@ internal class MediatorProvider : IMediatorProvider
 
         return (THandler)ActivatorUtilities.CreateInstance(serviceProvider, descriptor.HandlerType!);
     }
-
-
 }
+

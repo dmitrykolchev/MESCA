@@ -10,6 +10,7 @@ namespace Xobex.Mes.Application;
 
 public abstract class DatabaseRequestHandler<TRequest, TResult> : RequestHandler<TRequest, TResult>
     where TRequest : IRequest<TResult>
+    where TResult : notnull
 {
     /// <summary>
     /// Constructor

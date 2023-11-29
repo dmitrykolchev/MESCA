@@ -34,6 +34,6 @@ public interface IMediatorService : IMediatorServiceBase
     /// <param name="data">Event data</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>None</returns>
-    Task RaiseAsync<TEvent>(TEvent data, CancellationToken cancellationToken)
+    Task RaiseEventAsync<TEvent>(TEvent data, CancellationToken cancellationToken)
         where TEvent : IEvent;
 }

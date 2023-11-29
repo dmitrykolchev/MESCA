@@ -81,6 +81,26 @@ public static class MediatorProviderExtensions
                     throw new InvalidOperationException($"Type {arguments[0]} does not implement IRequest");
                 }
             }
+            else if(typeof(IRequestPostProcesor).IsAssignableFrom(type))
+            {
+                Type[]? arguments = type.GetInterfaces()
+                    .Single(t => t.IsGenericType && t.GetGenericTypeDefinition() == typeof(IRequestPostProcessor<,>))
+                    .GetGenericArguments();
+                if (typeof(IRequest).IsAssignableFrom(arguments[0]))
+                {
+                    HandlerDesriptor handlerDesriptor = new()
+                    {
+                        ContractType = arguments[0],
+                        HandlerType = type,
+                        ServiceLifetime = GetHandlerLifetime(type)
+                    };
+                    provider.Add(handlerDesriptor);
+                }
+                else
+                {
+                    throw new InvalidOperationException($"Type {arguments[0]} does not implement IRequest");
+                }
+            }
             else if (typeof(IValidator).IsAssignableFrom(type))
             {
                 Type? validator = type.GetInterfaces()

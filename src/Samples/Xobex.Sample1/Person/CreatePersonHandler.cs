@@ -25,7 +25,7 @@ public class CreatePersonHandler : RequestHandler<CreatePersonCommand, int>
             LastName = request.LastName,
         };
         PersonRepository.Add(model);
-        await _mediator.RaiseAsync(new PersonCreatedEvent { PersonId = model.Id }, cancellationToken);
+        await _mediator.RaiseEventAsync(new PersonCreatedEvent { PersonId = model.Id }, cancellationToken);
         return model.Id;
     }
 }

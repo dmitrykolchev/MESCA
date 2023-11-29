@@ -7,6 +7,7 @@ namespace Xobex.Mediator;
 
 public abstract class RequestHandler<TRequest, TResult> : IRequestHandler<TRequest, TResult>
     where TRequest : IRequest<TResult>
+    where TResult : notnull
 {
     protected RequestHandler()
     {

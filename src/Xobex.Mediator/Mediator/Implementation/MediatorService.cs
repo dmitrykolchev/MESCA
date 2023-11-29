@@ -3,15 +3,13 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
-using Microsoft.Extensions.DependencyInjection;
-
 namespace Xobex.Mediator.Implementation;
 
 public class MediatorService(IServiceProvider serviceProvider, IMediatorProvider mediatorProvider) : IMediatorService
 {
-    private readonly IServiceProvider _serviceProvider = serviceProvider 
+    private readonly IServiceProvider _serviceProvider = serviceProvider
         ?? throw new ArgumentNullException(nameof(serviceProvider));
-    private readonly IMediatorProvider _mediatorProvider = mediatorProvider 
+    private readonly IMediatorProvider _mediatorProvider = mediatorProvider
         ?? throw new ArgumentNullException(nameof(mediatorProvider));
 
     public PipelineBuilder CreatePipelineBuilder()
@@ -19,14 +17,14 @@ public class MediatorService(IServiceProvider serviceProvider, IMediatorProvider
         return new PipelineBuilder(this, _serviceProvider);
     }
 
-    public async Task RaiseAsync<TEvent>(TEvent notification, CancellationToken cancellationToken)
+    public async Task RaiseEventAsync<TEvent>(TEvent notification, CancellationToken cancellationToken)
         where TEvent : IEvent
     {
         ArgumentNullException.ThrowIfNull(notification);
-        IEnumerable<IEventHandler<TEvent>> listeners = _mediatorProvider.GetEventHandlers<TEvent>(_serviceProvider);
-        foreach (IEventHandler<TEvent> listener in listeners)
+        IReadOnlyList<IEventHandler<TEvent>> listeners = _mediatorProvider.GetEventHandlers<TEvent>(_serviceProvider);
+        for (int i = 0; i < listeners.Count; ++i)
         {
-            await listener.HandleAsync(notification, cancellationToken).ConfigureAwait(false);
+            await listeners[i].HandleAsync(notification, cancellationToken).ConfigureAwait(false);
         }
     }
 
@@ -37,8 +35,13 @@ public class MediatorService(IServiceProvider serviceProvider, IMediatorProvider
 
         await ValidateAsync(request, cancellationToken);
 
-        IRequestHandler requestHandler = _mediatorProvider.GetRequestHandler(_serviceProvider, request.GetType());
-        await requestHandler.ProcessAsync(request, cancellationToken).ConfigureAwait(false);
+        IRequestHandler requestHandler = _mediatorProvider.GetRequestHandler(_serviceProvider, typeof(TRequest));
+        object result = await requestHandler.ProcessAsync(request, cancellationToken).ConfigureAwait(false);
+        IReadOnlyList<IRequestPostProcesor> postProcessors = _mediatorProvider.GetRequestPostProcessors(_serviceProvider, typeof(TRequest));
+        for (int i = 0; i < postProcessors.Count; ++i)
+        {
+            await postProcessors[i].ProcessAsync(request, result, cancellationToken).ConfigureAwait(false);
+        }
     }
 
     public async Task<TResult> QueryAsync<TResult>(IRequest<TResult> request, CancellationToken cancellationToken)
@@ -48,57 +51,69 @@ public class MediatorService(IServiceProvider serviceProvider, IMediatorProvider
         await ValidateAsync(request, cancellationToken);
 
         IRequestHandler requestHandler = _mediatorProvider.GetRequestHandler(_serviceProvider, request.GetType());
-        return (TResult)(await requestHandler.ProcessAsync(request, cancellationToken).ConfigureAwait(false))!;
+        TResult result = (TResult)(await requestHandler.ProcessAsync(request, cancellationToken).ConfigureAwait(false))!;
+        IReadOnlyList<IRequestPostProcesor> postProcessors = _mediatorProvider.GetRequestPostProcessors(_serviceProvider, request.GetType());
+        for (int i = 0; i < postProcessors.Count; ++i)
+        {
+            await postProcessors[i].ProcessAsync(request, result, cancellationToken).ConfigureAwait(false);
+        }
+        return result;
     }
 
     private async Task ValidateAsync(IRequest request, CancellationToken cancellationToken)
     {
-        IEnumerable<IValidator> validators = _mediatorProvider.GetValidators(_serviceProvider, request.GetType());
-        if (validators.Any())
+        IReadOnlyList<IValidator> validators = _mediatorProvider.GetValidators(_serviceProvider, request.GetType());
+        for (int i = 0; i < validators.Count; ++i)
         {
-            foreach (IValidator validator in validators)
-            {
-                await validator.ValidateAsync(request, cancellationToken);
-            }
+            await validators[i].ValidateAsync(request, cancellationToken);
         }
     }
+
     async Task<object> IMediatorServiceBase.QueryAsync(IRequest request, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(request);
-        IEnumerable<IValidator> validators = _mediatorProvider.GetValidators(_serviceProvider, request.GetType());
-        if (validators.Any())
+        IReadOnlyList<IValidator> validators = _mediatorProvider.GetValidators(_serviceProvider, request.GetType());
+        for (int i = 0; i < validators.Count; ++i)
         {
-            foreach (IValidator validator in validators)
-            {
-                await validator.ValidateAsync(request, cancellationToken);
-            }
+            await validators[i].ValidateAsync(request, cancellationToken);
         }
         IRequestHandler requestHandler = _mediatorProvider.GetRequestHandler(_serviceProvider, request.GetType());
-        return (await requestHandler.ProcessAsync(request, cancellationToken))!;
+        object result = await requestHandler.ProcessAsync(request, cancellationToken);
+        IReadOnlyList<IRequestPostProcesor> postProcessors = _mediatorProvider.GetRequestPostProcessors(_serviceProvider, request.GetType());
+        for (int i = 0; i < postProcessors.Count; ++i)
+        {
+            await postProcessors[i].ProcessAsync(request, result, cancellationToken).ConfigureAwait(false);
+        }
+        return result;
     }
 
     async Task IMediatorServiceBase.SendAsync(IRequest request, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(request);
-        IEnumerable<IValidator> validators = _mediatorProvider.GetValidators(_serviceProvider, request.GetType());
-        if (validators.Any())
+        IReadOnlyList<IValidator> validators = _mediatorProvider.GetValidators(_serviceProvider, request.GetType());
+        for (int i = 0; i < validators.Count; ++i)
         {
-            foreach (IValidator validator in validators)
-            {
-                await validator.ValidateAsync(request, cancellationToken);
-            }
+            await validators[i].ValidateAsync(request, cancellationToken);
         }
         IRequestHandler requestHandler = _mediatorProvider.GetRequestHandler(_serviceProvider, request.GetType());
-        await requestHandler.ProcessAsync(request, cancellationToken);
+        object result = await requestHandler.ProcessAsync(request, cancellationToken);
+        IReadOnlyList<IRequestPostProcesor> postProcessors = _mediatorProvider.GetRequestPostProcessors(_serviceProvider, request.GetType());
+        if (postProcessors.Count > 0)
+        {
+            for (int i = 0; i < postProcessors.Count; ++i)
+            {
+                await postProcessors[i].ProcessAsync(request, result, cancellationToken).ConfigureAwait(false);
+            }
+        }
     }
 
     async Task IMediatorServiceBase.RaiseAsync(IEvent notification, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(notification);
-        IEnumerable<IEventHandler> listeners = _mediatorProvider.GetEventHandlers(_serviceProvider, notification.GetType());
-        foreach (IEventHandler listener in listeners)
+        IReadOnlyList<IEventHandler> listeners = _mediatorProvider.GetEventHandlers(_serviceProvider, notification.GetType());
+        for (int i = 0; i < listeners.Count; ++i)
         {
-            await listener.HandleAsync(notification, cancellationToken).ConfigureAwait(false);
+            await listeners[i].HandleAsync(notification, cancellationToken).ConfigureAwait(false);
         }
     }
 }

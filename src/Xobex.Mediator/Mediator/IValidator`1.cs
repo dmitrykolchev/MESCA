@@ -6,7 +6,7 @@
 namespace Xobex.Mediator;
 
 public interface IValidator<TRequest> : IValidator
-    where TRequest : IRequest
+    where TRequest : notnull, IRequest
 {
     Task ValidateAsync(TRequest request, CancellationToken cancellationToken);
 }

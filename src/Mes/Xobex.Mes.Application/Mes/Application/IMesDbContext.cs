@@ -4,13 +4,14 @@
 // </copyright>
 
 using Microsoft.EntityFrameworkCore;
+using Xobex.Infrastructure.EntityFramework;
 using Xobex.Mes.Entities.Core;
 using Xobex.Mes.Entities.Metadata;
 using Xobex.Mes.Entities.Resources;
 
 namespace Xobex.Mes.Application;
 
-public interface IMesDbContext
+public interface IMesDbContext : ITransactionProvider
 {
     DbSet<DocumentType> DocumentType { get; set; }
     DbSet<DataType> DataType { get; set; }
@@ -31,6 +32,7 @@ public interface IMesDbContext
     DbSet<PhysicalAsset> PhysicalAsset { get; set; }
     DbSet<MaterialDefinition> MaterialDefinition { get; set; }
 
-    DbSet<TEntity> Set<TEntity>() where TEntity: class;
+    DbSet<TEntity> Set<TEntity>() where TEntity : class;
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

@@ -111,4 +111,5 @@ public class MesSqlServerDbContext : DbContextBase, IMesDbContext, ISqlServer
     public DbSet<Equipment> Equipment { get; set; }
     [EntityConfiguration(typeof(PersonConfiguration))]
     public DbSet<Person> Person { get; set; }
+
 }
