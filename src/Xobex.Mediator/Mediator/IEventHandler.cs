@@ -7,6 +7,7 @@ namespace Xobex.Mediator;
 
 public interface IEventHandler
 {
+    int Ordinal => 0;
     Task HandleAsync(IEvent notification, CancellationToken cancellation);
 }
 

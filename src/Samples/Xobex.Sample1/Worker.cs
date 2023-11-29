@@ -70,7 +70,7 @@ public class Worker : BackgroundService
         {
             _logger.LogError(ex, ex.Message);
         }
-        await TestMediatorAsync(scope.ServiceProvider, cancellationToken);
+        //await TestMediatorAsync(scope.ServiceProvider, cancellationToken);
 
         HostLifetime.StopApplication();
     }

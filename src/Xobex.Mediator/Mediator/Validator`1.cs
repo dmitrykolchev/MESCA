@@ -10,6 +10,8 @@ public abstract class Validator<TRequest> : IValidator<TRequest>
 {
     protected Validator() { }
 
+    public virtual int Ordinal => 0;
+
     public abstract Task ValidateAsync(TRequest request, CancellationToken cancellationToken);
 
     Task IValidator.ValidateAsync(IRequest request, CancellationToken cancellationToken)

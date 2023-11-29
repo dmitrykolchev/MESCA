@@ -143,6 +143,10 @@ internal class MediatorProvider : IMediatorProvider
                     HandlerDesriptor descriptor = descriptors[index];
                     handlers[index] = GetOrCreate<TEventHandler>(serviceProvider, descriptor);
                 }
+                if (handlers.Length > 1)
+                {
+                    Array.Sort(handlers, 0, handlers.Length, Comparer<TEventHandler>.Create((a1, a2) => a1.Ordinal - a2.Ordinal));
+                }
                 return ImmutableArray.Create(handlers);
             }
             temp = temp.BaseType!;
@@ -164,6 +168,10 @@ internal class MediatorProvider : IMediatorProvider
                     HandlerDesriptor descriptor = descriptors[index];
                     handlers[index] = GetOrCreate<TValidator>(serviceProvider, descriptor);
                 }
+                if (handlers.Length > 1)
+                {
+                    Array.Sort(handlers, 0, handlers.Length, Comparer<TValidator>.Create((a1, a2) => a1.Ordinal - a2.Ordinal));
+                }
                 return ImmutableArray.Create(handlers);
             }
             temp = temp.BaseType!;
@@ -184,6 +192,10 @@ internal class MediatorProvider : IMediatorProvider
                 {
                     HandlerDesriptor descriptor = descriptors[index];
                     handlers[index] = GetOrCreate<TPostProcessor>(serviceProvider, descriptor);
+                }
+                if (handlers.Length > 1)
+                {
+                    Array.Sort(handlers, 0, handlers.Length, Comparer<TPostProcessor>.Create((a1, a2) => a1.Ordinal - a2.Ordinal));
                 }
                 return ImmutableArray.Create(handlers);
             }

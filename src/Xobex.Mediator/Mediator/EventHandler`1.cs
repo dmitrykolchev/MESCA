@@ -10,6 +10,8 @@ public abstract class EventHandler<TEvent> : IEventHandler<TEvent>
 {
     protected EventHandler() { }
 
+    public virtual int Ordinal => 0;
+
     public abstract Task HandleAsync(TEvent notification, CancellationToken cancellationToken);
 
     Task IEventHandler.HandleAsync(IEvent notification, CancellationToken cancellationToken)

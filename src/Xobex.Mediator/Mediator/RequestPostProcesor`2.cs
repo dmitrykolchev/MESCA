@@ -11,6 +11,8 @@ public abstract class RequestPostProcessor<TRequest, TResult> : IRequestPostProc
 {
     protected RequestPostProcessor() { }
 
+    public virtual int Ordinal => 0;
+
     public abstract Task ProcessAsync(TRequest request, TResult response, CancellationToken cancellationToken);
 
     Task IRequestPostProcesor.ProcessAsync(IRequest request, object response, CancellationToken cancellationToken)

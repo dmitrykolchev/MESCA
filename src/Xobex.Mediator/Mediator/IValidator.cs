@@ -7,6 +7,7 @@ namespace Xobex.Mediator;
 
 public interface IValidator
 {
+    int Ordinal => 0;
     Task ValidateAsync(IRequest request, CancellationToken cancellationToken);
 }
 

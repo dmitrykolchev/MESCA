@@ -15,5 +15,6 @@ public interface IRequestPostProcessor<in TRequest, TResult>: IRequestPostProces
 
 public interface IRequestPostProcesor
 {
+    int Ordinal => 0;
     Task ProcessAsync(IRequest request, object response, CancellationToken cancellationToken);
 }

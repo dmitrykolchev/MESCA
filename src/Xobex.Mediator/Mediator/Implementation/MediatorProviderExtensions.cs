@@ -40,6 +40,21 @@ public static class MediatorProviderExtensions
         return provider;
     }
 
+    public static IMediatorProvider AddRequestPostProcessor<TRequest, TRequestPostProcessor>(
+        this IMediatorProvider provider, ServiceLifetime serviceLifetime = ServiceLifetime.Transient)
+        where TRequest : IRequest
+        where TRequestPostProcessor : IRequestPostProcesor
+    {
+        HandlerDesriptor handlerDesriptor = new()
+        {
+            ContractType = typeof(TRequest),
+            HandlerType = typeof(TRequestPostProcessor),
+            ServiceLifetime = serviceLifetime
+        };
+        provider.Add(handlerDesriptor);
+        return provider;
+    }
+
     public static IMediatorProvider AddValidator<TRequest, TValidator>(
         this IMediatorProvider provider,
         ServiceLifetime serviceLifetime = ServiceLifetime.Transient)
