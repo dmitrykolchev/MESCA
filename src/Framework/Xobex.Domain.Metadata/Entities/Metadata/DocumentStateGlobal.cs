@@ -19,5 +19,5 @@ public class DocumentStateGlobal: IAuditable
     public DateTimeOffset ModifiedOn { get; set; }
     public int ModifiedBy { get; set; }
 
-    protected virtual DocumentState? State { get; set; }
+    public virtual DocumentState? State { get; set; }
 }

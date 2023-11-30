@@ -39,5 +39,6 @@ public class DocumentState: IAuditable
     public int ModifiedBy { get; set; }
 
 
-    public virtual DocumentType DocumentType { get; set; } = null!;
+    public virtual DocumentType? DocumentType { get; set; }
+    public virtual ICollection<DocumentStateGlobal>? Languages { get; set; }
 }

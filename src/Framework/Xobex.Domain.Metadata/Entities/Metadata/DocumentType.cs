@@ -3,6 +3,7 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
+using System.Xml.Serialization;
 using Xobex.Domain.Common;
 
 namespace Xobex.Entities.Metadata;
@@ -36,6 +37,7 @@ public class DocumentType : IAuditable
     public DateTimeOffset ModifiedOn { get; set; }
     public int ModifiedBy { get; set; }
 
+    public virtual ICollection<DocumentTypeGlobal>? Languages { get; set; }
     public virtual ICollection<DocumentState>? States { get; set; }
     public virtual ICollection<TransitionTemplate>? TransitionTemplates { get; set; }
     public virtual ICollection<PropertyMapping>? Properties { get; set; }

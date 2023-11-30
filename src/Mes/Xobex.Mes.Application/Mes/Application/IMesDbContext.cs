@@ -16,10 +16,15 @@ namespace Xobex.Mes.Application;
 public interface IMesDbContext : ITransactionProvider
 {
     DbSet<DocumentType> DocumentType { get; set; }
+    DbSet<DocumentTypeGlobal> DocumentTypeGlobal { get; set; }
+    DbSet<DocumentState> DocumentState { get; set; }
+    DbSet<DocumentStateGlobal> DocumentStateGlobal { get; set; }
+    DbSet<TransitionTemplate> TransitionTemplate { get; set; }
     DbSet<DataType> DataType { get; set; }
+    DbSet<Property> Property { get; set; }
+
     DbSet<Document> Document { get; set; }
     DbSet<DocumentNote> DocumentNote { get; set; }
-    DbSet<Property> Property { get; set; }
     DbSet<PropertyMapping> PropertyMapping { get; set; }
     DbSet<PropertyValue> PropertyValue { get; set; }
 

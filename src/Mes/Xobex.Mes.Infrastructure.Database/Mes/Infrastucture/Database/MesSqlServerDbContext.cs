@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Xobex.Entities.Core;
 using Xobex.Entities.Metadata;
 using Xobex.Entities.Security;
+using Xobex.Infrastructure.Configuration.Metadata;
 using Xobex.Infrastructure.EntityFramework;
 using Xobex.Infrastucture.Configuration.Core;
 using Xobex.Infrastucture.Configuration.Metadata;
@@ -40,8 +41,12 @@ public class MesSqlServerDbContext : DbContextBase, IMesDbContext, ISqlServer
     //
     [EntityConfiguration(typeof(DocumentTypeConfiguration))]
     public DbSet<DocumentType> DocumentType { get; set; }
+    [EntityConfiguration(typeof(DocumentTypeGlobalConfiguration))]
+    public DbSet<DocumentTypeGlobal> DocumentTypeGlobal { get; set; }
     [EntityConfiguration(typeof(DocumentStateConfiguration))]
     public DbSet<DocumentState> DocumentState { get; set; }
+    [EntityConfiguration(typeof(DocumentStateGlobalConfiguration))]
+    public DbSet<DocumentStateGlobal> DocumentStateGlobal { get; set; }
     [EntityConfiguration(typeof(TransitionTemplateConfiguration))]
     public DbSet<TransitionTemplate> TransitionTemplate { get; set; }
     //
