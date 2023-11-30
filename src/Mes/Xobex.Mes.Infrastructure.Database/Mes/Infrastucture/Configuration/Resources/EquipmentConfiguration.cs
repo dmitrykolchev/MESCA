@@ -26,5 +26,11 @@ public class EquipmentConfiguration : EntityConfiguration<Equipment>
             .HasForeignKey<Equipment>(p => p.Id)
             .OnDelete(DeleteBehavior.Cascade)
             .HasConstraintName($"fk_{TableName}__resource");
+        entity.HasOne(d => d.Parent)
+            .WithMany()
+            .HasPrincipalKey(d => d.Id)
+            .HasForeignKey(p => p.ParentId)
+            .OnDelete(DeleteBehavior.NoAction)
+            .HasConstraintName($"fk_{TableName}__parent");
     }
 }

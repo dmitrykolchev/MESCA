@@ -7,8 +7,7 @@ namespace Xobex.Mediator;
 
 public enum RequestVerbs : short
 {
-    Unknown,
-    Browse,
+    Unknown = 0,
     Get,
     Add,
     Change,
@@ -17,8 +16,7 @@ public enum RequestVerbs : short
     Remove,
     Process,
     Cancel,
-    SyncAdd,
-    SyncChange,
-    SyncDelete,
+    Import,
+    Export,
     Custom = 100
 }

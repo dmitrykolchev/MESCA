@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34310.174
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Domain.Core", "src\Xobext.Domain.Core\Xobex.Domain.Core.csproj", "{2AC98A1B-9A43-40C4-B49B-D1D87358B689}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Infrastructure.EntityFramework", "src\Xobex.Infrastructure.EntityFramework\Xobex.Infrastructure.EntityFramework.csproj", "{61F16639-DC26-4AC3-8D3A-4C1DBA356310}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common Items", "Common Items", "{E8EE19AA-8A69-457E-95FE-D2E147F14C3C}"
 	ProjectSection(SolutionItems) = preProject
 		src\.editorconfig = src\.editorconfig
@@ -22,8 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MES", "MES", "{854964E3-9C9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mes.Application", "src\Mes\Xobex.Mes.Application\Xobex.Mes.Application.csproj", "{68680F9A-606A-4AC7-A59A-C6B16B595D6B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Core", "src\Xobex.Core\Xobex.Core.csproj", "{50EAC11F-313F-4F4B-BAF5-F634E04ECFB2}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{AB4D51C0-BA12-487C-AD8A-C3D614F08A36}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Sample1", "src\Samples\Xobex.Sample1\Xobex.Sample1.csproj", "{CDD3FECE-9C45-4663-AEB4-C0819691BBF0}"
@@ -32,9 +26,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mes.Infrastructure.Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mes.Domain", "src\Mes\Xobex.Mes.Domain\Xobex.Mes.Domain.csproj", "{CD6E4104-2E4D-4E00-9DFB-DA42EB46FFF0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore.NamingConventions", "src\EFCore.NamingConventions\EFCore.NamingConventions.csproj", "{7369F595-09FA-4AB5-A101-402AA40E7482}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{AA9227AF-0DFA-495D-933A-2518FFF84B04}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mediator", "src\Xobex.Mediator\Xobex.Mediator.csproj", "{4A3CD4E9-0AF4-4782-AB79-B8C5132B851E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore.NamingConventions", "src\Framework\EFCore.NamingConventions\EFCore.NamingConventions.csproj", "{D0341409-96D0-465D-B3EC-B34A5C595F89}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Core", "src\Framework\Xobex.Core\Xobex.Core.csproj", "{11D8C1D7-3B04-45CF-8ED2-4E86C7D4775F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Infrastructure.EntityFramework", "src\Framework\Xobex.Infrastructure.EntityFramework\Xobex.Infrastructure.EntityFramework.csproj", "{38E805E3-BEAF-47ED-BDD1-1FC945954F08}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mediator", "src\Framework\Xobex.Mediator\Xobex.Mediator.csproj", "{3E48BDB8-51CD-45EF-A63C-1C659AC2A1F8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Domain.Core", "src\Framework\Xobext.Domain.Core\Xobex.Domain.Core.csproj", "{2764E7AA-C2F1-4089-97D3-6121DAF4D649}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,22 +44,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2AC98A1B-9A43-40C4-B49B-D1D87358B689}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2AC98A1B-9A43-40C4-B49B-D1D87358B689}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2AC98A1B-9A43-40C4-B49B-D1D87358B689}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2AC98A1B-9A43-40C4-B49B-D1D87358B689}.Release|Any CPU.Build.0 = Release|Any CPU
-		{61F16639-DC26-4AC3-8D3A-4C1DBA356310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{61F16639-DC26-4AC3-8D3A-4C1DBA356310}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{61F16639-DC26-4AC3-8D3A-4C1DBA356310}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{61F16639-DC26-4AC3-8D3A-4C1DBA356310}.Release|Any CPU.Build.0 = Release|Any CPU
 		{68680F9A-606A-4AC7-A59A-C6B16B595D6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{68680F9A-606A-4AC7-A59A-C6B16B595D6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68680F9A-606A-4AC7-A59A-C6B16B595D6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68680F9A-606A-4AC7-A59A-C6B16B595D6B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{50EAC11F-313F-4F4B-BAF5-F634E04ECFB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{50EAC11F-313F-4F4B-BAF5-F634E04ECFB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{50EAC11F-313F-4F4B-BAF5-F634E04ECFB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{50EAC11F-313F-4F4B-BAF5-F634E04ECFB2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CDD3FECE-9C45-4663-AEB4-C0819691BBF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CDD3FECE-9C45-4663-AEB4-C0819691BBF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDD3FECE-9C45-4663-AEB4-C0819691BBF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -70,14 +60,26 @@ Global
 		{CD6E4104-2E4D-4E00-9DFB-DA42EB46FFF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD6E4104-2E4D-4E00-9DFB-DA42EB46FFF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD6E4104-2E4D-4E00-9DFB-DA42EB46FFF0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7369F595-09FA-4AB5-A101-402AA40E7482}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7369F595-09FA-4AB5-A101-402AA40E7482}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7369F595-09FA-4AB5-A101-402AA40E7482}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7369F595-09FA-4AB5-A101-402AA40E7482}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4A3CD4E9-0AF4-4782-AB79-B8C5132B851E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4A3CD4E9-0AF4-4782-AB79-B8C5132B851E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4A3CD4E9-0AF4-4782-AB79-B8C5132B851E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4A3CD4E9-0AF4-4782-AB79-B8C5132B851E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0341409-96D0-465D-B3EC-B34A5C595F89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0341409-96D0-465D-B3EC-B34A5C595F89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0341409-96D0-465D-B3EC-B34A5C595F89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0341409-96D0-465D-B3EC-B34A5C595F89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11D8C1D7-3B04-45CF-8ED2-4E86C7D4775F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11D8C1D7-3B04-45CF-8ED2-4E86C7D4775F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11D8C1D7-3B04-45CF-8ED2-4E86C7D4775F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11D8C1D7-3B04-45CF-8ED2-4E86C7D4775F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38E805E3-BEAF-47ED-BDD1-1FC945954F08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38E805E3-BEAF-47ED-BDD1-1FC945954F08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38E805E3-BEAF-47ED-BDD1-1FC945954F08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38E805E3-BEAF-47ED-BDD1-1FC945954F08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E48BDB8-51CD-45EF-A63C-1C659AC2A1F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E48BDB8-51CD-45EF-A63C-1C659AC2A1F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E48BDB8-51CD-45EF-A63C-1C659AC2A1F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E48BDB8-51CD-45EF-A63C-1C659AC2A1F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2764E7AA-C2F1-4089-97D3-6121DAF4D649}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2764E7AA-C2F1-4089-97D3-6121DAF4D649}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2764E7AA-C2F1-4089-97D3-6121DAF4D649}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2764E7AA-C2F1-4089-97D3-6121DAF4D649}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +89,11 @@ Global
 		{CDD3FECE-9C45-4663-AEB4-C0819691BBF0} = {AB4D51C0-BA12-487C-AD8A-C3D614F08A36}
 		{BFFC6A6C-78FA-4BE8-9B16-3D89B8ED87AD} = {854964E3-9C9F-4545-A045-3327CAB03F01}
 		{CD6E4104-2E4D-4E00-9DFB-DA42EB46FFF0} = {854964E3-9C9F-4545-A045-3327CAB03F01}
+		{D0341409-96D0-465D-B3EC-B34A5C595F89} = {AA9227AF-0DFA-495D-933A-2518FFF84B04}
+		{11D8C1D7-3B04-45CF-8ED2-4E86C7D4775F} = {AA9227AF-0DFA-495D-933A-2518FFF84B04}
+		{38E805E3-BEAF-47ED-BDD1-1FC945954F08} = {AA9227AF-0DFA-495D-933A-2518FFF84B04}
+		{3E48BDB8-51CD-45EF-A63C-1C659AC2A1F8} = {AA9227AF-0DFA-495D-933A-2518FFF84B04}
+		{2764E7AA-C2F1-4089-97D3-6121DAF4D649} = {AA9227AF-0DFA-495D-933A-2518FFF84B04}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D055D17-30FF-4FA3-B49C-A68B1C8FF3A5}

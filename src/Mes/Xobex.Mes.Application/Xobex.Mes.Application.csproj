@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Xobex.Infrastructure.EntityFramework\Xobex.Infrastructure.EntityFramework.csproj" />
-    <ProjectReference Include="..\..\Xobex.Mediator\Xobex.Mediator.csproj" />
+    <ProjectReference Include="..\..\Framework\Xobex.Infrastructure.EntityFramework\Xobex.Infrastructure.EntityFramework.csproj" />
+    <ProjectReference Include="..\..\Framework\Xobex.Mediator\Xobex.Mediator.csproj" />
     <ProjectReference Include="..\Xobex.Mes.Domain\Xobex.Mes.Domain.csproj" />
   </ItemGroup>
 

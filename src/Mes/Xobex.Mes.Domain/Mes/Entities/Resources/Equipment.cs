@@ -17,4 +17,5 @@ public class Equipment : ResourceBase<EquipmentState>
     public Equipment() { }
 
     public virtual Resource? Resource { get; set; }
+    public virtual Equipment? Parent { get; set; }
 }
