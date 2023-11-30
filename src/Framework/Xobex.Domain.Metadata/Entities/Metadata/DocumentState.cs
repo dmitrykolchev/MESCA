@@ -30,7 +30,7 @@ public class DocumentState: IAuditable
     public required string Code { get; set; }
     public required string Name { get; set; }
     public string? Description { get; set; }
-    public string? LaberColor { get; set; }
+    public string? Color { get; set; }
     public string? Comments { get; set; }
 
     public DateTimeOffset CreatedOn { get; set; }

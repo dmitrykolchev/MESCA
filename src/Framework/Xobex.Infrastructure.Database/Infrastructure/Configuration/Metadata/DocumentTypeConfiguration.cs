@@ -5,10 +5,10 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Xobex.Infrastructure.EntityFramework;
 using Xobex.Entities.Metadata;
+using Xobex.Infrastructure.EntityFramework;
 
-namespace Xobex.Mes.Infrastucture.Configuration.Metadata;
+namespace Xobex.Infrastucture.Configuration.Metadata;
 
 public class DocumentTypeConfiguration : EntityConfiguration<DocumentType>
 {
@@ -29,7 +29,7 @@ public class DocumentTypeConfiguration : EntityConfiguration<DocumentType>
         entity.Property(e => e.Code).HasMaxLength(64).IsUnicode(false);
         entity.Property(e => e.Name).HasMaxLength(1024).IsUnicode(true);
         entity.Property(e => e.Description).IsUnicode(true);
-        entity.Property(e => e.ImageName).HasMaxLength(1024).IsUnicode(false);
+        entity.Property(e => e.Image).HasMaxLength(1024).IsUnicode(false);
         entity.Property(e => e.Description).IsUnicode(true);
         entity.HasAuditProperties();
         entity.HasAlternateKey(e => e.Code).HasName($"ak_{TableName}_code");

@@ -28,7 +28,7 @@ public class DocumentType : IAuditable
     public required string Code { get; set; }
     public required string Name { get; set; }
     public string? Description { get; set; }
-    public required string ImageName { get; set; }
+    public required string Image { get; set; }
     public string? Comments { get; set; }
 
     public DateTimeOffset CreatedOn { get; set; }

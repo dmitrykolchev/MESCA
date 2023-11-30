@@ -27,7 +27,7 @@ public class InitializeDocumentTypesCommandHandler : DatabaseRequestHandler<Init
             Flags = DocumentTypeFlags.None,
             Code = "Equipment",
             Name = "Оборудование",
-            ImageName = "Equipment",
+            Image = "Equipment",
             Description = "Справочник оборудования"
         };
         equipment.States = new HashSet<DocumentState>([

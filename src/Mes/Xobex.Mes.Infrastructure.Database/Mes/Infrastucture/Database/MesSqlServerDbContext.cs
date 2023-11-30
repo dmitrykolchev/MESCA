@@ -8,6 +8,9 @@ using Xobex.Entities.Core;
 using Xobex.Entities.Metadata;
 using Xobex.Entities.Security;
 using Xobex.Infrastructure.EntityFramework;
+using Xobex.Infrastucture.Configuration.Core;
+using Xobex.Infrastucture.Configuration.Metadata;
+using Xobex.Infrastucture.Configuration.Security;
 using Xobex.Mes.Application;
 using Xobex.Mes.Entities.Accounting;
 using Xobex.Mes.Entities.Core;
@@ -18,9 +21,7 @@ using Xobex.Mes.Infrastucture.Configuration.Accounting;
 using Xobex.Mes.Infrastucture.Configuration.Core;
 using Xobex.Mes.Infrastucture.Configuration.Dictionaries;
 using Xobex.Mes.Infrastucture.Configuration.DocumentManagement;
-using Xobex.Mes.Infrastucture.Configuration.Metadata;
 using Xobex.Mes.Infrastucture.Configuration.Resources;
-using Xobex.Mes.Infrastucture.Configuration.Security;
 
 namespace Xobex.Mes.Infrastucture.Database;
 

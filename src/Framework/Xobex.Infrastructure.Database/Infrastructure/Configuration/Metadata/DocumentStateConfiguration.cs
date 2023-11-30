@@ -5,10 +5,10 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Xobex.Infrastructure.EntityFramework;
 using Xobex.Entities.Metadata;
+using Xobex.Infrastructure.EntityFramework;
 
-namespace Xobex.Mes.Infrastucture.Configuration.Metadata;
+namespace Xobex.Infrastucture.Configuration.Metadata;
 
 public class DocumentStateConfiguration : EntityConfiguration<DocumentState>
 {
@@ -22,7 +22,7 @@ public class DocumentStateConfiguration : EntityConfiguration<DocumentState>
         entity.Property(e => e.Code).HasMaxLength(64).IsUnicode(false);
         entity.Property(e => e.Name).HasMaxLength(1024).IsUnicode(true);
         entity.Property(e => e.Description).IsUnicode(true);
-        entity.Property(e => e.LaberColor).HasMaxLength(32).IsUnicode(false);
+        entity.Property(e => e.Color).HasMaxLength(32).IsUnicode(false);
         entity.Property(e => e.Comments).IsUnicode(true);
         entity.HasAuditProperties();
         entity.HasAlternateKey(e => new { e.DocumentTypeId, e.Value }).HasName("ak_document_state_value");

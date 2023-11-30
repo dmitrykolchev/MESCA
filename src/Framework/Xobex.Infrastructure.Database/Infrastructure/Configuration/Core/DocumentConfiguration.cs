@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Xobex.Entities.Core;
 using Xobex.Infrastructure.EntityFramework;
 
-namespace Xobex.Mes.Infrastucture.Configuration.Core;
+namespace Xobex.Infrastucture.Configuration.Core;
 
 public class DocumentConfiguration : EntityConfiguration<Document>
 {

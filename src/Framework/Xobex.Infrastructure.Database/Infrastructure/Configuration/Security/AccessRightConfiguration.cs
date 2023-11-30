@@ -5,10 +5,10 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Xobex.Infrastructure.EntityFramework;
 using Xobex.Entities.Security;
+using Xobex.Infrastructure.EntityFramework;
 
-namespace Xobex.Mes.Infrastucture.Configuration.Security;
+namespace Xobex.Infrastucture.Configuration.Security;
 
 public class AccessRightConfiguration : EntityConfiguration<AccessRight>
 {

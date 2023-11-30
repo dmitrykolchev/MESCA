@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Xobex.Entities.Metadata;
 using Xobex.Infrastructure.EntityFramework;
 
-namespace Xobex.Mes.Infrastucture.Configuration.Core;
+namespace Xobex.Infrastucture.Configuration.Metadata;
 
 public class PropertyConfiguration : EntityConfiguration<Property>
 {
