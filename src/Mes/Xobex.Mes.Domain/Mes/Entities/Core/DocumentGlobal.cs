@@ -4,6 +4,7 @@
 // </copyright>
 
 using Xobex.Domain.Common;
+using Xobex.Entities.Core;
 
 namespace Xobex.Mes.Entities.Core;
 

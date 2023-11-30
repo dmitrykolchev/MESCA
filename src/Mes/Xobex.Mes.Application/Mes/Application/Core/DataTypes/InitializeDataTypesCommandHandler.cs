@@ -6,7 +6,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Xobex.Mediator;
-using Xobex.Mes.Entities.Core;
+using Xobex.Entities.Metadata;
 
 namespace Xobex.Mes.Application.Core.DataTypes;
 

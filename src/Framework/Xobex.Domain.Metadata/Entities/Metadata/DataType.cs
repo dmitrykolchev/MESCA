@@ -4,9 +4,8 @@
 // </copyright>
 
 using Xobex.Domain.Common;
-using Xobex.Mes.Entities.Metadata;
 
-namespace Xobex.Mes.Entities.Core;
+namespace Xobex.Entities.Metadata;
 
 public enum DataTypeState : short
 {

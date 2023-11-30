@@ -9,7 +9,7 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
-using Xobex.Mes.Entities.Metadata;
+using Xobex.Entities.Metadata;
 
 namespace Xobex.Mes.Entities.Resources;
 

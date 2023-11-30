@@ -5,8 +5,8 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Xobex.Entities.Core;
 using Xobex.Infrastructure.EntityFramework;
-using Xobex.Mes.Entities.Core;
 
 namespace Xobex.Mes.Infrastucture.Configuration.Core;
 public class DocumentTransitionConfiguration : EntityConfiguration<DocumentTransition>

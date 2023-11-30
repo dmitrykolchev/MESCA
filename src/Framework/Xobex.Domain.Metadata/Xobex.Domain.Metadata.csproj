@@ -8,8 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\Xobex.Domain.Metadata\Xobex.Domain.Metadata.csproj" />
-    <ProjectReference Include="..\..\Framework\Xobext.Domain.Core\Xobex.Domain.Core.csproj" />
+    <ProjectReference Include="..\Xobext.Domain.Core\Xobex.Domain.Core.csproj" />
   </ItemGroup>
 
 </Project>

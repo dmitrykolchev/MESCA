@@ -5,8 +5,8 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Xobex.Entities.Metadata;
 using Xobex.Infrastructure.EntityFramework;
-using Xobex.Mes.Entities.Core;
 
 namespace Xobex.Mes.Infrastucture.Configuration.Core;
 public class PropertyMappingConfiguration : EntityConfiguration<PropertyMapping>
@@ -14,6 +14,7 @@ public class PropertyMappingConfiguration : EntityConfiguration<PropertyMapping>
     public PropertyMappingConfiguration() : base(true)
     {
     }
+
     protected override void OnConfigureEntity(EntityTypeBuilder<PropertyMapping> entity)
     {
         ToTableWithKey(entity, e => e.Id, e => e.Id);
@@ -27,12 +28,12 @@ public class PropertyMappingConfiguration : EntityConfiguration<PropertyMapping>
             .OnDelete(DeleteBehavior.NoAction)
             .HasConstraintName($"fk_{TableName}__document_type");
 
-        entity.HasOne(d => d.ResourceClass)
-            .WithMany(p => p.Properties)
-            .HasPrincipalKey(d => d.Id)
-            .HasForeignKey(p => p.ResourceClassId)
+        entity.HasOne(d => d.Document)
+            .WithMany()
+            .HasPrincipalKey(d => new { d.DocumentTypeId, d.DocumentId })
+            .HasForeignKey(p => new { p.DocumentTypeId, p.DocumentId })
             .OnDelete(DeleteBehavior.Cascade)
-            .HasConstraintName($"fk_{TableName}__resource_class");
+            .HasConstraintName($"fk_{TableName}__document");
 
         entity.HasOne(d => d.Property)
             .WithMany()

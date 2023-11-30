@@ -5,7 +5,7 @@
 
 using Xobex.Domain.Common;
 
-namespace Xobex.Mes.Entities.Core;
+namespace Xobex.Entities.Metadata;
 
 public enum PropertyState : short
 {

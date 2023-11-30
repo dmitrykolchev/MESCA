@@ -6,12 +6,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Xobex.Entities.Metadata;
 using Xobex.Mediator;
 using Xobex.Mes.Application;
 using Xobex.Mes.Application.Core.DataTypes;
 using Xobex.Mes.Application.Metadata.DocumentTypes;
-using Xobex.Mes.Entities.Core;
-using Xobex.Mes.Entities.Metadata;
 using Xobex.Mes.Infrastucture.Database;
 using Xobex.Sample1.Person;
 

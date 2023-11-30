@@ -1,25 +1,26 @@
-﻿// <copyright file="MesPostgresDbContext.cs" company="DykBits">
+﻿// <copyright file="MesSqlServerDbContext.cs" company="DykBits">
 // (c) 2022-23 Dmitry Kolchev. All rights reserved.
 // See LICENSE in the project root for license information
 // </copyright>
 
 using Microsoft.EntityFrameworkCore;
+using Xobex.Entities.Core;
+using Xobex.Entities.Metadata;
+using Xobex.Entities.Security;
 using Xobex.Infrastructure.EntityFramework;
 using Xobex.Mes.Application;
+using Xobex.Mes.Entities.Accounting;
 using Xobex.Mes.Entities.Core;
-using Xobex.Mes.Entities.Metadata;
+using Xobex.Mes.Entities.Dictionaries;
+using Xobex.Mes.Entities.DocumentManagement;
 using Xobex.Mes.Entities.Resources;
+using Xobex.Mes.Infrastucture.Configuration.Accounting;
 using Xobex.Mes.Infrastucture.Configuration.Core;
-using Xobex.Mes.Infrastucture.Configuration.Security;
+using Xobex.Mes.Infrastucture.Configuration.Dictionaries;
+using Xobex.Mes.Infrastucture.Configuration.DocumentManagement;
 using Xobex.Mes.Infrastucture.Configuration.Metadata;
 using Xobex.Mes.Infrastucture.Configuration.Resources;
-using Xobex.Mes.Entities.Security;
-using Xobex.Mes.Entities.DocumentManagement;
-using Xobex.Mes.Infrastucture.Configuration.DocumentManagement;
-using Xobex.Mes.Entities.Accounting;
-using Xobex.Mes.Infrastucture.Configuration.Accounting;
-using Xobex.Mes.Infrastucture.Configuration.Dictionaries;
-using Xobex.Mes.Entities.Dictionaries;
+using Xobex.Mes.Infrastucture.Configuration.Security;
 
 namespace Xobex.Mes.Infrastucture.Database;
 

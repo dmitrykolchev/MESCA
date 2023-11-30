@@ -4,8 +4,7 @@
 // </copyright>
 
 using Xobex.Domain.Common;
-using Xobex.Mes.Entities.Core;
-using Xobex.Mes.Entities.Metadata;
+using Xobex.Entities.Metadata;
 
 namespace Xobex.Mes.Entities.Resources;
 

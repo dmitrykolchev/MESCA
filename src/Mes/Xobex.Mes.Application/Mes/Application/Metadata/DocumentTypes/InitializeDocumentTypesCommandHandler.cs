@@ -5,8 +5,8 @@
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Xobex.Entities.Metadata;
 using Xobex.Mediator;
-using Xobex.Mes.Entities.Metadata;
 using Xobex.Mes.Entities.Resources;
 
 namespace Xobex.Mes.Application.Metadata.DocumentTypes;

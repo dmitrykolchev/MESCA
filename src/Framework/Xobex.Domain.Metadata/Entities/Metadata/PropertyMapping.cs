@@ -4,10 +4,9 @@
 // </copyright>
 
 using Xobex.Domain.Common;
-using Xobex.Mes.Entities.Metadata;
-using Xobex.Mes.Entities.Resources;
+using Xobex.Entities.Core;
 
-namespace Xobex.Mes.Entities.Core;
+namespace Xobex.Entities.Metadata;
 
 public enum PropertyMappingState : short
 {
@@ -30,7 +29,7 @@ public class PropertyMapping : IAuditable
     public required string Code { get; set; }
     public required string Name { get; set; }
     public int DocumentTypeId { get; set; }
-    public int? ResourceClassId { get; set; }
+    public int? DocumentId { get; set; }
 
     public int PropertyId { get; set; }
     public int Ordinal { get; set; }
@@ -42,6 +41,6 @@ public class PropertyMapping : IAuditable
     public int ModifiedBy { get; set; }
 
     public virtual DocumentType? DocumentType { get; set; }
-    public virtual ResourceClass? ResourceClass { get; set; }
+    public virtual Document? Document { get; set; }
     public virtual Property? Property { get; set; }
 }

@@ -4,7 +4,7 @@
 // </copyright>
 
 using Xobex.Domain.Common;
-using Xobex.Mes.Entities.Core;
+using Xobex.Entities.Core;
 
 namespace Xobex.Mes.Entities.Accounting;
 
