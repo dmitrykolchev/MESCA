@@ -3,7 +3,6 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
-using System.Xml.Serialization;
 using Xobex.Domain.Common;
 
 namespace Xobex.Entities.Metadata;

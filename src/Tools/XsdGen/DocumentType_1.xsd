@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://microsoft.com/wsdl/types/" />
+  <xs:element name="DocumentType" nillable="true" type="DocumentType" />
+  <xs:complexType name="DocumentType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="State" type="DocumentTypeState" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Flags" type="DocumentTypeFlags" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Image" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Comments" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Languages" type="DocumentTypeGlobal" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="States" type="DocumentState" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TransitionTemplates" type="TransitionTemplate" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Properties" type="PropertyMapping" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="DocumentTypeState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotExists" />
+      <xs:enumeration value="Active" />
+      <xs:enumeration value="Inactive" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DocumentTypeFlags">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="DocumentTypeGlobal">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Language" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Image" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocumentState">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="State" type="DocumentStateState" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Flags" type="DocumentStateFlags" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Value" type="xs:short" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Color" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Comments" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Languages" type="DocumentStateGlobal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="DocumentStateState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotExists" />
+      <xs:enumeration value="Active" />
+      <xs:enumeration value="Inactive" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DocumentStateFlags">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="DocumentStateGlobal">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Language" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TransitionTemplate">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="State" type="TransitionTemplateState" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Flags" type="TransitionTemplateFlags" />
+      <xs:element minOccurs="1" maxOccurs="1" name="FromStateValue" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ToStateValue" type="xs:short" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AccessRightId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="TransitionTemplateState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotExists" />
+      <xs:enumeration value="Active" />
+      <xs:enumeration value="Inactive" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TransitionTemplateFlags">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="PropertyMapping">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="State" type="PropertyMappingState" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Flags" type="PropertyMappingFlags" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DocumentTypeId" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DocumentId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PropertyId" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Ordinal" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Comments" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CreatedOn" xmlns:q13="http://microsoft.com/wsdl/types/" type="q13:dateTimeOffset" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CreatedBy" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ModifiedOn" xmlns:q14="http://microsoft.com/wsdl/types/" type="q14:dateTimeOffset" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ModifiedBy" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DocumentType" type="DocumentType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Document" type="Document" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Property" type="Property" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="PropertyMappingState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotExists" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PropertyMappingFlags">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Required" />
+          <xs:enumeration value="AllowMultiple" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="Property">
+    <xs:complexContent mixed="false">
+      <xs:extension base="DocumentBaseOfInt32PropertyState">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Flags" type="PropertyFlags" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Kind" type="DataKind" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DataTypeId" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Parent" type="Property" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DataType" type="DataType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="PropertyState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotExists" />
+      <xs:enumeration value="Active" />
+      <xs:enumeration value="Inactive" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PropertyFlags">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:simpleType name="DataKind">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="Int" />
+      <xs:enumeration value="Boolean" />
+      <xs:enumeration value="DateTime" />
+      <xs:enumeration value="String" />
+      <xs:enumeration value="Decimal" />
+      <xs:enumeration value="Double" />
+      <xs:enumeration value="Binary" />
+      <xs:enumeration value="DocumentReference" />
+      <xs:enumeration value="Complex" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="DataType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="State" type="DataTypeState" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Kind" type="DataKind" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DocumentTypeId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CreatedOn" xmlns:q19="http://microsoft.com/wsdl/types/" type="q19:dateTimeOffset" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CreatedBy" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ModifiedOn" xmlns:q20="http://microsoft.com/wsdl/types/" type="q20:dateTimeOffset" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ModifiedBy" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DocumentType" type="DocumentType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="DataTypeState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotExists" />
+      <xs:enumeration value="Active" />
+      <xs:enumeration value="Inactive" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
