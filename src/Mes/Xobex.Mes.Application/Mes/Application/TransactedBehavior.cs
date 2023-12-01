@@ -4,7 +4,7 @@
 // </copyright>
 
 using Microsoft.Extensions.Logging;
-using Xobex.Infrastructure.EntityFramework;
+using Xobex.Data.EntityFramework;
 using Xobex.Mediator;
 
 namespace Xobex.Mes.Application;

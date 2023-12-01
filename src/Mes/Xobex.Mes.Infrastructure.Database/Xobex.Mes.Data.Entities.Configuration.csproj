@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Xobex</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Framework\EFCore.NamingConventions\Xobex.Data.EntityFramework.NamingConventions.csproj" />
+    <ProjectReference Include="..\..\Framework\Xobex.Infrastructure.Database\Xobex.Data.Entities.Metadata.Configuration.csproj" />
+    <ProjectReference Include="..\..\Framework\Xobex.Infrastructure.EntityFramework\Xobex.Data.EntityFramework.csproj" />
+    <ProjectReference Include="..\Xobex.Mes.Application\Xobex.Mes.Application.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -22,25 +22,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{AB4D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Sample1", "src\Samples\Xobex.Sample1\Xobex.Sample1.csproj", "{CDD3FECE-9C45-4663-AEB4-C0819691BBF0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mes.Infrastructure.Database", "src\Mes\Xobex.Mes.Infrastructure.Database\Xobex.Mes.Infrastructure.Database.csproj", "{BFFC6A6C-78FA-4BE8-9B16-3D89B8ED87AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mes.Data.Entities.Configuration", "src\Mes\Xobex.Mes.Infrastructure.Database\Xobex.Mes.Data.Entities.Configuration.csproj", "{BFFC6A6C-78FA-4BE8-9B16-3D89B8ED87AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mes.Domain", "src\Mes\Xobex.Mes.Domain\Xobex.Mes.Domain.csproj", "{CD6E4104-2E4D-4E00-9DFB-DA42EB46FFF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mes.Data.Entities", "src\Mes\Xobex.Mes.Domain\Xobex.Mes.Data.Entities.csproj", "{CD6E4104-2E4D-4E00-9DFB-DA42EB46FFF0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{AA9227AF-0DFA-495D-933A-2518FFF84B04}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore.NamingConventions", "src\Framework\EFCore.NamingConventions\EFCore.NamingConventions.csproj", "{D0341409-96D0-465D-B3EC-B34A5C595F89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Data.EntityFramework.NamingConventions", "src\Framework\EFCore.NamingConventions\Xobex.Data.EntityFramework.NamingConventions.csproj", "{D0341409-96D0-465D-B3EC-B34A5C595F89}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Core", "src\Framework\Xobex.Core\Xobex.Core.csproj", "{11D8C1D7-3B04-45CF-8ED2-4E86C7D4775F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Infrastructure.EntityFramework", "src\Framework\Xobex.Infrastructure.EntityFramework\Xobex.Infrastructure.EntityFramework.csproj", "{38E805E3-BEAF-47ED-BDD1-1FC945954F08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Data.EntityFramework", "src\Framework\Xobex.Infrastructure.EntityFramework\Xobex.Data.EntityFramework.csproj", "{38E805E3-BEAF-47ED-BDD1-1FC945954F08}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mediator", "src\Framework\Xobex.Mediator\Xobex.Mediator.csproj", "{3E48BDB8-51CD-45EF-A63C-1C659AC2A1F8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Domain.Core", "src\Framework\Xobext.Domain.Core\Xobex.Domain.Core.csproj", "{2764E7AA-C2F1-4089-97D3-6121DAF4D649}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Data.Core", "src\Framework\Xobext.Domain.Core\Xobex.Data.Core.csproj", "{2764E7AA-C2F1-4089-97D3-6121DAF4D649}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Domain.Metadata", "src\Framework\Xobex.Domain.Metadata\Xobex.Domain.Metadata.csproj", "{85E65A83-876C-4C34-BFCC-659EB96763BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Data.Entities.Metadata", "src\Framework\Xobex.Domain.Metadata\Xobex.Data.Entities.Metadata.csproj", "{85E65A83-876C-4C34-BFCC-659EB96763BC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Infrastructure.Database", "src\Framework\Xobex.Infrastructure.Database\Xobex.Infrastructure.Database.csproj", "{6A00B930-8315-47B4-A0C5-101E2A4F4F87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Data.Entities.Metadata.Configuration", "src\Framework\Xobex.Infrastructure.Database\Xobex.Data.Entities.Metadata.Configuration.csproj", "{6A00B930-8315-47B4-A0C5-101E2A4F4F87}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{78DA48B8-9B8A-4F9B-A631-C61CA4C7BE92}"
 EndProject

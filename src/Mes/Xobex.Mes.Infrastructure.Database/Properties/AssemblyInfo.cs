@@ -16,9 +16,9 @@ using System.Runtime.InteropServices;
 
 [assembly: Guid("a2f10c0c-542c-449c-b96c-1f2f201d9370")]
 
-[assembly: Xobex.Infrastructure.EntityFramework.NamespaceMapping("DocumentManagement", "doc")]
-[assembly: Xobex.Infrastructure.EntityFramework.NamespaceMapping("Security", "sec")]
-[assembly: Xobex.Infrastructure.EntityFramework.NamespaceMapping("Resources", "mes")]
-[assembly: Xobex.Infrastructure.EntityFramework.NamespaceMapping("Metadata", "meta")]
-[assembly: Xobex.Infrastructure.EntityFramework.NamespaceMapping("Accounting", "acc")]
-[assembly: Xobex.Infrastructure.EntityFramework.NamespaceMapping("Dictionaries", "dic")]
+[assembly: Xobex.Data.EntityFramework.NamespaceMapping("DocumentManagement", "doc")]
+[assembly: Xobex.Data.EntityFramework.NamespaceMapping("Security", "sec")]
+[assembly: Xobex.Data.EntityFramework.NamespaceMapping("Resources", "mes")]
+[assembly: Xobex.Data.EntityFramework.NamespaceMapping("Metadata", "meta")]
+[assembly: Xobex.Data.EntityFramework.NamespaceMapping("Accounting", "acc")]
+[assembly: Xobex.Data.EntityFramework.NamespaceMapping("Dictionaries", "dic")]

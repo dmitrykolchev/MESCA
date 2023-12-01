@@ -3,7 +3,7 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
-using Xobex.Domain.Common;
+using Xobex.Data.Common;
 using Xobex.Entities.Core;
 
 namespace Xobex.Entities.Metadata;

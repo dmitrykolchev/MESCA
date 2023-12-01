@@ -5,7 +5,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Xobex.Infrastructure.EntityFramework;
+using Xobex.Data.EntityFramework;
 using Xobex.Mes.Entities.Accounting;
 
 namespace Xobex.Mes.Infrastucture.Configuration.Accounting;

@@ -12,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
-using Xobex.Domain.Common;
+using Xobex.Data.Common;
 using Xobex.Mediator;
 using Xobex.Mediator.Implementation;
 using Xobex.Mes.Application.Core.DataTypes;

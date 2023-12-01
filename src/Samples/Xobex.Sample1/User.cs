@@ -5,7 +5,7 @@
 
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using Xobex.Domain.Common;
+using Xobex.Data.Common;
 
 namespace Xobex.Sample1;
 

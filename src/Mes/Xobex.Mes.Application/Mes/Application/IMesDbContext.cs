@@ -6,7 +6,7 @@
 using Microsoft.EntityFrameworkCore;
 using Xobex.Entities.Core;
 using Xobex.Entities.Metadata;
-using Xobex.Infrastructure.EntityFramework;
+using Xobex.Data.EntityFramework;
 using Xobex.Mes.Entities.Core;
 using Xobex.Mes.Entities.Resources;
 

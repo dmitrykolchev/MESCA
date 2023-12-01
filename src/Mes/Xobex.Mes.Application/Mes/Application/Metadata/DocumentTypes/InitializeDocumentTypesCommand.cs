@@ -3,7 +3,7 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
-using Xobex.Domain.Enums;
+using Xobex.Data.Enums;
 using Xobex.Mediator;
 
 namespace Xobex.Mes.Application.Metadata.DocumentTypes;

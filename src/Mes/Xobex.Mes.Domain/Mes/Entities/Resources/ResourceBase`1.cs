@@ -4,7 +4,7 @@
 // </copyright>
 
 using System.ComponentModel.DataAnnotations.Schema;
-using Xobex.Domain.Common;
+using Xobex.Data.Common;
 
 namespace Xobex.Mes.Entities.Resources;
 
