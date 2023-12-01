@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Xobex.Mediator;
 
-namespace Xobex.Mes.Application.Core.DataTypes;
+namespace Xobex.Data.Mes.Application.Core.DataTypes;
 
 [MediatorLifetime(ServiceLifetime.Scoped)]
 public class InitializedDataTypesCommandValidator : Validator<InitializeDataTypesCommand>

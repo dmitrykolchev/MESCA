@@ -4,9 +4,9 @@
 // </copyright>
 
 using Xobex.Data.Common;
-using Xobex.Entities.Metadata;
+using Xobex.Data.Entities.Metadata;
 
-namespace Xobex.Entities.Core;
+namespace Xobex.Data.Entities.Core;
 
 public class DocumentTransition : ISimpleAuditable
 {

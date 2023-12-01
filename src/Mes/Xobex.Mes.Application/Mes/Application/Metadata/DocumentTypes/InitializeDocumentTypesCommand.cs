@@ -6,7 +6,7 @@
 using Xobex.Data.Enums;
 using Xobex.Mediator;
 
-namespace Xobex.Mes.Application.Metadata.DocumentTypes;
+namespace Xobex.Data.Mes.Application.Metadata.DocumentTypes;
 
 public class InitializeDocumentTypesCommand : MesRequest<Empty>
 {

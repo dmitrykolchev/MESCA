@@ -4,14 +4,14 @@
 // </copyright>
 
 using Microsoft.EntityFrameworkCore;
-using Xobex.Entities.Core;
-using Xobex.Entities.Metadata;
+using Xobex.Data.Entities.Core;
+using Xobex.Data.Entities.Metadata;
 using Xobex.Data.EntityFramework;
-using Xobex.Mes.Entities.Core;
-using Xobex.Mes.Entities.Resources;
+using Xobex.Data.Mes.Entities.Core;
+using Xobex.Data.Mes.Entities.Resources;
 
 
-namespace Xobex.Mes.Application;
+namespace Xobex.Data.Mes.Application;
 
 public interface IMesDbContext : ITransactionProvider
 {

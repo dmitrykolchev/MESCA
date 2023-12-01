@@ -5,7 +5,7 @@
 
 using Xobex.Data.Common;
 
-namespace Xobex.Mes.Entities.DocumentManagement;
+namespace Xobex.Data.Mes.Entities.DocumentManagement;
 
 public enum FileAttachmentState : short
 {

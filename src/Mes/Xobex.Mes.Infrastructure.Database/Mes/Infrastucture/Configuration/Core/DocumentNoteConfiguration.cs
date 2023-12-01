@@ -6,9 +6,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Xobex.Data.EntityFramework;
-using Xobex.Mes.Entities.Core;
+using Xobex.Data.Mes.Entities.Core;
 
-namespace Xobex.Mes.Infrastucture.Configuration.Core;
+namespace Xobex.Data.Mes.Infrastucture.Configuration.Core;
 
 public class DocumentNoteConfiguration : EntityConfiguration<DocumentNote>
 {

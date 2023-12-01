@@ -15,10 +15,10 @@ using Serilog;
 using Xobex.Data.Common;
 using Xobex.Mediator;
 using Xobex.Mediator.Implementation;
-using Xobex.Mes.Application.Core.DataTypes;
-using Xobex.Mes.Infrastucture.Database;
+using Xobex.Data.Mes.Application.Core.DataTypes;
+using Xobex.Data.Mes.Infrastucture.Database;
 
-namespace Xobex.Sample1;
+namespace Xobex.Data.Sample1;
 
 internal class Program
 {

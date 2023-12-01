@@ -6,7 +6,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Xobex.Data.Common;
 
-namespace Xobex.Mes.Entities.Resources;
+namespace Xobex.Data.Mes.Entities.Resources;
 
 public abstract class ResourceBase<TState> : DocumentBase<int, TState>
     where TState : notnull

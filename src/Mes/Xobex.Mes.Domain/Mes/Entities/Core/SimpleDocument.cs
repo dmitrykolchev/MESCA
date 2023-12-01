@@ -4,9 +4,9 @@
 // </copyright>
 
 using Xobex.Data.Common;
-using Xobex.Entities.Metadata;
+using Xobex.Data.Entities.Metadata;
 
-namespace Xobex.Mes.Entities.Core;
+namespace Xobex.Data.Mes.Entities.Core;
 
 public class SimpleDocument : DocumentBase<int, short>
 {

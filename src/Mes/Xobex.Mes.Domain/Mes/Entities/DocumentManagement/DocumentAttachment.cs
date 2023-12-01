@@ -4,9 +4,9 @@
 // </copyright>
 
 using Xobex.Data.Common;
-using Xobex.Entities.Core;
+using Xobex.Data.Entities.Core;
 
-namespace Xobex.Mes.Entities.DocumentManagement;
+namespace Xobex.Data.Mes.Entities.DocumentManagement;
 
 public enum AttachmentType: short
 {

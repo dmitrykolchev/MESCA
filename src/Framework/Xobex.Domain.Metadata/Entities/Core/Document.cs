@@ -3,7 +3,7 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
-namespace Xobex.Entities.Core;
+namespace Xobex.Data.Entities.Core;
 
 public class Document
 {

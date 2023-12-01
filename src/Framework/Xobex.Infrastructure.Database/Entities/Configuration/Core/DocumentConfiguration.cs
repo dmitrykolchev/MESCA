@@ -5,10 +5,10 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Xobex.Entities.Core;
 using Xobex.Data.EntityFramework;
+using Xobex.Data.Entities.Core;
 
-namespace Xobex.Infrastucture.Configuration.Core;
+namespace Xobex.Data.Entities.Configuration.Core;
 
 public class DocumentConfiguration : EntityConfiguration<Document>
 {

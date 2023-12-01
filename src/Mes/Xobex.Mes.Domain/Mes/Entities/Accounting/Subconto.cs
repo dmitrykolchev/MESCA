@@ -4,9 +4,9 @@
 // </copyright>
 
 using Xobex.Data.Common;
-using Xobex.Entities.Metadata;
+using Xobex.Data.Entities.Metadata;
 
-namespace Xobex.Mes.Entities.Accounting;
+namespace Xobex.Data.Mes.Entities.Accounting;
 
 public enum SubcontoState : byte
 {

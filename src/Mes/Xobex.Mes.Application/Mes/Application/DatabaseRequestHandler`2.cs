@@ -6,7 +6,7 @@
 using Microsoft.Extensions.Logging;
 using Xobex.Mediator;
 
-namespace Xobex.Mes.Application;
+namespace Xobex.Data.Mes.Application;
 
 public abstract class DatabaseRequestHandler<TRequest, TResult> : RequestHandler<TRequest, TResult>
     where TRequest : IRequest<TResult>

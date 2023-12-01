@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Xobex.Mediator;
 
-namespace Xobex.Mes.Application.Core.DataTypes;
+namespace Xobex.Data.Mes.Application.Core.DataTypes;
 
 [MediatorLifetime(ServiceLifetime.Scoped)]
 public class InitializeDataTypesPostProcessor : RequestPostProcessor<InitializeDataTypesCommand, Empty>

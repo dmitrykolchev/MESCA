@@ -5,7 +5,7 @@
 
 using Xobex.Data.Common;
 
-namespace Xobex.Mes.Entities.Dictionaries;
+namespace Xobex.Data.Mes.Entities.Dictionaries;
 
 public enum CountryState
 {

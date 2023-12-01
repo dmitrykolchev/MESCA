@@ -3,7 +3,7 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
-namespace Xobex.Sample1.Person;
+namespace Xobex.Data.Sample1.Person;
 
 public class PersonCreatedEventHandler : Mediator.EventHandler<PersonCreatedEvent>
 {

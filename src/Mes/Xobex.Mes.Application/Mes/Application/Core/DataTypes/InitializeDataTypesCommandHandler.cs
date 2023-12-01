@@ -6,9 +6,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Xobex.Mediator;
-using Xobex.Entities.Metadata;
+using Xobex.Data.Entities.Metadata;
 
-namespace Xobex.Mes.Application.Core.DataTypes;
+namespace Xobex.Data.Mes.Application.Core.DataTypes;
 
 [MediatorLifetime(ServiceLifetime.Scoped)]
 public class InitializeDataTypesCommandHandler : DatabaseRequestHandler<InitializeDataTypesCommand, Empty>

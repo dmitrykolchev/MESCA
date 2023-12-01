@@ -4,9 +4,9 @@
 // </copyright>
 
 using Xobex.Data.Common;
-using Xobex.Entities.Metadata;
+using Xobex.Data.Entities.Metadata;
 
-namespace Xobex.Mes.Entities.Resources;
+namespace Xobex.Data.Mes.Entities.Resources;
 
 public enum ResourceClassState
 {

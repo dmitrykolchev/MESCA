@@ -3,9 +3,9 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
-using Xobex.Mes.Entities.Dictionaries;
+using Xobex.Data.Mes.Entities.Dictionaries;
 
-namespace Xobex.Mes.Entities.Accounting;
+namespace Xobex.Data.Mes.Entities.Accounting;
 
 public enum OperationSide: short
 {

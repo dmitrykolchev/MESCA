@@ -5,7 +5,7 @@
 
 using Xobex.Mediator;
 
-namespace Xobex.Sample1.Person;
+namespace Xobex.Data.Sample1.Person;
 public class AddPersonHandler : RequestHandler<AddPersonCommand, int>
 {
     private readonly IMediatorService _mediator;

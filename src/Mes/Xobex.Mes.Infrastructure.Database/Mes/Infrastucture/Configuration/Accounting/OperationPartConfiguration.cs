@@ -6,9 +6,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Xobex.Data.EntityFramework;
-using Xobex.Mes.Entities.Accounting;
+using Xobex.Data.Mes.Entities.Accounting;
 
-namespace Xobex.Mes.Infrastucture.Configuration.Accounting;
+namespace Xobex.Data.Mes.Infrastucture.Configuration.Accounting;
 
 public class OperationPartConfiguration : EntityConfiguration<OperationPart>
 {

@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Xobex.Data.EntityFramework.Interceptors;
-using Xobex.Mes.Application;
+using Xobex.Data.Mes.Application;
 
-namespace Xobex.Mes.Infrastucture.Database;
+namespace Xobex.Data.Mes.Infrastucture.Database;
 public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddMesSqlServerDatabase(this IServiceCollection services, string connectionString)

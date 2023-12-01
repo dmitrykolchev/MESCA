@@ -4,27 +4,27 @@
 // </copyright>
 
 using Microsoft.EntityFrameworkCore;
-using Xobex.Entities.Core;
-using Xobex.Entities.Metadata;
-using Xobex.Entities.Security;
+using Xobex.Data.Entities.Core;
+using Xobex.Data.Entities.Metadata;
+using Xobex.Data.Entities.Security;
 using Xobex.Data.Configuration.Metadata;
 using Xobex.Data.EntityFramework;
-using Xobex.Infrastucture.Configuration.Core;
-using Xobex.Infrastucture.Configuration.Metadata;
-using Xobex.Infrastucture.Configuration.Security;
-using Xobex.Mes.Application;
-using Xobex.Mes.Entities.Accounting;
-using Xobex.Mes.Entities.Core;
-using Xobex.Mes.Entities.Dictionaries;
-using Xobex.Mes.Entities.DocumentManagement;
-using Xobex.Mes.Entities.Resources;
-using Xobex.Mes.Infrastucture.Configuration.Accounting;
-using Xobex.Mes.Infrastucture.Configuration.Core;
-using Xobex.Mes.Infrastucture.Configuration.Dictionaries;
-using Xobex.Mes.Infrastucture.Configuration.DocumentManagement;
-using Xobex.Mes.Infrastucture.Configuration.Resources;
+using Xobex.Data.Entities.Configuration.Core;
+using Xobex.Data.Entities.Configuration.Metadata;
+using Xobex.Data.Entities.Configuration.Security;
+using Xobex.Data.Mes.Application;
+using Xobex.Data.Mes.Entities.Accounting;
+using Xobex.Data.Mes.Entities.Core;
+using Xobex.Data.Mes.Entities.Dictionaries;
+using Xobex.Data.Mes.Entities.DocumentManagement;
+using Xobex.Data.Mes.Entities.Resources;
+using Xobex.Data.Mes.Infrastucture.Configuration.Accounting;
+using Xobex.Data.Mes.Infrastucture.Configuration.Core;
+using Xobex.Data.Mes.Infrastucture.Configuration.Dictionaries;
+using Xobex.Data.Mes.Infrastucture.Configuration.DocumentManagement;
+using Xobex.Data.Mes.Infrastucture.Configuration.Resources;
 
-namespace Xobex.Mes.Infrastucture.Database;
+namespace Xobex.Data.Mes.Infrastucture.Database;
 
 public class MesSqlServerDbContext : DbContextBase, IMesDbContext, ISqlServer
 {

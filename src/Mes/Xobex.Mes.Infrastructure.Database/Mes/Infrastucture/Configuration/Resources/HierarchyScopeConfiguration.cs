@@ -6,9 +6,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Xobex.Data.EntityFramework;
-using Xobex.Mes.Entities.Resources;
+using Xobex.Data.Mes.Entities.Resources;
 
-namespace Xobex.Mes.Infrastucture.Configuration.Resources;
+namespace Xobex.Data.Mes.Infrastucture.Configuration.Resources;
 
 public class HierarchyScopeConfiguration : EntityConfiguration<HierarchyScope>
 {

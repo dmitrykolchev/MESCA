@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Xobex.Mediator;
 
-namespace Xobex.Mes.Application;
+namespace Xobex.Data.Mes.Application;
 
 public class VerifyInitializedBehavior<TEntity> : Behavior
     where TEntity : class

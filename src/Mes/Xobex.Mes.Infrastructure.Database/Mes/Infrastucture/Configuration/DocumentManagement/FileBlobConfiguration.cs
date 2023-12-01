@@ -5,9 +5,9 @@
 
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Xobex.Data.EntityFramework;
-using Xobex.Mes.Entities.DocumentManagement;
+using Xobex.Data.Mes.Entities.DocumentManagement;
 
-namespace Xobex.Mes.Infrastucture.Configuration.DocumentManagement;
+namespace Xobex.Data.Mes.Infrastucture.Configuration.DocumentManagement;
 
 public class FileBlobConfiguration : EntityConfiguration<FileBlob>
 {

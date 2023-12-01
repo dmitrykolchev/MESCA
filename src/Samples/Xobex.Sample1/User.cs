@@ -7,7 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Xobex.Data.Common;
 
-namespace Xobex.Sample1;
+namespace Xobex.Data.Sample1;
 
 public class User(IEnumerable<Claim> claims) : ClaimsIdentity(claims), IUser
 {

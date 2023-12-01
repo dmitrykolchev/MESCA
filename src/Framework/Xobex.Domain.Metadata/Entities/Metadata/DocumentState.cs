@@ -5,7 +5,7 @@
 
 using Xobex.Data.Common;
 
-namespace Xobex.Entities.Metadata;
+namespace Xobex.Data.Entities.Metadata;
 
 public enum DocumentStateState : short
 {

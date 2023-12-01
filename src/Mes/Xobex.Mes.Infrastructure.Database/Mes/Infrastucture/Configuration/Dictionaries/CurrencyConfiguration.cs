@@ -6,9 +6,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Xobex.Data.EntityFramework;
-using Xobex.Mes.Entities.Dictionaries;
+using Xobex.Data.Mes.Entities.Dictionaries;
 
-namespace Xobex.Mes.Infrastucture.Configuration.Dictionaries;
+namespace Xobex.Data.Mes.Infrastucture.Configuration.Dictionaries;
 
 public class CurrencyConfiguration : EntityConfiguration<Currency>
 {

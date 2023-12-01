@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using Xobex.Data.EntityFramework;
 using Xobex.Mediator;
 
-namespace Xobex.Mes.Application;
+namespace Xobex.Data.Mes.Application;
 
 public class TransactedBehavior : Behavior
 {

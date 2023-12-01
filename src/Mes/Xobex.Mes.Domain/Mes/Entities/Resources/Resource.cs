@@ -9,9 +9,9 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
-using Xobex.Entities.Metadata;
+using Xobex.Data.Entities.Metadata;
 
-namespace Xobex.Mes.Entities.Resources;
+namespace Xobex.Data.Mes.Entities.Resources;
 
 public class Resource : ResourceBase<short>
 {

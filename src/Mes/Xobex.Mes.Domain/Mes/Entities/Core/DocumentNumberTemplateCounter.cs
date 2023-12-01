@@ -3,7 +3,7 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
-namespace Xobex.Mes.Entities.Core;
+namespace Xobex.Data.Mes.Entities.Core;
 
 public class DocumentNumberTemplateCounter
 {

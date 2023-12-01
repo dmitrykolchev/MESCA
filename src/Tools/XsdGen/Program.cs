@@ -5,7 +5,7 @@
 
 using System.Xml.Schema;
 using System.Xml.Serialization;
-using Xobex.Entities.Metadata;
+using Xobex.Data.Entities.Metadata;
 
 namespace XsdGen;
 

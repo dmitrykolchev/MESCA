@@ -5,10 +5,10 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Xobex.Entities.Core;
+using Xobex.Data.Entities.Core;
 using Xobex.Data.EntityFramework;
 
-namespace Xobex.Infrastucture.Configuration.Core;
+namespace Xobex.Data.Entities.Configuration.Core;
 public class DocumentTransitionConfiguration : EntityConfiguration<DocumentTransition>
 {
     public DocumentTransitionConfiguration() : base(true)
