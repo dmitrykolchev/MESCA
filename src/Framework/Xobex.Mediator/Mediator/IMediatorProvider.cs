@@ -7,23 +7,23 @@ namespace Xobex.Mediator;
 
 public interface IMediatorProvider
 {
-    public IRequestHandler<TRequest, TResult> GetRequestHandler<TRequest, TResult>(IServiceProvider serviceProvider)
+    IRequestHandler<TRequest, TResult> GetRequestHandler<TRequest, TResult>(IServiceProvider serviceProvider)
         where TRequest : IRequest<TResult>
         where TResult : notnull;
 
-    public IRequestHandler GetRequestHandler(IServiceProvider serviceProvider, Type requestType);
+    IRequestHandler GetRequestHandler(IServiceProvider serviceProvider, Type requestType);
 
-    public IReadOnlyList<IRequestPostProcesor> GetRequestPostProcessors(IServiceProvider services, Type requestType);
+    IReadOnlyList<IRequestPostProcesor> GetRequestPostProcessors(IServiceProvider services, Type requestType);
 
-    public IReadOnlyList<IEventHandler<TNotification>> GetEventHandlers<TNotification>(IServiceProvider serviceProvider)
+    IReadOnlyList<IEventHandler<TNotification>> GetEventHandlers<TNotification>(IServiceProvider serviceProvider)
         where TNotification : IEvent;
 
-    public IReadOnlyList<IEventHandler> GetEventHandlers(IServiceProvider serviceProvider, Type notificationType);
+    IReadOnlyList<IEventHandler> GetEventHandlers(IServiceProvider serviceProvider, Type notificationType);
 
-    public IReadOnlyList<IValidator<TRequest>> GetValidators<TRequest>(IServiceProvider serviceProvider)
+    IReadOnlyList<IValidator<TRequest>> GetValidators<TRequest>(IServiceProvider serviceProvider)
         where TRequest : IRequest;
 
-    public IReadOnlyList<IValidator> GetValidators(IServiceProvider serviceProvider, Type requestType);
+    IReadOnlyList<IValidator> GetValidators(IServiceProvider serviceProvider, Type requestType);
 
-    public void Add(HandlerDesriptor desriptor);
+    void Add(HandlerDesriptor desriptor);
 }

@@ -3,11 +3,12 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
+using Xobex.Domain.Enums;
 using Xobex.Mediator;
 
 namespace Xobex.Mes.Application.Metadata.DocumentTypes;
 
-public class InitializeDocumentTypesCommand : Request<Empty>
+public class InitializeDocumentTypesCommand : MesRequest<Empty>
 {
     public static readonly InitializeDocumentTypesCommand Instance = new();
 

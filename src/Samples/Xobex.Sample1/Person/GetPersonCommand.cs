@@ -9,7 +9,5 @@ namespace Xobex.Sample1.Person;
 
 public class GetPersonCommand(int personId) : Request<PersonModel>
 {
-    public override RequestVerbs Verb => RequestVerbs.Get;
-
     public int PersonId { get; set; } = personId;
 }

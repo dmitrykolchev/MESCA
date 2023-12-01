@@ -9,8 +9,6 @@ namespace Xobex.Sample1.Person;
 
 public class AddPersonCommand : Request<int>
 {
-    public override RequestVerbs Verb => RequestVerbs.Add;
-
     public required string FirstName { get; set; }
     public required string LastName { get; set; }
 }

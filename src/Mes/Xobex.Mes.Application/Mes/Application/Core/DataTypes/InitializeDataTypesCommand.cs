@@ -3,11 +3,12 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
+using Xobex.Domain.Enums;
 using Xobex.Mediator;
 
 namespace Xobex.Mes.Application.Core.DataTypes;
 
-public class InitializeDataTypesCommand : Request<Empty>
+public class InitializeDataTypesCommand : MesRequest<Empty>
 {
     public static readonly InitializeDataTypesCommand Instance = new ();
 

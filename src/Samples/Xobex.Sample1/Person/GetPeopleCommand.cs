@@ -1,4 +1,4 @@
-﻿// <copyright file="GetPeopleCommandcs.cs" company="DykBits">
+﻿// <copyright file="GetPeopleCommand.cs" company="DykBits">
 // (c) 2022-23 Dmitry Kolchev. All rights reserved.
 // See LICENSE in the project root for license information
 // </copyright>
@@ -15,6 +15,5 @@ public class GetPeopleCommand : Request<IEnumerable<PersonModel>>
     {
     }
 
-    public override RequestVerbs Verb => RequestVerbs.Get;
     public int Id { get; set; }
 }

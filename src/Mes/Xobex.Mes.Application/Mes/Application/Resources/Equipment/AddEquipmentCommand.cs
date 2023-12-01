@@ -3,11 +3,12 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
+using Xobex.Domain.Enums;
 using Xobex.Mediator;
 
 namespace Xobex.Mes.Application.Resources.Equipment;
 
-public class AddEquipmentCommand : Request<int>
+public class AddEquipmentCommand : MesRequest<int>
 {
     public override RequestVerbs Verb => RequestVerbs.Add;
     public required string Code { get; set; }

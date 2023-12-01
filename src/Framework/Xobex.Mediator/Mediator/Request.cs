@@ -8,7 +8,5 @@ namespace Xobex.Mediator;
 public abstract class Request<TResult> : IRequest<TResult>
 {
     protected Request() { }
-
-    public abstract RequestVerbs Verb { get; }
 }
 

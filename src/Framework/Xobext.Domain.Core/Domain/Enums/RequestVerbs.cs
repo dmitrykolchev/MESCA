@@ -3,7 +3,7 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
-namespace Xobex.Mediator;
+namespace Xobex.Domain.Enums;
 
 public enum RequestVerbs : short
 {
