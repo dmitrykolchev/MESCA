@@ -3,12 +3,20 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
-using Xobex.Mediator;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Xobex.Data.Sample1.Person;
+namespace Xobex.Mediator.Benchmark.Person;
 
+[MediatorLifetime(ServiceLifetime.Scoped)]
 public class GetPeopleHandler : RequestHandler<GetPeopleCommand, IEnumerable<PersonModel>>
 {
+    public GetPeopleHandler(PersonRepository personRepository)
+    {
+        PersonRepository = personRepository;
+    }
+
+    public PersonRepository PersonRepository { get; }
+
     protected override Task<IEnumerable<PersonModel>> HandleOverrideAsync(GetPeopleCommand request, CancellationToken cancellation)
     {
         return Task.FromResult(PersonRepository.All());

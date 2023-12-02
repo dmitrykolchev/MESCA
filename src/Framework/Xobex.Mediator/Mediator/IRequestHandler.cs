@@ -7,5 +7,5 @@ namespace Xobex.Mediator;
 
 public interface IRequestHandler
 {
-    Task<object> ProcessAsync(IRequest request, CancellationToken cancellation);
+    Task<object> HandleAsync(IRequest request, CancellationToken cancellation);
 }

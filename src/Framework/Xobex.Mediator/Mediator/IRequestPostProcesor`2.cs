@@ -9,12 +9,12 @@ public interface IRequestPostProcessor<in TRequest, TResult> : IRequestPostProce
     where TRequest : IRequest<TResult>
     where TResult : notnull
 {
-    Task ProcessAsync(TRequest request, TResult response, CancellationToken cancellationToken);
+    Task HandleAsync(TRequest request, TResult response, CancellationToken cancellationToken);
 }
 
 
 public interface IRequestPostProcesor
 {
     int Ordinal { get; }
-    Task ProcessAsync(IRequest request, object response, CancellationToken cancellationToken);
+    Task HandleAsync(IRequest request, object response, CancellationToken cancellationToken);
 }

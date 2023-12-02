@@ -5,7 +5,7 @@
 
 namespace Xobex.Mediator.Implementation;
 
-public class MediatorService(IServiceProvider serviceProvider, IMediatorProvider mediatorProvider) : IMediatorService
+public class MediatorService(IServiceProvider serviceProvider, IMediatorProvider mediatorProvider) : IMediator
 {
     private readonly IServiceProvider _serviceProvider = serviceProvider
         ?? throw new ArgumentNullException(nameof(serviceProvider));
@@ -60,14 +60,14 @@ public class MediatorService(IServiceProvider serviceProvider, IMediatorProvider
         IReadOnlyList<IValidator> validators = _mediatorProvider.GetValidators(_serviceProvider, request.GetType());
         for (int i = 0; i < validators.Count; ++i)
         {
-            await validators[i].ValidateAsync(request, cancellationToken);
+            await validators[i].ValidateAsync(request, cancellationToken).ConfigureAwait(false);
         }
         IRequestHandler requestHandler = _mediatorProvider.GetRequestHandler(_serviceProvider, request.GetType());
-        object result = await requestHandler.ProcessAsync(request, cancellationToken);
+        object result = await requestHandler.HandleAsync(request, cancellationToken).ConfigureAwait(false);
         IReadOnlyList<IRequestPostProcesor> postProcessors = _mediatorProvider.GetRequestPostProcessors(_serviceProvider, request.GetType());
         for (int i = 0; i < postProcessors.Count; ++i)
         {
-            await postProcessors[i].ProcessAsync(request, result, cancellationToken).ConfigureAwait(false);
+            await postProcessors[i].HandleAsync(request, result, cancellationToken).ConfigureAwait(false);
         }
         return result;
     }

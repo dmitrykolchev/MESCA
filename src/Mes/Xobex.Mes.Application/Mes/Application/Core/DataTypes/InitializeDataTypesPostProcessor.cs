@@ -19,7 +19,7 @@ public class InitializeDataTypesPostProcessor : RequestPostProcessor<InitializeD
 
     public ILogger Logger { get; }
 
-    public override Task ProcessAsync(InitializeDataTypesCommand request, Empty response, CancellationToken cancellationToken)
+    public override Task HandleAsync(InitializeDataTypesCommand request, Empty response, CancellationToken cancellationToken)
     {
         Logger.LogInformation("InitializeDataType request post processor");
         return Task.CompletedTask;

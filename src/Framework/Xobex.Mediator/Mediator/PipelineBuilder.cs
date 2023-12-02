@@ -11,13 +11,13 @@ public class PipelineBuilder
 {
     private readonly Stack<IBehavior> _behaviors = new();
 
-    internal PipelineBuilder(IMediatorService mediatorService, IServiceProvider serviceProvider)
+    internal PipelineBuilder(IMediator mediatorService, IServiceProvider serviceProvider)
     {
         MediatorService = mediatorService ?? throw new ArgumentNullException(nameof(mediatorService));
         ServiceProvider = serviceProvider;
     }
 
-    private IMediatorService MediatorService { get; }
+    private IMediator MediatorService { get; }
     private IServiceProvider ServiceProvider { get; }
 
     /// <summary>

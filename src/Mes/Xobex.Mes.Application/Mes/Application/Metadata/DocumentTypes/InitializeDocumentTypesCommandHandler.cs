@@ -19,7 +19,7 @@ public class InitializeDocumentTypesCommandHandler : DatabaseRequestHandler<Init
     {
     }
 
-    protected override async Task<Empty> ProcessOverrideAsync(InitializeDocumentTypesCommand request, CancellationToken cancellationToken)
+    protected override async Task<Empty> HandleOverrideAsync(InitializeDocumentTypesCommand request, CancellationToken cancellationToken)
     {
         DocumentType equipment = new()
         {

@@ -13,16 +13,16 @@ public abstract class RequestHandler<TRequest, TResult> : IRequestHandler<TReque
     {
     }
 
-    public virtual Task<TResult> ProcessAsync(TRequest request, CancellationToken cancellationToken)
+    public virtual Task<TResult> HandleAsync(TRequest request, CancellationToken cancellationToken)
     {
-        return ProcessOverrideAsync(request, cancellationToken);
+        return HandleOverrideAsync(request, cancellationToken);
     }
 
-    protected abstract Task<TResult> ProcessOverrideAsync(TRequest request, CancellationToken cancellationToken);
+    protected abstract Task<TResult> HandleOverrideAsync(TRequest request, CancellationToken cancellationToken);
 
-    async Task<object> IRequestHandler.ProcessAsync(IRequest request, CancellationToken cancellationToken)
+    async Task<object> IRequestHandler.HandleAsync(IRequest request, CancellationToken cancellationToken)
     {
-        return (await ProcessAsync((TRequest)request, cancellationToken).ConfigureAwait(false))!;
+        return (await HandleAsync((TRequest)request, cancellationToken).ConfigureAwait(false))!;
     }
 }
 

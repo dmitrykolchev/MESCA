@@ -19,7 +19,7 @@ public class InitializeDataTypesCommandHandler : DatabaseRequestHandler<Initiali
     {
     }
 
-    protected override async Task<Empty> ProcessOverrideAsync(InitializeDataTypesCommand request, CancellationToken cancellation)
+    protected override async Task<Empty> HandleOverrideAsync(InitializeDataTypesCommand request, CancellationToken cancellation)
     {
         Db.DataType.AddRange(
             [

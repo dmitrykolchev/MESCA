@@ -99,7 +99,7 @@ internal class MediatorProvider : IMediatorProvider
             }
             temp = temp.BaseType!;
         }
-        throw new InvalidOperationException();
+        throw new InvalidOperationException($"cannot find handler for request {requestType}");
     }
 
     public IReadOnlyList<IValidator<TRequest>> GetValidators<TRequest>(IServiceProvider serviceProvider)
@@ -206,15 +206,15 @@ internal class MediatorProvider : IMediatorProvider
 
     private THandler GetOrCreate<THandler>(IServiceProvider serviceProvider, HandlerDesriptor descriptor)
     {
-        if (descriptor.ServiceLifetime == ServiceLifetime.Singleton)
-        {
-            MediatorSingletonLifetimeManager ltm = serviceProvider.GetRequiredService<MediatorSingletonLifetimeManager>();
-            return (THandler)ltm.GetOrCreate(descriptor.HandlerType!);
-        }
-
         if (descriptor.ServiceLifetime == ServiceLifetime.Scoped)
         {
             MediatorScopedLifetimeManager ltm = serviceProvider.GetRequiredService<MediatorScopedLifetimeManager>();
+            return (THandler)ltm.GetOrCreate(descriptor.HandlerType!);
+        }
+
+        if (descriptor.ServiceLifetime == ServiceLifetime.Singleton)
+        {
+            MediatorSingletonLifetimeManager ltm = serviceProvider.GetRequiredService<MediatorSingletonLifetimeManager>();
             return (THandler)ltm.GetOrCreate(descriptor.HandlerType!);
         }
 

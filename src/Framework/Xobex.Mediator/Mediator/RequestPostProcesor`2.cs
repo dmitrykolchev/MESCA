@@ -13,10 +13,10 @@ public abstract class RequestPostProcessor<TRequest, TResult> : IRequestPostProc
 
     public virtual int Ordinal => 0;
 
-    public abstract Task ProcessAsync(TRequest request, TResult response, CancellationToken cancellationToken);
+    public abstract Task HandleAsync(TRequest request, TResult response, CancellationToken cancellationToken);
 
-    Task IRequestPostProcesor.ProcessAsync(IRequest request, object response, CancellationToken cancellationToken)
+    Task IRequestPostProcesor.HandleAsync(IRequest request, object response, CancellationToken cancellationToken)
     {
-        return ProcessAsync((TRequest)request, (TResult)response, cancellationToken);
+        return HandleAsync((TRequest)request, (TResult)response, cancellationToken);
     }
 }

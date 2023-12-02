@@ -47,7 +47,7 @@ public class Worker : BackgroundService
         MesSqlServerDbContext db = scope.ServiceProvider.GetRequiredService<MesSqlServerDbContext>();
         db.Database.EnsureCreated();
 
-        IMediatorService mediatorService = scope.ServiceProvider.GetRequiredService<IMediatorService>();
+        IMediator mediatorService = scope.ServiceProvider.GetRequiredService<IMediator>();
         IMesDbContext context = scope.ServiceProvider.GetRequiredService<IMesDbContext>();
         try
         {
@@ -77,7 +77,7 @@ public class Worker : BackgroundService
 
     private async Task TestMediatorAsync(IServiceProvider serviceProvider, CancellationToken cancellationToken)
     {
-        IMediatorService mediatorService = serviceProvider.GetRequiredService<IMediatorService>();
+        IMediator mediatorService = serviceProvider.GetRequiredService<IMediator>();
 
         AddPersonCommand personCommand = new()
         {
