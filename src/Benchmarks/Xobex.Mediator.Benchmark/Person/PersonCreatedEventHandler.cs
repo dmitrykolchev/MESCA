@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Xobex.Mediator.Benchmark.Person;
 
 [MediatorLifetime(ServiceLifetime.Scoped)]
-public class PersonCreatedEventHandler : Mediator.EventHandler<PersonCreatedEvent>
+public class PersonCreatedEventHandler : EventHandler<PersonCreatedEvent>
 {
     public override Task HandleAsync(PersonCreatedEvent notification, CancellationToken cancellation)
     {

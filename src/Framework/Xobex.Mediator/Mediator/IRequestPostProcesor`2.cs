@@ -5,7 +5,7 @@
 
 namespace Xobex.Mediator;
 
-public interface IRequestPostProcessor<in TRequest, TResult> : IRequestPostProcesor
+public interface IRequestPostProcessor<in TRequest, TResult> : IRequestPostProcessor
     where TRequest : IRequest<TResult>
     where TResult : notnull
 {
@@ -13,7 +13,7 @@ public interface IRequestPostProcessor<in TRequest, TResult> : IRequestPostProce
 }
 
 
-public interface IRequestPostProcesor
+public interface IRequestPostProcessor
 {
     int Ordinal { get; }
     Task HandleAsync(IRequest request, object response, CancellationToken cancellationToken);

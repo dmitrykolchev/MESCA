@@ -4,6 +4,8 @@
 // </copyright>
 
 namespace Xobex.Mediator.Benchmark.Person;
+
+[MediatorIgnore]
 public class AddPersonValidator : Validator<AddPersonCommand>
 {
     public override Task ValidateAsync(AddPersonCommand request, CancellationToken cancellationToken)

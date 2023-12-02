@@ -6,6 +6,7 @@
 using MediatR.Pipeline;
 
 namespace Xobex.MediatR.Benchmark.Person;
+
 public class AddPersonValidator : IRequestPreProcessor<AddPersonCommand>
 {
     public Task Process(AddPersonCommand request, CancellationToken cancellationToken)

@@ -7,23 +7,13 @@ namespace Xobex.Mediator;
 
 public interface IMediatorProvider
 {
-    IRequestHandler<TRequest, TResult> GetRequestHandler<TRequest, TResult>(IServiceProvider serviceProvider)
-        where TRequest : IRequest<TResult>
-        where TResult : notnull;
+    void Add(HandlerDesriptor desriptor);
 
     IRequestHandler GetRequestHandler(IServiceProvider serviceProvider, Type requestType);
 
-    IReadOnlyList<IRequestPostProcesor> GetRequestPostProcessors(IServiceProvider services, Type requestType);
-
-    IReadOnlyList<IEventHandler<TNotification>> GetEventHandlers<TNotification>(IServiceProvider serviceProvider)
-        where TNotification : IEvent;
+    IReadOnlyList<IRequestPostProcessor> GetRequestPostProcessors(IServiceProvider services, Type requestType);
 
     IReadOnlyList<IEventHandler> GetEventHandlers(IServiceProvider serviceProvider, Type notificationType);
 
-    IReadOnlyList<IValidator<TRequest>> GetValidators<TRequest>(IServiceProvider serviceProvider)
-        where TRequest : IRequest;
-
     IReadOnlyList<IValidator> GetValidators(IServiceProvider serviceProvider, Type requestType);
-
-    void Add(HandlerDesriptor desriptor);
 }

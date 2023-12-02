@@ -64,7 +64,7 @@ public class MediatorService(IServiceProvider serviceProvider, IMediatorProvider
         }
         IRequestHandler requestHandler = _mediatorProvider.GetRequestHandler(_serviceProvider, request.GetType());
         object result = await requestHandler.HandleAsync(request, cancellationToken).ConfigureAwait(false);
-        IReadOnlyList<IRequestPostProcesor> postProcessors = _mediatorProvider.GetRequestPostProcessors(_serviceProvider, request.GetType());
+        IReadOnlyList<IRequestPostProcessor> postProcessors = _mediatorProvider.GetRequestPostProcessors(_serviceProvider, request.GetType());
         for (int i = 0; i < postProcessors.Count; ++i)
         {
             await postProcessors[i].HandleAsync(request, result, cancellationToken).ConfigureAwait(false);

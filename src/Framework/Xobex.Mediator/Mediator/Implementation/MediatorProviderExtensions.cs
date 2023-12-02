@@ -19,7 +19,7 @@ public static class MediatorProviderExtensions
         {
             ContractType = typeof(TNotification),
             HandlerType = typeof(TNotificationListener),
-            ServiceLifetime = serviceLifetime
+            Lifetime = serviceLifetime
         };
         provider.Add(handlerDesriptor);
         return provider;
@@ -34,7 +34,7 @@ public static class MediatorProviderExtensions
         {
             ContractType = typeof(TRequest),
             HandlerType = typeof(TRequestHandler),
-            ServiceLifetime = serviceLifetime
+            Lifetime = serviceLifetime
         };
         provider.Add(handlerDesriptor);
         return provider;
@@ -43,13 +43,13 @@ public static class MediatorProviderExtensions
     public static IMediatorProvider AddRequestPostProcessor<TRequest, TRequestPostProcessor>(
         this IMediatorProvider provider, ServiceLifetime serviceLifetime = ServiceLifetime.Transient)
         where TRequest : IRequest
-        where TRequestPostProcessor : IRequestPostProcesor
+        where TRequestPostProcessor : IRequestPostProcessor
     {
         HandlerDesriptor handlerDesriptor = new()
         {
             ContractType = typeof(TRequest),
             HandlerType = typeof(TRequestPostProcessor),
-            ServiceLifetime = serviceLifetime
+            Lifetime = serviceLifetime
         };
         provider.Add(handlerDesriptor);
         return provider;
@@ -65,7 +65,7 @@ public static class MediatorProviderExtensions
         {
             ContractType = typeof(TRequest),
             HandlerType = typeof(TValidator),
-            ServiceLifetime = serviceLifetime
+            Lifetime = serviceLifetime
         };
         provider.Add(handlerDesriptor);
         return provider;
@@ -73,7 +73,8 @@ public static class MediatorProviderExtensions
 
     public static IMediatorProvider AddAssembly(this IMediatorProvider provider, Assembly assembly)
     {
-        Type[] types = assembly.GetTypes();
+        IEnumerable<Type> types = assembly.GetTypes()
+            .Where(t => t.GetCustomAttribute<MediatorIgnoreAttribute>() == null);
         foreach (Type type in types)
         {
             if (typeof(IRequestHandler).IsAssignableFrom(type))
@@ -87,7 +88,7 @@ public static class MediatorProviderExtensions
                     {
                         ContractType = arguments[0],
                         HandlerType = type,
-                        ServiceLifetime = GetHandlerLifetime(type)
+                        Lifetime = GetHandlerLifetime(type)
                     };
                     provider.Add(handlerDesriptor);
                 }
@@ -96,7 +97,7 @@ public static class MediatorProviderExtensions
                     throw new InvalidOperationException($"Type {arguments[0]} does not implement IRequest");
                 }
             }
-            else if(typeof(IRequestPostProcesor).IsAssignableFrom(type))
+            else if (typeof(IRequestPostProcessor).IsAssignableFrom(type))
             {
                 Type[]? arguments = type.GetInterfaces()
                     .Single(t => t.IsGenericType && t.GetGenericTypeDefinition() == typeof(IRequestPostProcessor<,>))
@@ -107,7 +108,7 @@ public static class MediatorProviderExtensions
                     {
                         ContractType = arguments[0],
                         HandlerType = type,
-                        ServiceLifetime = GetHandlerLifetime(type)
+                        Lifetime = GetHandlerLifetime(type)
                     };
                     provider.Add(handlerDesriptor);
                 }
@@ -129,7 +130,7 @@ public static class MediatorProviderExtensions
                         {
                             ContractType = argument,
                             HandlerType = type,
-                            ServiceLifetime = GetHandlerLifetime(type)
+                            Lifetime = GetHandlerLifetime(type)
                         };
                         provider.Add(handlerDesriptor);
                     }
@@ -156,7 +157,7 @@ public static class MediatorProviderExtensions
                         {
                             ContractType = argument,
                             HandlerType = type,
-                            ServiceLifetime = GetHandlerLifetime(type)
+                            Lifetime = GetHandlerLifetime(type)
                         };
                         provider.Add(handlerDesriptor);
                     }

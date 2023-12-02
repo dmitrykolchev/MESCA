@@ -15,7 +15,7 @@ public abstract class RequestPostProcessor<TRequest, TResult> : IRequestPostProc
 
     public abstract Task HandleAsync(TRequest request, TResult response, CancellationToken cancellationToken);
 
-    Task IRequestPostProcesor.HandleAsync(IRequest request, object response, CancellationToken cancellationToken)
+    Task IRequestPostProcessor.HandleAsync(IRequest request, object response, CancellationToken cancellationToken)
     {
         return HandleAsync((TRequest)request, (TResult)response, cancellationToken);
     }

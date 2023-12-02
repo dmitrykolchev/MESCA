@@ -12,9 +12,7 @@ public class GetPeopleCommand : IRequest<IEnumerable<PersonModel>>
 {
     public static readonly GetPeopleCommand Instance = new();
 
-    public GetPeopleCommand()
+    private GetPeopleCommand()
     {
     }
-
-    public int Id { get; set; }
 }

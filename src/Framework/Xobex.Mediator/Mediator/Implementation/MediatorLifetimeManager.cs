@@ -16,22 +16,20 @@ internal class MediatorLifetimeManager(IServiceProvider serviceProvider) : IMedi
 
     public object GetOrCreate(Type handlerType)
     {
-        ArgumentNullException.ThrowIfNull(handlerType);
-        return _handlers.GetOrAdd(handlerType, (_) => ActivatorUtilities.CreateInstance(_serviceProvider, handlerType));
+        return _handlers.GetOrAdd(handlerType, t => ActivatorUtilities.CreateInstance(_serviceProvider, t));
     }
 
     protected virtual void Dispose(bool disposing)
     {
         if (disposing)
         {
-            foreach (object item in _handlers)
+            foreach (object item in _handlers.Values)
             {
                 if (item is IDisposable disposable)
                 {
                     disposable.Dispose();
                 }
             }
-            _handlers.Clear();
         }
     }
 
