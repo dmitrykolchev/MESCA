@@ -6,8 +6,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Xobex.Data.Entities;
 using Xobex.Data.EntityFramework.Interceptors;
-using Xobex.Data.Mes.Application;
+using Xobex.Data.Mes.Entities;
 
 namespace Xobex.Data.Mes.Infrastucture.Database;
 public static class ServiceCollectionExtensions
@@ -33,10 +34,13 @@ public static class ServiceCollectionExtensions
 #endif
             }
         });
+        services.AddScoped<IMetadataContext>(serviceProvider =>
+        {
+            return serviceProvider.GetRequiredService<MesSqlServerDbContext>();
+        });
         services.AddScoped<IMesDbContext>(serviceProvider =>
         {
-            IMesDbContext context = serviceProvider.GetRequiredService<MesSqlServerDbContext>();
-            return context;
+            return serviceProvider.GetRequiredService<MesSqlServerDbContext>();
         });
         return services;
     }

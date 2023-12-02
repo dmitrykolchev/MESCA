@@ -4,15 +4,15 @@
 // </copyright>
 
 using Microsoft.EntityFrameworkCore;
-using Xobex.Data.Entities.Core;
-using Xobex.Data.Entities.Metadata;
-using Xobex.Data.Entities.Security;
 using Xobex.Data.Configuration.Metadata;
-using Xobex.Data.EntityFramework;
 using Xobex.Data.Entities.Configuration.Core;
 using Xobex.Data.Entities.Configuration.Metadata;
 using Xobex.Data.Entities.Configuration.Security;
-using Xobex.Data.Mes.Application;
+using Xobex.Data.Entities.Core;
+using Xobex.Data.Entities.Metadata;
+using Xobex.Data.Entities.Security;
+using Xobex.Data.EntityFramework;
+using Xobex.Data.Mes.Entities;
 using Xobex.Data.Mes.Entities.Accounting;
 using Xobex.Data.Mes.Entities.Core;
 using Xobex.Data.Mes.Entities.Dictionaries;
@@ -57,7 +57,7 @@ public class MesSqlServerDbContext : DbContextBase, IMesDbContext, ISqlServer
     [EntityConfiguration(typeof(DocumentConfiguration))]
     public DbSet<Document> Document { get; set; }
     [EntityConfiguration(typeof(DocumentTransitionConfiguration))]
-    public DbSet<Document> DocumentTransition { get; set; }
+    public DbSet<DocumentTransition> DocumentTransition { get; set; }
     [EntityConfiguration(typeof(DocumentNoteConfiguration))]
     public DbSet<DocumentNote> DocumentNote { get; set; }
     [EntityConfiguration(typeof(DocumentNoteUserStateConfiguration))]

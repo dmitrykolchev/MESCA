@@ -5,6 +5,7 @@
 
 using Microsoft.Extensions.Logging;
 using Xobex.Data.EntityFramework;
+using Xobex.Data.Mes.Entities;
 using Xobex.Mediator;
 
 namespace Xobex.Data.Mes.Application;

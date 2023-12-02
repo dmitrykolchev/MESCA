@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Xobex.Infrastructure.EntityFramework\Xobex.Data.EntityFramework.csproj" />
     <ProjectReference Include="..\Xobext.Domain.Core\Xobex.Data.Core.csproj" />
   </ItemGroup>
 

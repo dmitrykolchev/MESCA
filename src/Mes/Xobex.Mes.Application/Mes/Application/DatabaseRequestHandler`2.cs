@@ -4,6 +4,7 @@
 // </copyright>
 
 using Microsoft.Extensions.Logging;
+using Xobex.Data.Mes.Entities;
 using Xobex.Mediator;
 
 namespace Xobex.Data.Mes.Application;

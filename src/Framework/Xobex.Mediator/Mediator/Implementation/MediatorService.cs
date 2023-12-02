@@ -57,14 +57,15 @@ public class MediatorService(IServiceProvider serviceProvider, IMediatorProvider
 
     private async Task<object> QueryInternalAsync(IRequest request, CancellationToken cancellationToken)
     {
-        IReadOnlyList<IValidator> validators = _mediatorProvider.GetValidators(_serviceProvider, request.GetType());
+        Type requestType = request.GetType();
+        IReadOnlyList<IValidator> validators = _mediatorProvider.GetValidators(_serviceProvider, requestType);
         for (int i = 0; i < validators.Count; ++i)
         {
             await validators[i].ValidateAsync(request, cancellationToken).ConfigureAwait(false);
         }
-        IRequestHandler requestHandler = _mediatorProvider.GetRequestHandler(_serviceProvider, request.GetType());
+        IRequestHandler requestHandler = _mediatorProvider.GetRequestHandler(_serviceProvider, requestType);
         object result = await requestHandler.HandleAsync(request, cancellationToken).ConfigureAwait(false);
-        IReadOnlyList<IRequestPostProcessor> postProcessors = _mediatorProvider.GetRequestPostProcessors(_serviceProvider, request.GetType());
+        IReadOnlyList<IRequestPostProcessor> postProcessors = _mediatorProvider.GetRequestPostProcessors(_serviceProvider, requestType);
         for (int i = 0; i < postProcessors.Count; ++i)
         {
             await postProcessors[i].HandleAsync(request, result, cancellationToken).ConfigureAwait(false);

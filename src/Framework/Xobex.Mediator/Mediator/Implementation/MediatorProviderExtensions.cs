@@ -74,7 +74,7 @@ public static class MediatorProviderExtensions
     public static IMediatorProvider AddAssembly(this IMediatorProvider provider, Assembly assembly)
     {
         IEnumerable<Type> types = assembly.GetTypes()
-            .Where(t => t.GetCustomAttribute<MediatorIgnoreAttribute>() == null);
+            .Where(t => t.GetCustomAttribute<MediatorIgnoreAttribute>() == null && !t.IsAbstract);
         foreach (Type type in types)
         {
             if (typeof(IRequestHandler).IsAssignableFrom(type))

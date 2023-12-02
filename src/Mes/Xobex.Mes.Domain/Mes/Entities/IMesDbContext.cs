@@ -4,29 +4,18 @@
 // </copyright>
 
 using Microsoft.EntityFrameworkCore;
+using Xobex.Data.Entities;
 using Xobex.Data.Entities.Core;
 using Xobex.Data.Entities.Metadata;
-using Xobex.Data.EntityFramework;
 using Xobex.Data.Mes.Entities.Core;
 using Xobex.Data.Mes.Entities.Resources;
 
 
-namespace Xobex.Data.Mes.Application;
+namespace Xobex.Data.Mes.Entities;
 
-public interface IMesDbContext : ITransactionProvider
+public interface IMesDbContext : IMetadataContext
 {
-    DbSet<DocumentType> DocumentType { get; set; }
-    DbSet<DocumentTypeGlobal> DocumentTypeGlobal { get; set; }
-    DbSet<DocumentState> DocumentState { get; set; }
-    DbSet<DocumentStateGlobal> DocumentStateGlobal { get; set; }
-    DbSet<TransitionTemplate> TransitionTemplate { get; set; }
-    DbSet<DataType> DataType { get; set; }
-    DbSet<Property> Property { get; set; }
-
-    DbSet<Document> Document { get; set; }
     DbSet<DocumentNote> DocumentNote { get; set; }
-    DbSet<PropertyMapping> PropertyMapping { get; set; }
-    DbSet<PropertyValue> PropertyValue { get; set; }
 
     DbSet<HierarchyLevel> HierarchyLevel { get; set; }
     DbSet<HierarchyScope> HierarchyScope { get; set; }
@@ -41,5 +30,4 @@ public interface IMesDbContext : ITransactionProvider
 
     DbSet<TEntity> Set<TEntity>() where TEntity : class;
 
-    Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

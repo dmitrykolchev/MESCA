@@ -5,6 +5,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Xobex.Data.Mes.Entities;
 using Xobex.Mediator;
 
 namespace Xobex.Data.Mes.Application.Core.DataTypes;
