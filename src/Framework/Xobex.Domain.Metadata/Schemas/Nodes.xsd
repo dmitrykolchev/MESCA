@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://efive.ru/sam5/schemas/2017/presentation-node"
+           targetNamespace="http://efive.ru/sam5/schemas/2017/presentation-node">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:simpleType name="NodeTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Group" />
+            <xs:enumeration value="CollectionView" />
+            <xs:enumeration value="CardView" />
+            <xs:enumeration value="CustomView" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="NodeState">
+        <xs:restriction base="xs:unsignedShort">
+            <xs:maxInclusive value="2" />
+            <xs:minInclusive value="1" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="Nodes">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="Node">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element minOccurs="1" maxOccurs="unbounded" name="Localization">
+                                <xs:complexType>
+                                    <xs:attribute ref="xml:lang" use="required" />
+                                    <xs:attribute name="Name" type="xs:string" use="required" />
+                                    <xs:attribute name="Title" type="xs:string" use="optional" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element maxOccurs="unbounded" name="Node">
+                                <xs:complexType>
+                                    <xs:sequence minOccurs="0">
+                                        <xs:element minOccurs="1" maxOccurs="unbounded" name="Localization">
+                                            <xs:complexType>
+                                                <xs:attribute ref="xml:lang" use="required" />
+                                                <xs:attribute name="Name" type="xs:string" use="required" />
+                                                <xs:attribute name="Title" type="xs:string" use="optional" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="Code" type="xs:string" use="required" />
+                                    <xs:attribute name="State" type="xs:unsignedByte" use="required" />
+                                    <xs:attribute name="ParentCode" type="xs:string" use="required" />
+                                    <xs:attribute name="Name" type="xs:string" use="required" />
+                                    <xs:attribute name="NodeType" type="NodeTypeEnum" use="required" />
+                                    <xs:attribute name="Ordinal" type="xs:unsignedByte" use="required" />
+                                    <xs:attribute name="RequestType" type="xs:string" use="required" />
+                                    <xs:attribute name="Title" type="xs:string" use="optional" />
+                                    <xs:attribute name="ImageName" type="xs:string" use="optional" />
+                                    <xs:attribute name="Parameters" type="xs:string" use="optional" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="Code" type="xs:string" use="required" />
+                        <xs:attribute name="State" type="xs:unsignedShort" use="required" />
+                        <xs:attribute name="Name" type="xs:string" use="required" />
+                        <xs:attribute name="NodeType" type="NodeTypeEnum" use="required" />
+                        <xs:attribute name="Ordinal" type="xs:unsignedByte" use="required" />
+                        <xs:attribute name="ImageName" type="xs:string" use="optional" />
+                        <xs:attribute name="Parameters" type="xs:string" use="optional" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

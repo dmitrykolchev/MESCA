@@ -11,7 +11,7 @@ using Xobex.Data.EntityFramework;
 
 namespace Xobex.Data.Entities;
 
-public interface IMetadataContext : ITransactionProvider
+public interface IMetadataContext : IDatabaseContext
 {
     DbSet<Document> Document { get; set; }
     DbSet<DocumentTransition> DocumentTransition { get; set; }
@@ -28,5 +28,4 @@ public interface IMetadataContext : ITransactionProvider
 
     DbSet<AccessRight> AccessRight { get; set; }
 
-    Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

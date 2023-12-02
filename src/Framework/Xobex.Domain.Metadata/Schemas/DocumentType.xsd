@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns="http://efive.ru/sam5/schemas/2017/document-type"
+           targetNamespace="http://efive.ru/sam5/schemas/2017/document-type" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+
+    <xs:simpleType name="notnullstring">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="transitionType">
+        <xs:attribute name="From" type="xs:string" use="required" />
+        <xs:attribute name="To" type="xs:string" use="required" />
+        <xs:attribute name="AccessRight" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="stateType">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="Localization">
+                <xs:complexType>
+                    <xs:attribute ref="xml:lang" use="required" />
+                    <xs:attribute name="Name" type="xs:string" use="optional" />
+                    <xs:attribute name="Comments" type="xs:string" use="optional" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" maxOccurs="1" type="xs:string" name="Picture" />
+        </xs:sequence>
+        <xs:attribute name="Value" type="xs:unsignedByte" use="required">
+            <xs:annotation>
+                <xs:documentation>Числовое значение</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Code" type="notnullstring" use="required">
+            <xs:annotation>
+                <xs:documentation>Код, совпадает с именем соответствующего enum-а</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Name" type="notnullstring" use="required">
+            <xs:annotation>
+                <xs:documentation>Наименование для отображения в пользовательском интерфейсе</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="LabelColor" type="xs:string" use="optional" />
+        <xs:attribute name="Comments" type="xs:string" use="optional" />
+        <xs:attribute name="Flags" type="xs:string" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="fieldType">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="Localization">
+                <xs:complexType>
+                    <xs:attribute ref="xml:lang" use="required" />
+                    <xs:attribute name="Caption" type="xs:string" use="optional" />
+                    <xs:attribute name="Title" type="xs:string" use="optional" />
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="State" type="xs:short" use="optional" />
+        <xs:attribute name="Name" type="notnullstring" use="required">
+            <xs:annotation>
+                <xs:documentation>Наименование поля в БД</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="PropertyName" type="notnullstring" use="optional">
+            <xs:annotation>
+                <xs:documentation>Наименование свойства в модели</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Caption" type="xs:string" use="optional" />
+        <xs:attribute name="Title" type="xs:string" use="optional" />
+    </xs:complexType>
+
+    <xs:element name="Document">
+        <xs:annotation>
+            <xs:documentation>корневой элемент описания типа документа</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Localization" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Локализованные данные Наименовая и Описания типа документа</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute ref="xml:lang" use="required" />
+                        <xs:attribute name="Name" type="xs:string" use="optional" />
+                        <xs:attribute name="Title" type="xs:string" use="optional" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="SchemaName" type="notnullstring" minOccurs="0" maxOccurs="1" />
+                <xs:element name="TableName" type="notnullstring" minOccurs="0" maxOccurs="1" />
+                <xs:element name="ImageName" type="notnullstring" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Пиктограмма ассоциированная с типом документа, из библиотеки изображений</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="DataAdapter" type="notnullstring" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Наименование .Net CLR типа, используется для активации дата адаптера, должен реализовать интерфейс IDataAdapter</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="States" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Состояния поддерживаемые этим документом</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="State" type="stateType" minOccurs="1" maxOccurs="unbounded"  />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="Transitions" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Переходы поддерживаемые этим документом</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Transition" type="transitionType" minOccurs="1" maxOccurs="unbounded"  />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="Fields" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Скалярные поля документа</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Field" type="fieldType" minOccurs="1" maxOccurs="unbounded"  />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+            </xs:sequence>
+            <xs:attribute name="State" type="xs:short" use="required" />
+            <xs:attribute name="Code" type="xs:string" use="required" />
+            <xs:attribute name="Name" type="xs:string" use="required" />
+            <xs:attribute name="Title" type="xs:string" use="optional" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -28,6 +28,4 @@ public interface IMesDbContext : IMetadataContext
     DbSet<PhysicalAsset> PhysicalAsset { get; set; }
     DbSet<MaterialDefinition> MaterialDefinition { get; set; }
 
-    DbSet<TEntity> Set<TEntity>() where TEntity : class;
-
 }

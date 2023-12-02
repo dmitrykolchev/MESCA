@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Xobex.Data.EntityFramework;
 
-public abstract class DbContextBase : DbContext, ITransactionProvider
+public abstract class DbContextBase : DbContext, IDatabaseContext
 {
     protected DbContextBase(DbContextOptions options) : base(options)
     {
