@@ -4,7 +4,7 @@
 // </copyright>
 
 using Microsoft.EntityFrameworkCore;
-using Xobex.Data.Entities;
+using Xobex.Entities;
 using Xobex.Mes.Entities.Core;
 using Xobex.Mes.Entities.Dictionaries;
 using Xobex.Mes.Entities.Resources;

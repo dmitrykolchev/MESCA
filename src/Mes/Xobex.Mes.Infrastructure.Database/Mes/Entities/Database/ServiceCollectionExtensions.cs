@@ -6,7 +6,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Xobex.Data.Entities;
+using Xobex.Entities;
 using Xobex.Data.EntityFramework.Interceptors;
 
 namespace Xobex.Mes.Entities.Database;

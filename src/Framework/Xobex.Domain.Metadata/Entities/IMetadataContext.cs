@@ -4,12 +4,12 @@
 // </copyright>
 
 using Microsoft.EntityFrameworkCore;
-using Xobex.Data.Entities.Core;
-using Xobex.Data.Entities.Metadata;
-using Xobex.Data.Entities.Security;
 using Xobex.Data.EntityFramework;
+using Xobex.Entities.Core;
+using Xobex.Entities.Metadata;
+using Xobex.Entities.Security;
 
-namespace Xobex.Data.Entities;
+namespace Xobex.Entities;
 
 public interface IMetadataContext : IDatabaseContext
 {

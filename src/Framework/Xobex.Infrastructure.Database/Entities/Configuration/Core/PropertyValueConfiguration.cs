@@ -5,10 +5,10 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Xobex.Data.Entities.Core;
 using Xobex.Data.EntityFramework;
+using Xobex.Entities.Core;
 
-namespace Xobex.Data.Entities.Configuration.Core;
+namespace Xobex.Entities.Configuration.Core;
 
 public class PropertyValueConfiguration : EntityConfiguration<PropertyValue>
 {

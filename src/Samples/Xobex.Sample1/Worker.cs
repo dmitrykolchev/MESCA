@@ -6,8 +6,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Xobex.Data.Entities.Metadata;
 using Xobex.Data.Sample1.Person;
+using Xobex.Entities.Metadata;
 using Xobex.Mediator;
 using Xobex.Mes.Application;
 using Xobex.Mes.Application.Core.DataTypes;

@@ -5,7 +5,7 @@
 
 using Xobex.Data.Common;
 
-namespace Xobex.Data.Entities.Security;
+namespace Xobex.Entities.Security;
 
 public enum AccessRightState : short
 {

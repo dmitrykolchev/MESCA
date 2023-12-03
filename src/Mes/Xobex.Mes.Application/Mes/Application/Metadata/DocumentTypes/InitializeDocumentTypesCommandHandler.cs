@@ -5,7 +5,7 @@
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Xobex.Data.Entities.Metadata;
+using Xobex.Entities.Metadata;
 using Xobex.Mediator;
 using Xobex.Mes.Entities.Resources;
 using Xobex.Mes.Entities;

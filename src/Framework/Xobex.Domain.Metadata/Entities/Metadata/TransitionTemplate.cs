@@ -4,9 +4,9 @@
 // </copyright>
 
 using Xobex.Data.Common;
-using Xobex.Data.Entities.Security;
+using Xobex.Entities.Security;
 
-namespace Xobex.Data.Entities.Metadata;
+namespace Xobex.Entities.Metadata;
 
 public enum TransitionTemplateState : short
 {

@@ -38,9 +38,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mediator", "src\Frame
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Data.Core", "src\Framework\Xobext.Domain.Core\Xobex.Data.Core.csproj", "{2764E7AA-C2F1-4089-97D3-6121DAF4D649}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Data.Entities.Metadata", "src\Framework\Xobex.Domain.Metadata\Xobex.Data.Entities.Metadata.csproj", "{85E65A83-876C-4C34-BFCC-659EB96763BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Entities.Metadata", "src\Framework\Xobex.Domain.Metadata\Xobex.Entities.Metadata.csproj", "{85E65A83-876C-4C34-BFCC-659EB96763BC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Data.Entities.Metadata.Configuration", "src\Framework\Xobex.Infrastructure.Database\Xobex.Data.Entities.Metadata.Configuration.csproj", "{6A00B930-8315-47B4-A0C5-101E2A4F4F87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Entities.Metadata.Configuration", "src\Framework\Xobex.Infrastructure.Database\Xobex.Entities.Metadata.Configuration.csproj", "{6A00B930-8315-47B4-A0C5-101E2A4F4F87}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{78DA48B8-9B8A-4F9B-A631-C61CA4C7BE92}"
 EndProject

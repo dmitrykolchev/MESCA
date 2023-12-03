@@ -6,9 +6,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Xobex.Data.EntityFramework;
-using Xobex.Data.Entities.Core;
+using Xobex.Entities.Core;
 
-namespace Xobex.Data.Entities.Configuration.Core;
+namespace Xobex.Entities.Configuration.Core;
 
 public class DocumentConfiguration : EntityConfiguration<Document>
 {

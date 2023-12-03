@@ -4,9 +4,9 @@
 // </copyright>
 
 using Xobex.Data.Common;
-using Xobex.Data.Entities.Core;
+using Xobex.Entities.Core;
 
-namespace Xobex.Data.Entities.Metadata;
+namespace Xobex.Entities.Metadata;
 
 public enum PropertyMappingState : short
 {
