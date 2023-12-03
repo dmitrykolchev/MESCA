@@ -50,7 +50,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.MediatR.Benckmark", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mes.Entities", "src\Mes\Xobex.Mes.Entities\Xobex.Mes.Entities.csproj", "{B324ACC6-761B-486A-BE0D-A103A85A0600}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mes.Entities.Configuration", "src\Mes\Xobex.Mes.Infrastructure.Database\Xobex.Mes.Entities.Configuration.csproj", "{BBA5CB15-DA8A-40D7-8FDA-1E07F7584FDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mes.Entities.Configuration", "src\Mes\Xobex.Mes.Entities.Configuration\Xobex.Mes.Entities.Configuration.csproj", "{83A0183B-E3E8-4C6B-8228-E89914AC9028}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -110,10 +110,10 @@ Global
 		{B324ACC6-761B-486A-BE0D-A103A85A0600}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B324ACC6-761B-486A-BE0D-A103A85A0600}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B324ACC6-761B-486A-BE0D-A103A85A0600}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BBA5CB15-DA8A-40D7-8FDA-1E07F7584FDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BBA5CB15-DA8A-40D7-8FDA-1E07F7584FDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BBA5CB15-DA8A-40D7-8FDA-1E07F7584FDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BBA5CB15-DA8A-40D7-8FDA-1E07F7584FDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83A0183B-E3E8-4C6B-8228-E89914AC9028}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83A0183B-E3E8-4C6B-8228-E89914AC9028}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83A0183B-E3E8-4C6B-8228-E89914AC9028}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83A0183B-E3E8-4C6B-8228-E89914AC9028}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -132,7 +132,7 @@ Global
 		{E2AFC975-B164-46AF-9399-6C85DA907BA9} = {6593BA26-D621-416B-9FF7-7853B983300B}
 		{8E283145-C39B-4442-BB4D-97C2C32F58F2} = {6593BA26-D621-416B-9FF7-7853B983300B}
 		{B324ACC6-761B-486A-BE0D-A103A85A0600} = {854964E3-9C9F-4545-A045-3327CAB03F01}
-		{BBA5CB15-DA8A-40D7-8FDA-1E07F7584FDD} = {854964E3-9C9F-4545-A045-3327CAB03F01}
+		{83A0183B-E3E8-4C6B-8228-E89914AC9028} = {854964E3-9C9F-4545-A045-3327CAB03F01}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D055D17-30FF-4FA3-B49C-A68B1C8FF3A5}
