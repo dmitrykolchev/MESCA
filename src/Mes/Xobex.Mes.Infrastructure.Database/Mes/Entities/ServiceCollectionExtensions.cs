@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using Xobex.Entities;
 using Xobex.Data.EntityFramework.Interceptors;
 
-namespace Xobex.Mes.Entities.Database;
+namespace Xobex.Mes.Entities;
 
 public static class ServiceCollectionExtensions
 {

@@ -16,7 +16,7 @@ using Xobex.Data.Common;
 using Xobex.Mediator;
 using Xobex.Mediator.Implementation;
 using Xobex.Mes.Application.Core.DataTypes;
-using Xobex.Mes.Entities.Database;
+using Xobex.Mes.Entities;
 
 namespace Xobex.Data.Sample1;
 

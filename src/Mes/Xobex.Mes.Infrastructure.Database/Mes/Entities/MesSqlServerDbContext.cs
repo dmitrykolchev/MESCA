@@ -22,7 +22,7 @@ using Xobex.Mes.Entities.Core;
 using Xobex.Mes.Entities.DocumentManagement;
 using Xobex.Mes.Entities.Resources;
 
-namespace Xobex.Mes.Entities.Database;
+namespace Xobex.Mes.Entities;
 
 public class MesSqlServerDbContext : DbContextBase, IMesDbContext, ISqlServer
 {

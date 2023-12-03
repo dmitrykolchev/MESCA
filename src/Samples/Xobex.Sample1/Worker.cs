@@ -13,7 +13,6 @@ using Xobex.Mes.Application;
 using Xobex.Mes.Application.Core.DataTypes;
 using Xobex.Mes.Application.Metadata.DocumentTypes;
 using Xobex.Mes.Entities;
-using Xobex.Mes.Entities.Database;
 
 namespace Xobex.Data.Sample1;
 
