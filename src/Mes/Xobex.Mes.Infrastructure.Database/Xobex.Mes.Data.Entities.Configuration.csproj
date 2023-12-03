@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Framework\EFCore.NamingConventions\Xobex.Data.EntityFramework.NamingConventions.csproj" />
-    <ProjectReference Include="..\..\Framework\Xobex.Infrastructure.Database\Xobex.Entities.Metadata.Configuration.csproj" />
+    <ProjectReference Include="..\..\Framework\Xobex.Infrastructure.Database\Xobex.Entities.Core.Configuration.csproj" />
     <ProjectReference Include="..\..\Framework\Xobex.Infrastructure.EntityFramework\Xobex.Data.EntityFramework.csproj" />
     <ProjectReference Include="..\Xobex.Mes.Application\Xobex.Mes.Application.csproj" />
   </ItemGroup>

@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Xobex.Domain.Metadata\Xobex.Entities.Metadata.csproj" />
+    <ProjectReference Include="..\Xobex.Domain.Metadata\Xobex.Entities.Core.csproj" />
     <ProjectReference Include="..\Xobex.Infrastructure.EntityFramework\Xobex.Data.EntityFramework.csproj" />
   </ItemGroup>
 
