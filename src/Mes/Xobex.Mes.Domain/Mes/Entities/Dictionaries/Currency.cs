@@ -5,7 +5,7 @@
 
 using Xobex.Data.Common;
 
-namespace Xobex.Data.Mes.Entities.Dictionaries;
+namespace Xobex.Mes.Entities.Dictionaries;
 
 public enum CurrencyState : short
 {

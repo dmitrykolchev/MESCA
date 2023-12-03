@@ -7,10 +7,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Xobex.Data.Entities.Metadata;
 using Xobex.Mediator;
-using Xobex.Data.Mes.Entities.Resources;
-using Xobex.Data.Mes.Entities;
+using Xobex.Mes.Entities.Resources;
+using Xobex.Mes.Entities;
 
-namespace Xobex.Data.Mes.Application.Metadata.DocumentTypes;
+namespace Xobex.Mes.Application.Metadata.DocumentTypes;
 
 [MediatorLifetime(ServiceLifetime.Scoped)]
 public class InitializeDocumentTypesCommandHandler : DatabaseRequestHandler<InitializeDocumentTypesCommand, Empty>

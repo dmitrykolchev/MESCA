@@ -3,9 +3,9 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
-using Xobex.Data.Mes.Entities.Dictionaries;
+using Xobex.Mes.Entities.Dictionaries;
 
-namespace Xobex.Data.Mes.Entities.Accounting;
+namespace Xobex.Mes.Entities.Accounting;
 
 public enum OperationSide: short
 {
@@ -19,6 +19,7 @@ public class OperationPart
     public OperationSide Side { get; set; }
     public int AccountId { get; set; }
     public decimal Amount { get; set; }
+    public int UnitOfMeasureId { get; set; }
     public decimal Value { get; set; }
     public int CurrencyId { get; set; }
 
@@ -51,4 +52,5 @@ public class OperationPart
     public virtual Operation? Operation { get; set; }
     public virtual Account? Account { get; set; }
     public virtual Currency? Currency { get; set; }
+    public virtual UnitOfMeasure? UnitOfMeasure { get; set; }
 }

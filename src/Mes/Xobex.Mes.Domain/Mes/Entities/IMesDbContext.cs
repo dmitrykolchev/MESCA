@@ -5,17 +5,24 @@
 
 using Microsoft.EntityFrameworkCore;
 using Xobex.Data.Entities;
-using Xobex.Data.Entities.Core;
-using Xobex.Data.Entities.Metadata;
-using Xobex.Data.Mes.Entities.Core;
-using Xobex.Data.Mes.Entities.Resources;
+using Xobex.Mes.Entities.Core;
+using Xobex.Mes.Entities.Dictionaries;
+using Xobex.Mes.Entities.Resources;
 
 
-namespace Xobex.Data.Mes.Entities;
+namespace Xobex.Mes.Entities;
 
 public interface IMesDbContext : IMetadataContext
 {
     DbSet<DocumentNote> DocumentNote { get; set; }
+
+    DbSet<Country> Country { get; set; }
+    DbSet<Currency> Currency { get; set; }
+    DbSet<CurrencyRateProvider> CurrencyRateProvider { get; set; }
+    DbSet<CurrencyRate> CurrencyRate { get; set; }
+    DbSet<KindOfQuantity> KindOfQuantity { get; set; }
+    DbSet<UnitOfMeasure> UnitOfMeasure { get; set; }
+    DbSet<UnitOfMeasureConversion> UnitOfMeasureConversion { get; set; }
 
     DbSet<HierarchyLevel> HierarchyLevel { get; set; }
     DbSet<HierarchyScope> HierarchyScope { get; set; }

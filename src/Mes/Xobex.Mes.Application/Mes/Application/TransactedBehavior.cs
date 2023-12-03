@@ -5,10 +5,10 @@
 
 using Microsoft.Extensions.Logging;
 using Xobex.Data.EntityFramework;
-using Xobex.Data.Mes.Entities;
+using Xobex.Mes.Entities;
 using Xobex.Mediator;
 
-namespace Xobex.Data.Mes.Application;
+namespace Xobex.Mes.Application;
 
 public class TransactedBehavior : Behavior
 {

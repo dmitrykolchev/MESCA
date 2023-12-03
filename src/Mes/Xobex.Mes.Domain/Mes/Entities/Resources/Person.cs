@@ -3,7 +3,7 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
-namespace Xobex.Data.Mes.Entities.Resources;
+namespace Xobex.Mes.Entities.Resources;
 
 public enum PersonState: short
 {

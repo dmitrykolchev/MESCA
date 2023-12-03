@@ -5,10 +5,10 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Xobex.Data.Mes.Entities;
+using Xobex.Mes.Entities;
 using Xobex.Mediator;
 
-namespace Xobex.Data.Mes.Application;
+namespace Xobex.Mes.Application;
 
 public class VerifyInitializedBehavior<TEntity> : Behavior
     where TEntity : class

@@ -6,7 +6,7 @@
 using Xobex.Data.Common;
 using Xobex.Data.Entities.Core;
 
-namespace Xobex.Data.Mes.Entities.Core;
+namespace Xobex.Mes.Entities.Core;
 
 public class DocumentExtension : ISimpleAuditable
 {

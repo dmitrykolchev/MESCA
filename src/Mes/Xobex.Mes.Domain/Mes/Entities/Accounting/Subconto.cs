@@ -6,7 +6,7 @@
 using Xobex.Data.Common;
 using Xobex.Data.Entities.Metadata;
 
-namespace Xobex.Data.Mes.Entities.Accounting;
+namespace Xobex.Mes.Entities.Accounting;
 
 public enum SubcontoState : byte
 {

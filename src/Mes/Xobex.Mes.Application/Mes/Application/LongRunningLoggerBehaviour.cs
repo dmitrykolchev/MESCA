@@ -5,7 +5,7 @@
 
 using Xobex.Mediator;
 
-namespace Xobex.Data.Mes.Application;
+namespace Xobex.Mes.Application;
 
 internal class LongRunningLoggerBehaviour : Behavior
 {

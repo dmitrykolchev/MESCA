@@ -5,7 +5,7 @@
 
 using Xobex.Data.Common;
 
-namespace Xobex.Data.Mes.Entities.Accounting;
+namespace Xobex.Mes.Entities.Accounting;
 
 public enum AccountState : short
 {

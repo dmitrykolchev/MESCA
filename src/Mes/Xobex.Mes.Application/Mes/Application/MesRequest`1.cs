@@ -6,7 +6,7 @@
 using Xobex.Data.Enums;
 using Xobex.Mediator;
 
-namespace Xobex.Data.Mes.Application;
+namespace Xobex.Mes.Application;
 
 public abstract class MesRequest<TResult> : Request<TResult>
 {

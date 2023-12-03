@@ -7,13 +7,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Xobex.Data.Entities.Metadata;
-using Xobex.Mediator;
-using Xobex.Data.Mes.Application;
-using Xobex.Data.Mes.Application.Core.DataTypes;
-using Xobex.Data.Mes.Application.Metadata.DocumentTypes;
-using Xobex.Data.Mes.Infrastucture.Database;
 using Xobex.Data.Sample1.Person;
-using Xobex.Data.Mes.Entities;
+using Xobex.Mediator;
+using Xobex.Mes.Application;
+using Xobex.Mes.Application.Core.DataTypes;
+using Xobex.Mes.Application.Metadata.DocumentTypes;
+using Xobex.Mes.Entities;
+using Xobex.Mes.Entities.Database;
 
 namespace Xobex.Data.Sample1;
 

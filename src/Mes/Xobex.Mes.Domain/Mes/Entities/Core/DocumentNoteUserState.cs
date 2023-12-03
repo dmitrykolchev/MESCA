@@ -5,7 +5,7 @@
 
 using Xobex.Data.Common;
 
-namespace Xobex.Data.Mes.Entities.Core;
+namespace Xobex.Mes.Entities.Core;
 
 public class DocumentNoteUserState : ISimpleAuditable
 {

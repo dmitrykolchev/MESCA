@@ -6,7 +6,7 @@
 using Xobex.Data.Enums;
 using Xobex.Mediator;
 
-namespace Xobex.Data.Mes.Application.Core.DataTypes;
+namespace Xobex.Mes.Application.Core.DataTypes;
 
 public class InitializeDataTypesCommand : MesRequest<Empty>
 {

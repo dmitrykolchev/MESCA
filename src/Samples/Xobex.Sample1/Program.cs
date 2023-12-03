@@ -15,8 +15,8 @@ using Serilog;
 using Xobex.Data.Common;
 using Xobex.Mediator;
 using Xobex.Mediator.Implementation;
-using Xobex.Data.Mes.Application.Core.DataTypes;
-using Xobex.Data.Mes.Infrastucture.Database;
+using Xobex.Mes.Application.Core.DataTypes;
+using Xobex.Mes.Entities.Database;
 
 namespace Xobex.Data.Sample1;
 

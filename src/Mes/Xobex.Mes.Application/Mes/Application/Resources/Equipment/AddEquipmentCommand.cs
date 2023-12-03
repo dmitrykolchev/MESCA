@@ -6,7 +6,7 @@
 using Xobex.Data.Enums;
 using Xobex.Mediator;
 
-namespace Xobex.Data.Mes.Application.Resources.Equipment;
+namespace Xobex.Mes.Application.Resources.Equipment;
 
 public class AddEquipmentCommand : MesRequest<int>
 {

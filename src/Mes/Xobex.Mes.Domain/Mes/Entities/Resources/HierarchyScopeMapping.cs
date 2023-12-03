@@ -6,7 +6,7 @@
 using Xobex.Data.Common;
 using Xobex.Data.Entities.Core;
 
-namespace Xobex.Data.Mes.Entities.Resources;
+namespace Xobex.Mes.Entities.Resources;
 
 public class HierarchyScopeMapping : IAuditable
 {

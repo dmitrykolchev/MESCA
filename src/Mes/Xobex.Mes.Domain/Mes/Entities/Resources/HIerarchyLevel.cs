@@ -5,7 +5,7 @@
 
 using Xobex.Data.Common;
 
-namespace Xobex.Data.Mes.Entities.Resources;
+namespace Xobex.Mes.Entities.Resources;
 
 public enum HierarchyLevelState : short
 {

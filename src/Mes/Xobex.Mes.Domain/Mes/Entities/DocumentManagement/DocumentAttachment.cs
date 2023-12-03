@@ -6,7 +6,7 @@
 using Xobex.Data.Common;
 using Xobex.Data.Entities.Core;
 
-namespace Xobex.Data.Mes.Entities.DocumentManagement;
+namespace Xobex.Mes.Entities.DocumentManagement;
 
 public enum AttachmentType: short
 {

@@ -11,7 +11,7 @@
 
 using Xobex.Data.Entities.Metadata;
 
-namespace Xobex.Data.Mes.Entities.Resources;
+namespace Xobex.Mes.Entities.Resources;
 
 public class Resource : ResourceBase<short>
 {

@@ -7,9 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Xobex.Mediator;
 using Xobex.Data.Entities.Metadata;
-using Xobex.Data.Mes.Entities;
+using Xobex.Mes.Entities;
 
-namespace Xobex.Data.Mes.Application.Core.DataTypes;
+namespace Xobex.Mes.Application.Core.DataTypes;
 
 [MediatorLifetime(ServiceLifetime.Scoped)]
 public class InitializeDataTypesCommandHandler : DatabaseRequestHandler<InitializeDataTypesCommand, Empty>
@@ -37,7 +37,7 @@ public class InitializeDataTypesCommandHandler : DatabaseRequestHandler<Initiali
                     Id = (int)DataKind.Boolean,
                     State = DataTypeState.Active,
                     Code = nameof(DataKind.Boolean),
-                    Name = "Лигический (да/нет)",
+                    Name = "Логический (да/нет)",
                     Kind = DataKind.Boolean
                 },
                 new()
