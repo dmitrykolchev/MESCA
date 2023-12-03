@@ -6,6 +6,7 @@
 using Microsoft.EntityFrameworkCore;
 using Xobex.Data.EntityFramework;
 using Xobex.Entities.Core;
+using Xobex.Entities.Dictionaries;
 using Xobex.Entities.Metadata;
 using Xobex.Entities.Security;
 
@@ -28,4 +29,11 @@ public interface IMetadataContext : IDatabaseContext
 
     DbSet<AccessRight> AccessRight { get; set; }
 
+    DbSet<Country> Country { get; set; }
+    DbSet<Currency> Currency { get; set; }
+    DbSet<CurrencyRateProvider> CurrencyRateProvider { get; set; }
+    DbSet<CurrencyRate> CurrencyRate { get; set; }
+    DbSet<KindOfQuantity> KindOfQuantity { get; set; }
+    DbSet<UnitOfMeasure> UnitOfMeasure { get; set; }
+    DbSet<UnitOfMeasureConversion> UnitOfMeasureConversion { get; set; }
 }

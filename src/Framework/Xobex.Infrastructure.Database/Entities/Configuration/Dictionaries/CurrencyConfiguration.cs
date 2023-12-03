@@ -1,4 +1,4 @@
-﻿// <copyright file="CountryConfiguration.cs" company="DykBits">
+﻿// <copyright file="CurrencyConfiguration.cs" company="DykBits">
 // (c) 2022-23 Dmitry Kolchev. All rights reserved.
 // See LICENSE in the project root for license information
 // </copyright>
@@ -6,16 +6,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Xobex.Data.EntityFramework;
-using Xobex.Mes.Entities.Dictionaries;
+using Xobex.Entities.Dictionaries;
 
-namespace Xobex.Mes.Entities.Configuration.Dictionaries;
+namespace Xobex.Entities.Configuration.Dictionaries;
 
-public class CountryConfiguration : EntityConfiguration<Country>
+public class CurrencyConfiguration : EntityConfiguration<Currency>
 {
-    public CountryConfiguration() : base(true)
+    public CurrencyConfiguration() : base(true)
     {
     }
-    protected override void OnConfigureEntity(EntityTypeBuilder<Country> entity)
+
+    protected override void OnConfigureEntity(EntityTypeBuilder<Currency> entity)
     {
         ToTableWithKey(entity, e => e.Id, e => e.Id);
         entity.HasStandardProperties();

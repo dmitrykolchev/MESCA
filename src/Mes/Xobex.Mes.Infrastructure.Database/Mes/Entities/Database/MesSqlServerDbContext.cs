@@ -4,21 +4,21 @@
 // </copyright>
 
 using Microsoft.EntityFrameworkCore;
+using Xobex.Data.EntityFramework;
 using Xobex.Entities.Configuration.Core;
+using Xobex.Entities.Configuration.Dictionaries;
 using Xobex.Entities.Configuration.Metadata;
 using Xobex.Entities.Configuration.Security;
 using Xobex.Entities.Core;
+using Xobex.Entities.Dictionaries;
 using Xobex.Entities.Metadata;
 using Xobex.Entities.Security;
-using Xobex.Data.EntityFramework;
 using Xobex.Mes.Entities.Accounting;
 using Xobex.Mes.Entities.Configuration.Accounting;
 using Xobex.Mes.Entities.Configuration.Core;
-using Xobex.Mes.Entities.Configuration.Dictionaries;
 using Xobex.Mes.Entities.Configuration.DocumentManagement;
 using Xobex.Mes.Entities.Configuration.Resources;
 using Xobex.Mes.Entities.Core;
-using Xobex.Mes.Entities.Dictionaries;
 using Xobex.Mes.Entities.DocumentManagement;
 using Xobex.Mes.Entities.Resources;
 

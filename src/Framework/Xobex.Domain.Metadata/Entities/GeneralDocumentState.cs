@@ -3,11 +3,12 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
-namespace Xobex.Mes.Entities;
+namespace Xobex.Entities;
 
 public enum GeneralDocumentState : short
 {
     NotExists = 0,
     Active = 1,
-    Inactive = 2
+    Inactive = 2,
+    Imported = 3,
 }

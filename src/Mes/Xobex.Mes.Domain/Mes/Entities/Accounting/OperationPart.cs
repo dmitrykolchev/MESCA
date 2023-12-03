@@ -3,7 +3,7 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
-using Xobex.Mes.Entities.Dictionaries;
+using Xobex.Entities.Dictionaries;
 
 namespace Xobex.Mes.Entities.Accounting;
 

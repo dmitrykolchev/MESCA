@@ -5,7 +5,7 @@
 
 using Xobex.Data.Common;
 
-namespace Xobex.Mes.Entities.Dictionaries;
+namespace Xobex.Entities.Dictionaries;
 
 public class KindOfQuantity : DocumentBase<int, GeneralDocumentState>
 {
