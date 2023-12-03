@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Mes\Xobex.Mes.Infrastructure.Database\Xobex.Mes.Data.Entities.Configuration.csproj" />
+    <ProjectReference Include="..\..\Mes\Xobex.Mes.Infrastructure.Database\Xobex.Mes.Entities.Configuration.csproj" />
   </ItemGroup>
 
   <ItemGroup>

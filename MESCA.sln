@@ -22,9 +22,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{AB4D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Sample1", "src\Samples\Xobex.Sample1\Xobex.Sample1.csproj", "{CDD3FECE-9C45-4663-AEB4-C0819691BBF0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mes.Data.Entities.Configuration", "src\Mes\Xobex.Mes.Infrastructure.Database\Xobex.Mes.Data.Entities.Configuration.csproj", "{BFFC6A6C-78FA-4BE8-9B16-3D89B8ED87AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mes.Entities.Configuration", "src\Mes\Xobex.Mes.Infrastructure.Database\Xobex.Mes.Entities.Configuration.csproj", "{BFFC6A6C-78FA-4BE8-9B16-3D89B8ED87AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mes.Data.Entities", "src\Mes\Xobex.Mes.Domain\Xobex.Mes.Data.Entities.csproj", "{CD6E4104-2E4D-4E00-9DFB-DA42EB46FFF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Mes.Entities", "src\Mes\Xobex.Mes.Domain\Xobex.Mes.Entities.csproj", "{CD6E4104-2E4D-4E00-9DFB-DA42EB46FFF0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{AA9227AF-0DFA-495D-933A-2518FFF84B04}"
 EndProject
