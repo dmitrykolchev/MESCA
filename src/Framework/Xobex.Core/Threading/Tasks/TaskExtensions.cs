@@ -3,7 +3,7 @@
 // See LICENSE in the project root for license information
 // </copyright>
 
-namespace Xobex.Data.Threading.Tasks;
+namespace Xobex.Threading.Tasks;
 
 public static class TaskExtensions
 {
