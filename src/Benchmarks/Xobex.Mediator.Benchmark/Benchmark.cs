@@ -6,7 +6,6 @@
 using BenchmarkDotNet.Attributes;
 using Microsoft.Extensions.DependencyInjection;
 using Xobex.Mediator.Benchmark.Person;
-using Xobex.Mediator.Implementation;
 
 namespace Xobex.Mediator.Benchmark;
 

@@ -6,7 +6,7 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Xobex.Mediator.Implementation;
+namespace Xobex.Mediator;
 
 public static class MediatorProviderExtensions
 {

@@ -14,7 +14,6 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using Xobex.Data.Common;
 using Xobex.Mediator;
-using Xobex.Mediator.Implementation;
 using Xobex.Mes.Application.Core.DataTypes;
 using Xobex.Mes.Entities;
 
