@@ -8,9 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\Xobex.Domain.Metadata\Xobex.Entities.Core.csproj" />
-    <ProjectReference Include="..\..\Framework\Xobex.Infrastructure.EntityFramework\Xobex.Data.EntityFramework.csproj" />
-    <ProjectReference Include="..\..\Framework\Xobext.Domain.Core\Xobex.Data.Core.csproj" />
+    <ProjectReference Include="..\..\Framework\Xobex.Entities.Core\Xobex.Entities.Core.csproj" />
+    <ProjectReference Include="..\..\Framework\Xobex.Data.EntityFramework\Xobex.Data.EntityFramework.csproj" />
+    <ProjectReference Include="..\..\Framework\Xobex.Data.Core\Xobex.Data.Core.csproj" />
   </ItemGroup>
 
 </Project>

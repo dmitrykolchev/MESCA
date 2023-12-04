@@ -13,9 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EFCore.NamingConventions\Xobex.Data.EntityFramework.NamingConventions.csproj" />
+    <ProjectReference Include="..\EFCore.NamingConventions\EFCore.NamingConventions.csproj" />
     <ProjectReference Include="..\Xobex.Core\Xobex.Core.csproj" />
-    <ProjectReference Include="..\Xobext.Domain.Core\Xobex.Data.Core.csproj" />
+    <ProjectReference Include="..\Xobex.Data.Core\Xobex.Data.Core.csproj" />
   </ItemGroup>
 
 </Project>
