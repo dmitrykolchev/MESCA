@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\EFCore.NamingConventions\Xobex.Data.EntityFramework.NamingConventions.csproj" />
+    <ProjectReference Include="..\..\Framework\EFCore.NamingConventions\EFCore.NamingConventions.csproj" />
     <ProjectReference Include="..\..\Framework\Xobex.Entities.Core.Configuration\Xobex.Entities.Core.Configuration.csproj" />
     <ProjectReference Include="..\Xobex.Mes.Application\Xobex.Mes.Application.csproj" />
     <ProjectReference Include="..\Xobex.Mes.Entities\Xobex.Mes.Entities.csproj" />
