@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Xobex.Mediator;
 using Xobex.Entities.Metadata;
 using Xobex.Mes.Entities;
+using Xobex.Entities;
 
 namespace Xobex.Mes.Application.Core.DataTypes;
 
@@ -27,7 +28,7 @@ public class InitializeDataTypesCommandHandler : DatabaseRequestHandler<Initiali
                 new()
                 {
                     Id = (int)DataKind.Int,
-                    State = DataTypeState.Active,
+                    State = CommonStates.Active,
                     Code = nameof(DataKind.Int),
                     Name = "Целое число",
                     Kind = DataKind.Int
@@ -35,7 +36,7 @@ public class InitializeDataTypesCommandHandler : DatabaseRequestHandler<Initiali
                 new()
                 {
                     Id = (int)DataKind.Boolean,
-                    State = DataTypeState.Active,
+                    State = CommonStates.Active,
                     Code = nameof(DataKind.Boolean),
                     Name = "Логический (да/нет)",
                     Kind = DataKind.Boolean
@@ -43,7 +44,7 @@ public class InitializeDataTypesCommandHandler : DatabaseRequestHandler<Initiali
                 new()
                 {
                     Id = (int)DataKind.DateTime,
-                    State = DataTypeState.Active,
+                    State = CommonStates.Active,
                     Code = nameof(DataKind.DateTime),
                     Name = "Дата/время",
                     Kind = DataKind.DateTime
@@ -51,7 +52,7 @@ public class InitializeDataTypesCommandHandler : DatabaseRequestHandler<Initiali
                 new()
                 {
                     Id = (int)DataKind.String,
-                    State = DataTypeState.Active,
+                    State = CommonStates.Active,
                     Code = nameof(DataKind.String),
                     Name = "Текст",
                     Kind = DataKind.String
@@ -59,7 +60,7 @@ public class InitializeDataTypesCommandHandler : DatabaseRequestHandler<Initiali
                 new()
                 {
                     Id = (int)DataKind.Decimal,
-                    State = DataTypeState.Active,
+                    State = CommonStates.Active,
                     Code = nameof(DataKind.Decimal),
                     Name = "Число с фиксированной десятичной точкой",
                     Kind = DataKind.Decimal
@@ -67,7 +68,7 @@ public class InitializeDataTypesCommandHandler : DatabaseRequestHandler<Initiali
                 new()
                 {
                     Id = (int)DataKind.Double,
-                    State = DataTypeState.Active,
+                    State = CommonStates.Active,
                     Code = nameof(DataKind.Double),
                     Name = "Число с плавающей десятичной точкой",
                     Kind = DataKind.Double
@@ -75,7 +76,7 @@ public class InitializeDataTypesCommandHandler : DatabaseRequestHandler<Initiali
                 new()
                 {
                     Id = (int)DataKind.Binary,
-                    State = DataTypeState.Active,
+                    State = CommonStates.Active,
                     Code = nameof(DataKind.Binary),
                     Name = "Двоичные данные",
                     Kind = DataKind.Binary
@@ -83,7 +84,7 @@ public class InitializeDataTypesCommandHandler : DatabaseRequestHandler<Initiali
                 new()
                 {
                     Id = (int)DataKind.DocumentReference,
-                    State = DataTypeState.Active,
+                    State = CommonStates.Active,
                     Code = nameof(DataKind.DocumentReference),
                     Name = "Ссылка на документ",
                     Kind = DataKind.DocumentReference
@@ -91,7 +92,7 @@ public class InitializeDataTypesCommandHandler : DatabaseRequestHandler<Initiali
                 new()
                 {
                     Id = (int)DataKind.Complex,
-                    State = DataTypeState.Active,
+                    State = CommonStates.Active,
                     Code = nameof(DataKind.Complex),
                     Name = "Составной тип",
                     Kind = DataKind.Complex

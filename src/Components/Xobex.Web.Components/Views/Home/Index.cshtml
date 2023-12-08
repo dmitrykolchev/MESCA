@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style type="text/css">
+    x-smart-grid {
+        display: block;
+        position: relative;
+        left: 100px;
+        font-family: 'Segoe UI';
+        font-size: 13px;
+    }
+
+        x-smart-grid > x-header {
+            position: absolute;
+            display: flex;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 32px;
+            background-color: red;
+        }
+
+            x-smart-grid > x-header > x-column-header {
+                position: relative;
+            }
+
+                x-smart-grid > x-header > x-column-header > div {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
+</style>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <x-smart-grid id="grid" style="width:80%;height:600px;background-color:green;">
+
+    </x-smart-grid>
+    <x-icon-material glyph="AddShoppingCart" style="color:#e3008c" size="xxl"></x-icon-material>
+    <x-icon-material glyph="AddShoppingCart" style="color:#e3008c" size="xl"></x-icon-material>
+    <x-icon-material glyph="AddShoppingCart" style="color:#e3008c" size="l"></x-icon-material>
+    <x-icon-material glyph="AddShoppingCart" style="color:#e3008c" size="m"></x-icon-material>
+    <x-icon-material glyph="AddShoppingCart" style="color:#e3008c" size="n"></x-icon-material>
+    <x-icon-material glyph="AddShoppingCart" style="color:#e3008c" size="s"></x-icon-material>
+    <x-icon-material glyph="AddShoppingCart" style="color:#e3008c" size="xs"></x-icon-material>
+    <br />
+    <x-icon-material glyph="AccessTime" style="color:#ffaa44" fill="1" size="xxl"></x-icon-material>
+    <x-icon-material glyph="AccessTime" style="color:#ffaa44" fill="1" size="xl"></x-icon-material>
+    <x-icon-material glyph="AccessTime" style="color:#ffaa44" fill="1" size="l"></x-icon-material>
+    <x-icon-material glyph="AccessTime" style="color:#ffaa44" fill="1" size="m"></x-icon-material>
+    <x-icon-material glyph="AccessTime" style="color:#ffaa44" fill="1" size="n"></x-icon-material>
+    <x-icon-material glyph="AccessTime" style="color:#ffaa44" fill="1" size="s"></x-icon-material>
+    <x-icon-material glyph="AccessTime" style="color:#ffaa44" fill="1" size="xs"></x-icon-material>
+    <br />
+    <x-icon-material glyph="AccessTime" style="color:#d13438" size="xxl"></x-icon-material>
+    <x-icon-material glyph="AccessTime" style="color:#d13438" size="xl"></x-icon-material>
+    <x-icon-material glyph="AccessTime" style="color:#d13438" size="l"></x-icon-material>
+    <x-icon-material glyph="AccessTime" style="color:#d13438" size="m"></x-icon-material>
+    <x-icon-material glyph="AccessTime" style="color:#d13438" size="n"></x-icon-material>
+    <x-icon-material glyph="AccessTime" style="color:#d13438" size="s"></x-icon-material>
+    <x-icon-material glyph="AccessTime" style="color:#d13438" size="xs"></x-icon-material>
+    <br />
+    <x-icon-fluent glyph="Alert20Regular" style="color:#00ad56" size="xxl"></x-icon-fluent>
+    <x-icon-fluent glyph="Alert20Regular" style="color:#00ad56" size="xl"></x-icon-fluent>
+    <x-icon-fluent glyph="Alert20Regular" style="color:#00ad56" size="l"></x-icon-fluent>
+    <x-icon-fluent glyph="Alert20Regular" style="color:#00ad56" size="m"></x-icon-fluent>
+    <x-icon-fluent glyph="Alert20Regular" style="color:#00ad56" size="n"></x-icon-fluent>
+    <x-icon-fluent glyph="Alert20Regular" style="color:#00ad56" size="s"></x-icon-fluent>
+    <x-icon-fluent glyph="Alert20Regular" style="color:#00ad56" size="xs"></x-icon-fluent>
+    <br />
+    <x-icon-fabric glyph="Badge" style="color:#004e8c" size="xxl"></x-icon-fabric>
+    <x-icon-fabric glyph="Badge" style="color:#004e8c" size="xl"></x-icon-fabric>
+    <x-icon-fabric glyph="Badge" style="color:#004e8c" size="l"></x-icon-fabric>
+    <x-icon-fabric glyph="Badge" style="color:#004e8c" size="m"></x-icon-fabric>
+    <x-icon-fabric glyph="Badge" style="color:#004e8c" size="n"></x-icon-fabric>
+    <x-icon-fabric glyph="Badge" style="color:#004e8c" size="s"></x-icon-fabric>
+    <x-icon-fabric glyph="Badge" style="color:#004e8c" size="xs"></x-icon-fabric>
+    <br />
+
+    @*     <x-data-grid id="datagrid" style="max-width:800px;">
+    <script type="application/json" nomodule data-properties>
+    {
+    "keyExpr": "ID",
+    "columns": ["CompanyName", "City", "State", "Phone", "Fax"],
+    "height": 300,
+    "dataSource": "/api/Customers"
+    }
+    </script>
+    </x-data-grid>
+    <x-check-box>
+    <script type="application/json" nomodule data-properties>
+    {
+    "text": "Hello World",
+    "elementAttr": { "aria-label": "Hello World" }
+    }
+    </script>
+    </x-check-box>
+    *@
+</div>
+
+<script type="module">
+    import { initialize } from "./js/controls/testsmartgrid.js";
+    initialize();
+    // import { DataGrid } from "./js/controls/datagrid.js";
+    // import { CheckBox } from "./js/controls/checkbox.js";
+    // console.debug(instance);
+    // const p = instance.properties;
+    // console.debug(p);
+</script>

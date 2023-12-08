@@ -7,6 +7,6 @@ using Xobex.Data.Common;
 
 namespace Xobex.Entities.Dictionaries;
 
-public class CurrencyRateProvider : DocumentBase<int, GeneralDocumentState>
+public class CurrencyRateProvider : DocumentBase<int, CommonStates>
 {
 }

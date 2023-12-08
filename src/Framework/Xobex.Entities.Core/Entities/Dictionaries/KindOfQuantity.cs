@@ -7,6 +7,6 @@ using Xobex.Data.Common;
 
 namespace Xobex.Entities.Dictionaries;
 
-public class KindOfQuantity : DocumentBase<int, GeneralDocumentState>
+public class KindOfQuantity : DocumentBase<int, CommonStates>
 {
 }

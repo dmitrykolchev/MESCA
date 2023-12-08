@@ -7,13 +7,6 @@ using Xobex.Data.Common;
 
 namespace Xobex.Entities.Dictionaries;
 
-public enum CountryState
-{
-    NotExists = 0,
-    Active = 1,
-    Inactive = 2
-}
-
-public class Country : DocumentBase<int, CountryState>
+public class Country : DocumentBase<int, CommonStates>
 {
 }

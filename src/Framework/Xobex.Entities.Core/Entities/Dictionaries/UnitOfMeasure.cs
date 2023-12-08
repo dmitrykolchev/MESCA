@@ -7,14 +7,7 @@ using Xobex.Data.Common;
 
 namespace Xobex.Entities.Dictionaries;
 
-public enum UnitOfMeasureState
-{
-    NotExists = 0,
-    Active = 1,
-    Inactive = 2
-}
-
-public class UnitOfMeasure: DocumentBase<int, UnitOfMeasureState>
+public class UnitOfMeasure: DocumentBase<int, CommonStates>
 {
     public string? InternationalName { get; set; }
     public required string PrintSymbol { get; set; }

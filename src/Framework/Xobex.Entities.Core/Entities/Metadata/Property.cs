@@ -7,20 +7,13 @@ using Xobex.Data.Common;
 
 namespace Xobex.Entities.Metadata;
 
-public enum PropertyState : short
-{
-    NotExists = 0,
-    Active = 1,
-    Inactive = 2
-}
-
 [Flags]
 public enum PropertyFlags : int
 {
     None = 0,
 }
 
-public class Property : DocumentBase<int, PropertyState>
+public class Property : DocumentBase<int, CommonStates>
 {
     public Property()
     {

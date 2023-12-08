@@ -7,13 +7,6 @@ using Xobex.Data.Common;
 
 namespace Xobex.Entities.Metadata;
 
-public enum DocumentTypeState : short
-{
-    NotExists,
-    Active,
-    Inactive
-}
-
 [Flags]
 public enum DocumentTypeFlags : int
 {
@@ -23,7 +16,7 @@ public enum DocumentTypeFlags : int
 public class DocumentType : IAuditable
 {
     public int Id { get; set; }
-    public DocumentTypeState State { get; set; }
+    public CommonStates State { get; set; }
     public DocumentTypeFlags Flags { get; set; }
     public required string Code { get; set; }
     public required string Name { get; set; }

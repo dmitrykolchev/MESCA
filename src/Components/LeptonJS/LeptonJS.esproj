@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/0.5.58794-alpha">
+  <ItemGroup>
+    <Folder Include="dist\" />
+  </ItemGroup>
+</Project>

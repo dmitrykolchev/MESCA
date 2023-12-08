@@ -8,13 +8,6 @@ using Xobex.Entities.Security;
 
 namespace Xobex.Entities.Metadata;
 
-public enum TransitionTemplateState : short
-{
-    NotExists,
-    Active,
-    Inactive
-}
-
 [Flags]
 public enum TransitionTemplateFlags : int
 {
@@ -24,7 +17,7 @@ public enum TransitionTemplateFlags : int
 public class TransitionTemplate: IAuditable
 {
     public int Id { get; set; }
-    public TransitionTemplateState State { get; set; }
+    public CommonStates State { get; set; }
     public TransitionTemplateFlags Flags { get; set; }
     public int DocumentTypeId { get; set; }
     public short FromStateValue { get; set; }

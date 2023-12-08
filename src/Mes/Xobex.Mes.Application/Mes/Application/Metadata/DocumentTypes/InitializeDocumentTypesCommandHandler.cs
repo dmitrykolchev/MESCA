@@ -9,6 +9,7 @@ using Xobex.Entities.Metadata;
 using Xobex.Mediator;
 using Xobex.Mes.Entities.Resources;
 using Xobex.Mes.Entities;
+using Xobex.Entities;
 
 namespace Xobex.Mes.Application.Metadata.DocumentTypes;
 
@@ -24,7 +25,7 @@ public class InitializeDocumentTypesCommandHandler : DatabaseRequestHandler<Init
     {
         DocumentType equipment = new()
         {
-            State = DocumentTypeState.Active,
+            State = CommonStates.Active,
             Flags = DocumentTypeFlags.None,
             Code = "Equipment",
             Name = "Оборудование",
@@ -34,21 +35,21 @@ public class InitializeDocumentTypesCommandHandler : DatabaseRequestHandler<Init
         equipment.States = new HashSet<DocumentState>([
             new ()
             {
-                State = DocumentStateState.Active,
+                State = CommonStates.Active,
                 Value = (short)EquipmentState.NotExists,
                 Code = nameof(EquipmentState.NotExists),
                 Name = "Не существует",
             },
             new ()
             {
-                State = DocumentStateState.Active,
+                State = CommonStates.Active,
                 Value = (short)EquipmentState.Active,
                 Code = nameof(EquipmentState.Active),
                 Name = "Используется",
             },
             new ()
             {
-                State = DocumentStateState.Active,
+                State = CommonStates.Active,
                 Value = (short)EquipmentState.Inactive,
                 Code = nameof(EquipmentState.Inactive),
                 Name = "Не используется",

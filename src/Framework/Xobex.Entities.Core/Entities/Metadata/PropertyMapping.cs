@@ -8,11 +8,6 @@ using Xobex.Entities.Core;
 
 namespace Xobex.Entities.Metadata;
 
-public enum PropertyMappingState : short
-{
-    NotExists = 0,
-}
-
 [Flags]
 public enum PropertyMappingFlags
 {
@@ -24,7 +19,7 @@ public enum PropertyMappingFlags
 public class PropertyMapping : IAuditable
 {
     public int Id { get; set; }
-    public PropertyMappingState State { get; set; }
+    public CommonStates State { get; set; }
     public PropertyMappingFlags Flags { get; set; }
     public required string Code { get; set; }
     public required string Name { get; set; }

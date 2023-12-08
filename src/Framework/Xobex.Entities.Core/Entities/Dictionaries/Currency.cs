@@ -7,13 +7,6 @@ using Xobex.Data.Common;
 
 namespace Xobex.Entities.Dictionaries;
 
-public enum CurrencyState : short
-{
-    NotExists = 0,
-    Active = 1,
-    Inactive = 2
-}
-
-public class Currency : DocumentBase<int, CurrencyState>
+public class Currency : DocumentBase<int, CommonStates>
 {
 }

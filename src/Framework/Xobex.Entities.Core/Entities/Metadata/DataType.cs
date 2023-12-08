@@ -7,13 +7,6 @@ using Xobex.Data.Common;
 
 namespace Xobex.Entities.Metadata;
 
-public enum DataTypeState : short
-{
-    NotExists = 0,
-    Active = 1,
-    Inactive = 2
-}
-
 public enum DataKind : short
 {
     Unknown = 0,
@@ -67,7 +60,7 @@ public enum DataKind : short
 public class DataType: IAuditable
 {
     public int Id { get; set; }
-    public DataTypeState State { get; set; }
+    public CommonStates State { get; set; }
     public required string Code { get; set; }
     public required string Name { get; set; }
     public DataKind Kind { get; set; }
