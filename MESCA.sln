@@ -56,9 +56,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Open Source", "Open Source"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web Components", "Web Components", "{B885B37D-810F-4210-869D-C30052DCAC5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xobex.Web.Components", "src\Components\Xobex.Web.Components\Xobex.Web.Components.csproj", "{7D5E2F95-0CED-4C06-BC0B-DFD84E5E795A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xobex.Web.Components", "src\Components\Xobex.Web.Components\Xobex.Web.Components.csproj", "{7D5E2F95-0CED-4C06-BC0B-DFD84E5E795A}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "LeptonJS", "src\Components\LeptonJS\LeptonJS.esproj", "{E56F2924-6751-4594-9FC8-114C94796568}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Converter", "src\Tools\Converter\Converter.esproj", "{1D9727FC-DB78-4380-8D0F-74598C01D887}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -132,6 +134,12 @@ Global
 		{E56F2924-6751-4594-9FC8-114C94796568}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E56F2924-6751-4594-9FC8-114C94796568}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E56F2924-6751-4594-9FC8-114C94796568}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{1D9727FC-DB78-4380-8D0F-74598C01D887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D9727FC-DB78-4380-8D0F-74598C01D887}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D9727FC-DB78-4380-8D0F-74598C01D887}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1D9727FC-DB78-4380-8D0F-74598C01D887}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D9727FC-DB78-4380-8D0F-74598C01D887}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D9727FC-DB78-4380-8D0F-74598C01D887}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -153,6 +161,7 @@ Global
 		{C3610BF9-5CE1-4250-B525-70C0E128491E} = {AA9227AF-0DFA-495D-933A-2518FFF84B04}
 		{7D5E2F95-0CED-4C06-BC0B-DFD84E5E795A} = {B885B37D-810F-4210-869D-C30052DCAC5B}
 		{E56F2924-6751-4594-9FC8-114C94796568} = {B885B37D-810F-4210-869D-C30052DCAC5B}
+		{1D9727FC-DB78-4380-8D0F-74598C01D887} = {78DA48B8-9B8A-4F9B-A631-C61CA4C7BE92}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D055D17-30FF-4FA3-B49C-A68B1C8FF3A5}
