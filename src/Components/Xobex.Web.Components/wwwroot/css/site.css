@@ -148,7 +148,7 @@
     --x-themeDarker: #73b9ef;
     --x-neutralLighterAlt: #0A0A0A;
     --x-neutralLighter: #141414;
-    --x-neutralLight: #393939;
+    --x-neutralLight: #292929;
     --x-neutralQuaternaryAlt: #424242;
     --x-neutralQuaternary: #494949;
     --x-neutralTertiaryAlt: #686868;
@@ -162,7 +162,7 @@
     --x-white: #181818;
 }
 
-:root {
+:root.light {
     --x-themePrimary: #0078d4;
     --x-themeLighterAlt: #eff6fc;
     --x-themeLighter: #deecf9;
@@ -264,7 +264,7 @@ a, a:visited {
     }
 
 h1, h2, h3, h4, h5 {
-    color: var(--x-neutralPrimary);
+    color: var(--x-black);
     font-weight: var(--x-font-weight-semibold);
     margin-bottom: 12px;
     margin-top: 0;
@@ -283,16 +283,82 @@ h2 {
 
 .article {
     background-color: var(--x-neutralLighterAlt);
-    margin: 12px;
-    padding: 12px;
+    padding-left: 40px;
 }
 
 .section {
     padding: 28px;
     margin-bottom: 28px;
+    margin-right: 28px;
     border-radius: 2px;
     background-clip: padding-box;
     position: relative;
     background-color: var(--x-white);
 }
 
+.content {
+    font-size: 16px;
+    font-weight: var(--x-font-weight-regular);
+}
+
+ol, p, ul {
+    color: var(--x-neutralPrimary);
+}
+
+.table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.head .row {
+    border-color: var(--x-neutralPrimary);
+}
+
+.body .row:not(:last-of-type), .head .row {
+    border-bottom: 1px solid var(--x-neutralTertiaryAlt);
+}
+
+.cell, .headerCell {
+    font-size: var(--x-font-size-14);
+    padding: 14px;
+    vertical-align: top;
+    text-align: left;
+}
+
+.headerCell {
+    font-weight: var(--x-font-weight-semibold);
+    color: var(--x-neutralPrimary);
+    white-space: nowrap;
+}
+
+.compact {
+    height: 100px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 160px;
+}
+
+.example {
+    /*height: 100%;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.usageList {
+    padding-left: 0;
+}
+    .usageList .usageListItem {
+        list-style: none;
+        margin-bottom: 4px;
+        color: var(--x-neutralSecondary);
+        font-size: var(--x-font-size-14);
+    }
+
+header {
+    margin-bottom: 0px;
+    padding: 52px 0px;
+    min-height: 136px;
+}
