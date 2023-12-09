@@ -31,4 +31,8 @@
     <TypeScriptCompile Include="wwwroot\js\controls\datagrid.ts" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\prism\" />
+  </ItemGroup>
+
 </Project>

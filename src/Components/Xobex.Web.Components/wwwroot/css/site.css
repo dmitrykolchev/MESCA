@@ -281,6 +281,13 @@ h2 {
     font-size: var(--x-font-size-24);
 }
 
+h3 {
+    align-items: baseline;
+    font-size: var(--x-font-size-20);
+    font-weight: var(--x-font-weight-semibold);
+    color: var(--x-neutralSecondary);
+}
+
 .article {
     background-color: var(--x-neutralLighterAlt);
     padding-left: 40px;

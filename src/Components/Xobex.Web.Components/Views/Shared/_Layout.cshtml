@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Xobex.Web.Components</title>
     <link rel="stylesheet" href="~/lib/devextreme/css/dx.dark.compact.css" />
+    <link rel="stylesheet" href="~/lib/prism/prism_dark.css" />
+
     <link rel="stylesheet" href="~/css/icons/fabric/fabric.css" />
     <link rel="stylesheet" href="~/css/icons/fluent/fluent.css" />
     <link rel="stylesheet" href="~/css/icons/material/material.css" />
@@ -71,6 +73,7 @@
         </div>
     </div>
     @await RenderSectionAsync("Scripts", required: false)
+    <script type="text/javascript" src="~/lib/prism/prism.js"></script>
 </body>
 </html>
 
